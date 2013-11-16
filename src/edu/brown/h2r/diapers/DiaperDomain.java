@@ -1,8 +1,9 @@
-package edu.brown.h2r.diapers;
+package src.edu.brown.h2r.diapers;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.lang.ArrayIndexOutOfBoundsException;
 
 import burlap.oomdp.auxiliary.DomainGenerator;
 import burlap.oomdp.core.Attribute;
@@ -30,9 +31,9 @@ public class DiaperDomain implements DomainGenerator {
 	private static final String		CLASS_CONTAINER			= "ClassContainer";
 	private static final String		CLASS_PHYSOBJ			= "ClassPhysobj";
 
-	private static final String		ATTR_MENTAL_STATE 		= "AttrMentalState"
+	private static final String		ATTR_MENTAL_STATE 		= "AttrMentalState";
 	private static final String		ATTR_PHYSOBJ_TYPE		= "AttrPOType";
-	private static final String		ATTR_CONTENTS_TYPE		= "AttrCTType";
+	private static final String		ATTR_CONTAINER_TYPE		= "AttrCTType";
 	private static final String		ATTR_CLEANLINESS		= "AttrCleanliness";
 	private static final String		ATTR_MANIPULABLE		= "AttrManipulable";
 	private static final String		ATTR_CONTENTS 			= "AttrContents";
@@ -110,15 +111,15 @@ public class DiaperDomain implements DomainGenerator {
 
 		//Attribute for the caregiver's mental state
 		Attribute attrMentalState = new Attribute(domain, ATTR_MENTAL_STATE, Attribute.AttributeType.DISC);
-		caregiverMentalState.setDiscValues(mentalStates);
+		attrMentalState.setDiscValues(mentalStates);
 
 		//Attribute for the type of a physical object
 		Attribute attrPhysobjType = new Attribute(domain, ATTR_PHYSOBJ_TYPE, Attribute.AttributeType.DISC);
-		physobjType.setDiscValues(physobjTypes);
+		attrPhysobjType.setDiscValues(physobjTypes);
 
 		//Attribute for the type of a container
 		Attribute attrContainerType = new Attribute(domain, ATTR_CONTAINER_TYPE, Attribute.AttributeType.DISC);
-		containerType.setDiscValues(containerTypes);
+		attrContainerType.setDiscValues(containerTypes);
 
 		//Attribute for the cleanliness of an object
 		Attribute attrCleanliness = new Attribute(domain, ATTR_CLEANLINESS, Attribute.AttributeType.DISC);
@@ -177,27 +178,29 @@ public class DiaperDomain implements DomainGenerator {
 
 		@Override
 		public boolean applicableInState(State st, String[] params) {
-			ObjectInstance object = st.getObject(params[1]);
+			ObjectInstance object =  st.getObject(params[0]);
 
-			return object.getDiscValForAttribute(ATTR_MANIPULABLE) == 1;	
+			return object.getDiscValForAttribute(ATTR_MANIPULABLE) == 1;
 		}
 
 		@Override
 		protected State performActionHelper(State st, String[] params) {
 			ObjectInstance object = st.getObject(params[0]);
-			ObjectInstance container = st.getObjecT(params[1]);
+			ObjectInstance container = st.getObject(params[1]);
 
 			grabObject(st, object);	
 			placeObject(object, container);
 
+			//System.out.println("Completing perform action helper, returning...");
 			return st;
 		}
 
 		private void grabObject(State st, ObjectInstance obj) {
-			String oldContainerName = obj.getAllRelationalTargets(ATTR_CONTAINER).toArray()[0];
+			String oldContainerName = (String) obj.getAllRelationalTargets(ATTR_CONTAINER).toArray()[0];
+
 			ObjectInstance oldContainer = st.getObject(oldContainerName);
 			oldContainer.removeRelationalTarget(ATTR_CONTENTS, obj.getName());
-			obj.clearRelationalTargets();
+			obj.clearRelationalTargets(ATTR_CONTAINER);
 		}
 
 		private void placeObject(ObjectInstance obj, ObjectInstance cnt) {
@@ -212,7 +215,7 @@ public class DiaperDomain implements DomainGenerator {
  * Create the initial state
  * ========================================================================= */
 
-	public static State getNewState(Domain dom) {
+	public static State getNewState(Domain d) {
 		State s = new State();
 
 		//Retrieve classes

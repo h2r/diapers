@@ -285,7 +285,7 @@ public class BlocksWorld implements DomainGenerator {
 		
 		State s = getNewState(domain, 3);
 		
-		int expMode = 1;
+		int expMode = 0;
 		if(args.length > 0){
 			if(args[0].equals("v")){
 				expMode = 1;
