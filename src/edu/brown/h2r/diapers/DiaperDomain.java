@@ -25,7 +25,7 @@ public class DiaperDomain implements DomainGenerator {
  * Definition of String constants
  * ========================================================================= */
 
-	private static final String 		CLASS_HUMAN 			= "ClassHuman";
+	private static final String 	CLASS_HUMAN 			= "ClassHuman";
 	private static final String		CLASS_ROBOT 			= "ClassRobot";
 	private static final String		CLASS_CONTAINER			= "ClassContainer";
 	private static final String		CLASS_PHYSOBJ			= "ClassPhysobj";
@@ -40,38 +40,38 @@ public class DiaperDomain implements DomainGenerator {
 
 	private static final String		PO_TYPE_DIAPER			= "POTypeDiaper";
 	private static final String		PO_TYPE_WIPES			= "POTypeWipes";
-	private static final String 		PO_TYPE_CLOTHING		= "POTypeClothing";
+	private static final String 	PO_TYPE_CLOTHING		= "POTypeClothing";
 
-	private static final String		CT_TYPE_CHANGINGTABLE		= "CTTypeChangingTable";
+	private static final String		CT_TYPE_CHANGINGTABLE	= "CTTypeChangingTable";
 	private static final String		CT_TYPE_SIDETABLE		= "CTTypeSideTable";
 	private static final String		CT_TYPE_HAMPER			= "CTTypeHamper";
 	private static final String		CT_TYPE_DRESSER			= "CTTypeDresser";
 	private static final String		CT_TYPE_TRASHCAN		= "CTTypeTrashCan";
 
-	private static final String		STATE_X				= "stateX";
-	private static final String		STATE_A				= "stateA";
-	private static final String		STATE_B				= "stateB";
-	private static final String		STATE_C				= "stateC";
-	private static final String		STATE_D				= "stateD";
-	private static final String		STATE_E 			= "stateE";
-	private static final String		STATE_F				= "stateF";
-	private static final String		STATE_Y 			= "stateY";
+	private static final String		STATE_X					= "stateX";
+	private static final String		STATE_A					= "stateA";
+	private static final String		STATE_B					= "stateB";
+	private static final String		STATE_C					= "stateC";
+	private static final String		STATE_D					= "stateD";
+	private static final String		STATE_E 				= "stateE";
+	private static final String		STATE_F					= "stateF";
+	private static final String		STATE_Y 				= "stateY";
 
 	private static final String		ACTION_BRING			= "BringAction";
 
 	private static final String		OBJ_CAREGIVER			= "Caregiver";
-	private static final String		OBJ_ROBOT			= "Robot";
+	private static final String		OBJ_ROBOT				= "Robot";
 	private static final String		OBJ_OLDDIAPER			= "OldDiaper";
 	private static final String		OBJ_NEWDIAPER			= "NewDiaper";
 	private static final String		OBJ_OLDPANTS			= "OldPants";
 	private static final String		OBJ_NEWPANTS			= "NewPants";
 	private static final String		OBJ_OLDSHIRT			= "OldShirt";
 	private static final String		OBJ_NEWSHIRT			= "NewShirt";
-	private static final String		OBJ_WIPES			= "Wipes";
+	private static final String		OBJ_WIPES				= "Wipes";
 	private static final String		OBJ_CHANGINGTABLE 		= "ChangingTable";
 	private static final String		OBJ_SIDETABLE			= "SideTable";
-	private static final String		OBJ_HAMPER			= "Hamper";
-	private static final String		OBJ_DRESSER			= "Dresser";
+	private static final String		OBJ_HAMPER				= "Hamper";
+	private static final String		OBJ_DRESSER				= "Dresser";
 	private static final String		OBJ_TRASHCAN			= "TrashCan";
 
 	public DiaperDomain() {}
@@ -94,7 +94,7 @@ public class DiaperDomain implements DomainGenerator {
 
 		//Values for the container object class' type attribute
 		List<String> containerTypes = new ArrayList<String>() {{
-			add(CT_TYPE_CHANGINGTABLE); 	add(CT_TYPE_SIDETABLE);
+			add(CT_TYPE_CHANGINGTABLE); add(CT_TYPE_SIDETABLE);
 			add(CT_TYPE_HAMPER); 		add(CT_TYPE_DRESSER);
 			add(CT_TYPE_TRASHCAN);
 		}};
