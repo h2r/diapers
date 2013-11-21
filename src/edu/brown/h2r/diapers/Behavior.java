@@ -56,15 +56,16 @@ public class Behavior {
 	public void doBFS(String outputPath) {
 		outputPath += !outputPath.endsWith("/") ? "/" : "";
 
-		System.out.println("About to run planner");
+		System.out.println("[Behavior.doBFS] Running BFS planner...");
 		DeterministicPlanner planner = new BFS(domain, goalCondition, hashFactory);
 		planner.planFromState(initialState);
-		System.out.println("Planner returned, received policy");
+		System.out.println("[Behavior.doBFS] Planner returned, received policy");
 
 		Policy p = new SDPlannerPolicy(planner);
 		EpisodeAnalysis ea = p.evaluateBehavior(initialState, rewardFunction, terminalFunction);
 		ea.writeToFile(outputPath + "planResult", stateParser);
-		System.out.println(ea.getActionSequenceString(", "));
+		System.out.println("[behavior.doBFS] PLAN GENERATED:");
+		System.out.println(ea.getActionSequenceString("\n"));
 	}
 
 	/**

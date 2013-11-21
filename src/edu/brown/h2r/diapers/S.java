@@ -57,36 +57,36 @@ public class S {
  * Actions!
  * ========================================================================= */
 
-	public static final String ACTION_BRING = "!bring";
-	public static final String ACTION_UPDATE = "!update";
-	public static final String ACTION_WAIT = "!wait";
+	public static final String ACTION_BRING = "bring";
+	public static final String ACTION_UPDATE = "update";
+	public static final String ACTION_WAIT = "wait";
 
 /* ============================================================================
  * Objects
  * ========================================================================= */
 
-	public static final String OBJ_CAREGIVER = "@caregiver";
-	public static final String OBJ_ROBOT = "@robot";
-	public static final String OBJ_OLDDIAPER = "@olddiaper";
-	public static final String OBJ_NEWDIAPER = "@newdiaper";
-	public static final String OBJ_OLDPANTS = "@oldpants";
-	public static final String OBJ_NEWPANTS = "@newpants";
-	public static final String OBJ_OLDSHIRT = "@oldshirt";
-	public static final String OBJ_NEWSHIRT = "@newshirt";
-	public static final String OBJ_WIPES = "@wipes";
-	public static final String OBJ_CHANGINGTABLE = "@changingtable";
-	public static final String OBJ_SIDETABLE = "@sidetable";
-	public static final String OBJ_HAMPER = "@hamper";
-	public static final String OBJ_DRESSER = "@dresser";
-	public static final String OBJ_TRASHCAN = "@trashcan";
-	public static final String OBJ_STATE_X = "@stateX";
-	public static final String OBJ_STATE_A = "@stateA";
-	public static final String OBJ_STATE_B = "@stateB";
-	public static final String OBJ_STATE_C = "@stateC";
-	public static final String OBJ_STATE_D = "@stateD";
-	public static final String OBJ_STATE_E = "@stateE";
-	public static final String OBJ_STATE_Y = "@stateY";
-	public static final String OBJ_REFEREE = "@referee";
+	public static final String OBJ_CAREGIVER = "caregiver";
+	public static final String OBJ_ROBOT = "robot";
+	public static final String OBJ_OLDDIAPER = "olddiaper";
+	public static final String OBJ_NEWDIAPER = "newdiaper";
+	public static final String OBJ_OLDPANTS = "oldpants";
+	public static final String OBJ_NEWPANTS = "newpants";
+	public static final String OBJ_OLDSHIRT = "oldshirt";
+	public static final String OBJ_NEWSHIRT = "newshirt";
+	public static final String OBJ_WIPES = "wipes";
+	public static final String OBJ_CHANGINGTABLE = "changingtable";
+	public static final String OBJ_SIDETABLE = "sidetable";
+	public static final String OBJ_HAMPER = "hamper";
+	public static final String OBJ_DRESSER = "dresser";
+	public static final String OBJ_TRASHCAN = "trashcan";
+	public static final String OBJ_STATE_X = "stateX";
+	public static final String OBJ_STATE_A = "stateA";
+	public static final String OBJ_STATE_B = "stateB";
+	public static final String OBJ_STATE_C = "stateC";
+	public static final String OBJ_STATE_D = "stateD";
+	public static final String OBJ_STATE_E = "stateE";
+	public static final String OBJ_STATE_Y = "stateY";
+	public static final String OBJ_REFEREE = "referee";
 
 /* ============================================================================
  * Propositional Functions
