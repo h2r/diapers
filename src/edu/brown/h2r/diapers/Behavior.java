@@ -141,7 +141,7 @@ public class Behavior {
 	}
 
 /* ============================================================================
- * Value Iteration
+ * Value Iteration.  Currently will stack overflow if attempted
  * ========================================================================= */
 
 	public void doValueIteration(String outputPath) {
