@@ -1,5 +1,6 @@
 package edu.brown.h2r.diapers;
 
+//First import the universe
 import burlap.oomdp.singleagent.RewardFunction;
 import burlap.oomdp.singleagent.common.SinglePFTF;
 import burlap.oomdp.singleagent.common.UniformCostRF;
@@ -8,6 +9,7 @@ import burlap.oomdp.auxiliary.common.UniversalStateParser;
 import burlap.oomdp.core.Domain;
 import burlap.oomdp.core.State;
 import burlap.oomdp.core.TerminalFunction;
+import burlap.oomdp.core.ObjectInstance;
 import burlap.behavior.singleagent.Policy;
 import burlap.behavior.singleagent.EpisodeAnalysis;
 import burlap.behavior.singleagent.planning.StateConditionTest;
@@ -15,7 +17,13 @@ import burlap.behavior.singleagent.planning.deterministic.DeterministicPlanner;
 import burlap.behavior.singleagent.planning.deterministic.TFGoalCondition;
 import burlap.behavior.singleagent.planning.deterministic.SDPlannerPolicy;
 import burlap.behavior.singleagent.planning.deterministic.uninformed.bfs.BFS;
+import burlap.behavior.singleagent.planning.deterministic.informed.astar.AStar;
+import burlap.behavior.singleagent.planning.deterministic.informed.Heuristic;
 import burlap.behavior.statehashing.NameDependentStateHashFactory;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 /**
  * Behavior is a class in which one can demo various types of planning behavior for the
@@ -25,14 +33,18 @@ import burlap.behavior.statehashing.NameDependentStateHashFactory;
  */
 public class Behavior {
 
-	DiaperDomain diaperDomain;
-	Domain domain;
-	StateParser stateParser;
-	RewardFunction rewardFunction;
-	TerminalFunction terminalFunction;
-	StateConditionTest goalCondition;
-	State initialState;
-	NameDependentStateHashFactory hashFactory;
+	private DiaperDomain diaperDomain;
+	private Domain domain;
+	private StateParser stateParser;
+	private RewardFunction rewardFunction;
+	private TerminalFunction terminalFunction;
+	private StateConditionTest goalCondition;
+	private State initialState;
+	private NameDependentStateHashFactory hashFactory;
+
+/* ============================================================================
+ * Constructor
+ * ========================================================================= */
 
 	/**
 	 * Constructor.  Doesn't take arguments.  Sets up all aspects of the behavior class.
@@ -48,8 +60,13 @@ public class Behavior {
 		hashFactory = new NameDependentStateHashFactory();
 	}
 
+/* ============================================================================
+ * Breadth First Search
+ * ========================================================================= */
+
 	/**
-	 * Runs Breadth First Search on the diaper domain.  Prints results to a specified output file. 
+	 * Runs Breadth First Search on the diaper domain.  Prints full results to an output file, and
+	 * prints the raw action sequence to the command line.
 	 *
 	 * @param outputPath		A path to a directory where the output file should be placed
 	 */
@@ -59,22 +76,120 @@ public class Behavior {
 		System.out.println("[Behavior.doBFS] Running BFS planner...");
 		DeterministicPlanner planner = new BFS(domain, goalCondition, hashFactory);
 		planner.planFromState(initialState);
-		System.out.println("[Behavior.doBFS] Planner returned, received policy");
+		System.out.println("[Behavior.doBFS] Planner returned, received policy.");
 
 		Policy p = new SDPlannerPolicy(planner);
 		EpisodeAnalysis ea = p.evaluateBehavior(initialState, rewardFunction, terminalFunction);
 		ea.writeToFile(outputPath + "planResult", stateParser);
-		System.out.println("[behavior.doBFS] PLAN GENERATED:");
+		System.out.println("[Behavior.doBFS] PLAN GENERATED:");
 		System.out.println(ea.getActionSequenceString("\n"));
 	}
 
+/* ============================================================================
+ * A* Search
+ * ========================================================================= */
+
 	/**
-	 * Runs an example search algorithm
+	 * Runs A* search on the diaper domain using the mental-states-left heuristic. Prints full 
+	 * results to an output file, and prints the raw action sequence to the command line.
+	 *
+	 * @param outputPath 		A path to a directory where the output file should be placed
+	 */
+	public void doAStar(String outputPath) {
+		outputPath += !outputPath.endsWith("/") ? "/" : "";
+
+		Heuristic mslHeuristic = new Heuristic() {
+			@Override
+			public double h(State s) {
+				ObjectInstance caregiver = s.getObject(S.OBJ_CAREGIVER);
+				String mentalState = (String) caregiver.getAllRelationalTargets(S.ATTR_MENTAL_STATE).toArray()[0];
+				switch(mentalState) {
+					case S.OBJ_STATE_X:
+						return -6;
+					case S.OBJ_STATE_A:
+						return -5;
+					case S.OBJ_STATE_B:
+						return -4;
+					case S.OBJ_STATE_C:
+						return -3;
+					case S.OBJ_STATE_D:
+						return -2;
+					case S.OBJ_STATE_E:
+						return -1;
+					case S.OBJ_STATE_Y:
+						return 0;
+					default:
+						return 0;
+				}
+			}
+		};
+
+		System.out.println("[Behavior.doAStar] Running AStar planner...");
+		DeterministicPlanner planner = new AStar(domain, rewardFunction, goalCondition, hashFactory, mslHeuristic);
+		planner.planFromState(initialState);
+		System.out.println("[Behavior.doAStar] Planner returned, received policy.");
+
+		Policy p = new SDPlannerPolicy(planner);
+		EpisodeAnalysis ea = p.evaluateBehavior(initialState, rewardFunction, terminalFunction);
+		ea.writeToFile(outputPath + "planResult", stateParser);
+		System.out.println("[Behavior.doAStar] PLAN GENERATED:");
+		System.out.println(ea.getActionSequenceString("\n"));
+	}
+
+/* ============================================================================
+ * Main method
+ * ========================================================================= */
+
+	/**
+	 * Runs a terminal UI which prompts the user for which algorithm to run
 	 */
 	public static void main(String[] args) {
 		Behavior test = new Behavior();
 		String outputPath = "output/";
 
-		test.doBFS(outputPath);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		collectinput:
+		while(true) {
+			try {
+
+				String input = "";
+
+				whichalgo:
+				while(true) {
+					System.out.println("[Behavior.main] Which algorithm? 1 = BFS, 2 = A*, 3 = VI");
+					input = br.readLine();
+					switch(input) {
+						case "1":
+							test.doBFS(outputPath);
+							break whichalgo;
+						case "2":
+							test.doAStar(outputPath);
+							break whichalgo;
+						case "3":
+							break whichalgo;
+						default:
+							System.out.println("[Behavior.main] Invalid option.");
+							continue;
+					}
+				}
+
+				restart:
+				while(true) {
+					System.out.println("[Behavior.main] Plan again? Y or N");
+					input = br.readLine();
+					switch(input) {
+						case "Y":
+							break restart;
+						case "N":
+							break collectinput;
+						default:
+							System.out.println("[Behavior.main] Invalid option.");
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

@@ -296,7 +296,7 @@ caregiver
 attr.mentalState
 stateA
 #ES#
-bring oldshirt hamper
+bring oldpants hamper
 -1.0
 #EL#
 ##bo
@@ -326,7 +326,7 @@ hamper
 attr.containerType
 type.hamper
 attr.contents
-oldshirt
+oldpants
 ##bo
 class.robot
 robot
@@ -347,7 +347,7 @@ oldshirt
 attr.physobjType
 type.Clothing
 attr.container
-hamper
+changingtable
 attr.cleanliness
 0
 attr.manipulable
@@ -358,7 +358,7 @@ oldpants
 attr.physobjType
 type.Clothing
 attr.container
-changingtable
+hamper
 attr.cleanliness
 0
 attr.manipulable
@@ -427,7 +427,7 @@ changingtable
 attr.containerType
 type.changingTable
 attr.contents
-olddiaper;oldpants
+olddiaper;oldshirt
 ##bo
 class.container
 trashcan
@@ -476,7 +476,7 @@ hamper
 attr.containerType
 type.hamper
 attr.contents
-oldshirt
+oldpants
 ##bo
 class.robot
 robot
@@ -497,7 +497,7 @@ oldshirt
 attr.physobjType
 type.Clothing
 attr.container
-hamper
+changingtable
 attr.cleanliness
 0
 attr.manipulable
@@ -508,7 +508,7 @@ oldpants
 attr.physobjType
 type.Clothing
 attr.container
-changingtable
+hamper
 attr.cleanliness
 0
 attr.manipulable
@@ -577,7 +577,7 @@ changingtable
 attr.containerType
 type.changingTable
 attr.contents
-olddiaper;oldpants
+olddiaper;oldshirt
 ##bo
 class.container
 trashcan
@@ -596,7 +596,7 @@ caregiver
 attr.mentalState
 stateA
 #ES#
-bring oldpants hamper
+bring oldshirt hamper
 -1.0
 #EL#
 ##bo
@@ -1196,7 +1196,7 @@ caregiver
 attr.mentalState
 stateC
 #ES#
-bring newshirt changingtable
+bring newpants changingtable
 -1.0
 #EL#
 ##bo
@@ -1269,7 +1269,7 @@ newshirt
 attr.physobjType
 type.Clothing
 attr.container
-changingtable
+dresser
 attr.cleanliness
 1
 attr.manipulable
@@ -1280,7 +1280,7 @@ newpants
 attr.physobjType
 type.Clothing
 attr.container
-dresser
+changingtable
 attr.cleanliness
 1
 attr.manipulable
@@ -1313,7 +1313,7 @@ dresser
 attr.containerType
 type.dresser
 attr.contents
-newpants
+newshirt
 ##bo
 class.container
 sidetable
@@ -1327,7 +1327,7 @@ changingtable
 attr.containerType
 type.changingTable
 attr.contents
-newshirt
+newpants
 ##bo
 class.container
 trashcan
@@ -1419,7 +1419,7 @@ newshirt
 attr.physobjType
 type.Clothing
 attr.container
-changingtable
+dresser
 attr.cleanliness
 1
 attr.manipulable
@@ -1430,7 +1430,7 @@ newpants
 attr.physobjType
 type.Clothing
 attr.container
-dresser
+changingtable
 attr.cleanliness
 1
 attr.manipulable
@@ -1463,7 +1463,7 @@ dresser
 attr.containerType
 type.dresser
 attr.contents
-newpants
+newshirt
 ##bo
 class.container
 sidetable
@@ -1477,7 +1477,7 @@ changingtable
 attr.containerType
 type.changingTable
 attr.contents
-newshirt
+newpants
 ##bo
 class.container
 trashcan
@@ -1569,7 +1569,7 @@ newshirt
 attr.physobjType
 type.Clothing
 attr.container
-changingtable
+dresser
 attr.cleanliness
 1
 attr.manipulable
@@ -1580,7 +1580,7 @@ newpants
 attr.physobjType
 type.Clothing
 attr.container
-dresser
+changingtable
 attr.cleanliness
 1
 attr.manipulable
@@ -1613,7 +1613,7 @@ dresser
 attr.containerType
 type.dresser
 attr.contents
-newpants
+newshirt
 ##bo
 class.container
 sidetable
@@ -1627,7 +1627,7 @@ changingtable
 attr.containerType
 type.changingTable
 attr.contents
-newdiaper;newshirt
+newdiaper;newpants
 ##bo
 class.container
 trashcan
@@ -1719,7 +1719,7 @@ newshirt
 attr.physobjType
 type.Clothing
 attr.container
-changingtable
+dresser
 attr.cleanliness
 1
 attr.manipulable
@@ -1730,7 +1730,7 @@ newpants
 attr.physobjType
 type.Clothing
 attr.container
-dresser
+changingtable
 attr.cleanliness
 1
 attr.manipulable
@@ -1763,7 +1763,7 @@ dresser
 attr.containerType
 type.dresser
 attr.contents
-newpants
+newshirt
 ##bo
 class.container
 sidetable
@@ -1777,7 +1777,7 @@ changingtable
 attr.containerType
 type.changingTable
 attr.contents
-newdiaper;newshirt
+newdiaper;newpants
 ##bo
 class.container
 trashcan
@@ -1796,7 +1796,7 @@ caregiver
 attr.mentalState
 stateE
 #ES#
-bring newpants changingtable
+bring newshirt changingtable
 -1.0
 #EL#
 ##bo
