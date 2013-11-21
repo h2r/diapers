@@ -2,6 +2,8 @@
 
 if [ $1 = "diaperdomain" ]; then
 	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.DiaperDomain
+elif [ $1 = "behavior" ]; then
+	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.Behavior
 else
 	echo "[run] unfamiliar with that argument"
 fi

@@ -10,6 +10,7 @@ import burlap.oomdp.core.Attribute;
 import burlap.oomdp.core.Domain;
 import burlap.oomdp.core.ObjectClass;
 import burlap.oomdp.core.ObjectInstance;
+import burlap.oomdp.core.PropositionalFunction;
 import burlap.oomdp.core.State;
 
 import burlap.oomdp.singleagent.Action;
@@ -18,9 +19,12 @@ import burlap.oomdp.singleagent.SADomain;
 import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 import burlap.oomdp.singleagent.explorer.VisualExplorer;
 
+/**
+ * Domain generator for the Diaper changing domain.
+ *
+ * @author Izaak Baker (iebaker)
+ */
 public class DiaperDomain implements DomainGenerator {
-
-
 
 	public DiaperDomain() {}
 
@@ -109,6 +113,9 @@ public class DiaperDomain implements DomainGenerator {
 		Action bringAction = new BringAction(domain, S.ACTION_BRING);
 		Action updateAction = new UpdateAction(domain, S.ACTION_UPDATE);
 		Action waitAction = new WaitAction(domain, S.ACTION_WAIT);
+
+		//Create propositional function
+		PropositionalFunction pfInStateY = new InStateYPropFun(domain, S.PROP_IN_STATE_Y);
 
 		return domain;
 	}
@@ -304,6 +311,24 @@ public class DiaperDomain implements DomainGenerator {
 	}
 
 /* ============================================================================
+ * Class definition for In State Y Prop. Function
+ * ========================================================================= */
+
+	public class InStateYPropFun extends PropositionalFunction {
+		public InStateYPropFun(Domain domain, String name) {
+			super(name, domain, new String[]{S.CLASS_HUMAN});
+		}
+
+		@Override
+		public boolean isTrue(State st, String[] params) {
+			ObjectInstance person = st.getObject(params[0]);
+			String mentalState = (String) person.getAllRelationalTargets(S.ATTR_MENTAL_STATE).toArray()[0];
+			boolean inStateY = mentalState.equals(S.OBJ_STATE_Y);
+			return inStateY;
+		}
+	}
+
+/* ============================================================================
  * Create the initial state
  * ========================================================================= */
 
@@ -351,7 +376,6 @@ public class DiaperDomain implements DomainGenerator {
 		ObjectInstance stateC = new ObjectInstance(stateClass, S.OBJ_STATE_C);
 		ObjectInstance stateD = new ObjectInstance(stateClass, S.OBJ_STATE_D);
 		ObjectInstance stateE = new ObjectInstance(stateClass, S.OBJ_STATE_E);
-		ObjectInstance stateF = new ObjectInstance(stateClass, S.OBJ_STATE_F);
 		ObjectInstance stateY = new ObjectInstance(stateClass, S.OBJ_STATE_Y);
 
 		//Give caregiver mental state X
@@ -374,9 +398,11 @@ public class DiaperDomain implements DomainGenerator {
 		addContents(sideTable, newDiaper, wipes);
 		addContents(dresser, newPants, newShirt);
 
-		addObjects(s, caregiver, robot, oldDiaper, newDiaper, wipes, oldPants,
-			oldShirt, newPants, newShirt, changingTable, sideTable, hamper,
-			dresser, trashCan, referee);
+		//Add all the objects to the state
+		addObjects(s, stateX, stateA, stateB, stateC, stateD, stateE, stateY, 
+			hamper, robot, wipes, oldShirt, oldPants, 
+			newShirt, newPants, oldDiaper, newDiaper, oldPants, dresser, hamper,  sideTable, changingTable,
+			trashCan, referee, caregiver);
 
 		return s;
 	}
