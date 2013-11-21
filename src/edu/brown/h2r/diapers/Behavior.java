@@ -9,12 +9,13 @@ import burlap.oomdp.core.Domain;
 import burlap.oomdp.core.State;
 import burlap.oomdp.core.TerminalFunction;
 import burlap.behavior.singleagent.Policy;
+import burlap.behavior.singleagent.EpisodeAnalysis;
 import burlap.behavior.singleagent.planning.StateConditionTest;
 import burlap.behavior.singleagent.planning.deterministic.DeterministicPlanner;
 import burlap.behavior.singleagent.planning.deterministic.TFGoalCondition;
 import burlap.behavior.singleagent.planning.deterministic.SDPlannerPolicy;
 import burlap.behavior.singleagent.planning.deterministic.uninformed.bfs.BFS;
-import burlap.behavior.statehashing.DiscreteStateHashFactory;
+import burlap.behavior.statehashing.NameDependentStateHashFactory;
 
 /**
  * Behavior is a class in which one can demo various types of planning behavior for the
@@ -31,7 +32,7 @@ public class Behavior {
 	TerminalFunction terminalFunction;
 	StateConditionTest goalCondition;
 	State initialState;
-	DiscreteStateHashFactory hashFactory;
+	NameDependentStateHashFactory hashFactory;
 
 	/**
 	 * Constructor.  Doesn't take arguments.  Sets up all aspects of the behavior class.
@@ -44,7 +45,7 @@ public class Behavior {
 		terminalFunction = new SinglePFTF(domain.getPropFunction(S.PROP_IN_STATE_Y));
 		goalCondition = new TFGoalCondition(terminalFunction);
 		initialState = DiaperDomain.getNewState(domain);
-		hashFactory = new DiscreteStateHashFactory();
+		hashFactory = new NameDependentStateHashFactory();
 	}
 
 	/**
@@ -55,11 +56,15 @@ public class Behavior {
 	public void doBFS(String outputPath) {
 		outputPath += !outputPath.endsWith("/") ? "/" : "";
 
+		System.out.println("About to run planner");
 		DeterministicPlanner planner = new BFS(domain, goalCondition, hashFactory);
 		planner.planFromState(initialState);
+		System.out.println("Planner returned, received policy");
 
 		Policy p = new SDPlannerPolicy(planner);
-		p.evaluateBehavior(initialState, rewardFunction, terminalFunction).writeToFile(outputPath + "planResult", stateParser);
+		EpisodeAnalysis ea = p.evaluateBehavior(initialState, rewardFunction, terminalFunction);
+		ea.writeToFile(outputPath + "planResult", stateParser);
+		System.out.println(ea.getActionSequenceString(", "));
 	}
 
 	/**
