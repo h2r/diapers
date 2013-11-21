@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ $1 = "diaperdomain" ]; then
+	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.DiaperDomain
+else
+	echo "[run] unfamiliar with that argument"
+fi

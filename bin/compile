@@ -1,0 +1,3 @@
+#!/bin/sh
+
+javac -cp lib/burlap.jar:. -d build src/edu/brown/h2r/diapers/*.java
