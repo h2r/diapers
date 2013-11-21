@@ -81,8 +81,6 @@ public class DiaperDomain implements DomainGenerator {
 		//Attribute for the container holding a physical object
 		Attribute attrContainer = new Attribute(domain, S.ATTR_CONTAINER, Attribute.AttributeType.RELATIONAL);
 
-		
-
 		//Class of the human caregiver
 		ObjectClass humanClass = new ObjectClass(domain, S.CLASS_HUMAN);	
 		humanClass.addAttribute(attrMentalState);

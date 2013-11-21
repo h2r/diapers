@@ -13,6 +13,10 @@ import burlap.oomdp.core.ObjectInstance;
 import burlap.behavior.singleagent.Policy;
 import burlap.behavior.singleagent.EpisodeAnalysis;
 import burlap.behavior.singleagent.planning.StateConditionTest;
+import burlap.behavior.singleagent.planning.OOMDPPlanner;
+import burlap.behavior.singleagent.planning.QComputablePlanner;
+import burlap.behavior.singleagent.planning.commonpolicies.GreedyQPolicy;
+import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.behavior.singleagent.planning.deterministic.DeterministicPlanner;
 import burlap.behavior.singleagent.planning.deterministic.TFGoalCondition;
 import burlap.behavior.singleagent.planning.deterministic.SDPlannerPolicy;
@@ -137,6 +141,26 @@ public class Behavior {
 	}
 
 /* ============================================================================
+ * Value Iteration
+ * ========================================================================= */
+
+	public void doValueIteration(String outputPath) {
+		outputPath += !outputPath.endsWith("/") ? "/" : "";
+
+		System.out.println("[Behavior.doValueIteration] Running VI Planner...");
+		OOMDPPlanner planner = new ValueIteration(domain, rewardFunction, terminalFunction, 0.99, hashFactory, 0.001, 100);
+		planner.planFromState(initialState);
+		System.out.println("[Behavior.doValueIteration] Planner returned, received policy.");
+
+		Policy p = new GreedyQPolicy((QComputablePlanner)planner);
+		EpisodeAnalysis ea = p.evaluateBehavior(initialState, rewardFunction, terminalFunction);
+		ea.writeToFile(outputPath + "planResult", stateParser);
+		System.out.println("[Behavior.doValueIteration] PLAN GENERATED:");
+		System.out.println(ea.getActionSequenceString("\n"));
+
+	}
+
+/* ============================================================================
  * Main method
  * ========================================================================= */
 
@@ -149,6 +173,8 @@ public class Behavior {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+		//Ignore this gross collection of named breaks and while loops :( It's probably 
+		//bad java and I should probably feel bad.  That being said it works.  
 		collectinput:
 		while(true) {
 			try {
@@ -167,6 +193,7 @@ public class Behavior {
 							test.doAStar(outputPath);
 							break whichalgo;
 						case "3":
+							test.doValueIteration(outputPath);
 							break whichalgo;
 						default:
 							System.out.println("[Behavior.main] Invalid option.");
