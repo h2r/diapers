@@ -22,66 +22,6 @@ public class DiaperDomain implements DomainGenerator {
 
 
 
-/* ============================================================================
- * Definition of String constants
- * ========================================================================= */
-
-	private static final String 	CLASS_HUMAN 				= "ClassHuman";
-	private static final String		CLASS_ROBOT 				= "ClassRobot";
-	private static final String		CLASS_CONTAINER				= "ClassContainer";
-	private static final String		CLASS_PHYSOBJ				= "ClassPhysobj";
-	private static final String		CLASS_STATE 				= "ClassState";
-	private static final String		CLASS_REFEREE				= "ClassReferee";
-
-	private static final String		ATTR_NEEDS_UPDATE			= "AttrNeedsUpdate";
-	private static final String		ATTR_MENTAL_STATE 			= "AttrMentalState";
-	private static final String		ATTR_PHYSOBJ_TYPE			= "AttrPOType";
-	private static final String		ATTR_CONTAINER_TYPE			= "AttrCTType";
-	private static final String		ATTR_CLEANLINESS			= "AttrCleanliness";
-	private static final String		ATTR_MANIPULABLE			= "AttrManipulable";
-	private static final String		ATTR_CONTENTS 				= "AttrContents";
-	private static final String		ATTR_CONTAINER 				= "AttrContainer";
-
-	private static final String		PO_TYPE_DIAPER				= "POTypeDiaper";
-	private static final String		PO_TYPE_WIPES				= "POTypeWipes";
-	private static final String 	PO_TYPE_CLOTHING			= "POTypeClothing";
-
-	private static final String		CT_TYPE_CHANGINGTABLE		= "CTTypeChangingTable";
-	private static final String		CT_TYPE_SIDETABLE			= "CTTypeSideTable";
-	private static final String		CT_TYPE_HAMPER				= "CTTypeHamper";
-	private static final String		CT_TYPE_DRESSER				= "CTTypeDresser";
-	private static final String		CT_TYPE_TRASHCAN			= "CTTypeTrashCan";
-
-	private static final String		ACTION_BRING			= "Bring";
-	private static final String		ACTION_UPDATE			= "Update";
-	private static final String		ACTION_WAIT				= "Wait";
-	
-	private static final String		OBJ_CAREGIVER			= "Caregiver";
-	private static final String		OBJ_ROBOT				= "Robot";
-	private static final String		OBJ_OLDDIAPER			= "OldDiaper";
-	private static final String		OBJ_NEWDIAPER			= "NewDiaper";
-	private static final String		OBJ_OLDPANTS			= "OldPants";
-	private static final String		OBJ_NEWPANTS			= "NewPants";
-	private static final String		OBJ_OLDSHIRT			= "OldShirt";
-	private static final String		OBJ_NEWSHIRT			= "NewShirt";
-	private static final String		OBJ_WIPES				= "Wipes";
-	private static final String		OBJ_CHANGINGTABLE 		= "ChangingTable";
-	private static final String		OBJ_SIDETABLE			= "SideTable";
-	private static final String		OBJ_HAMPER				= "Hamper";
-	private static final String		OBJ_DRESSER				= "Dresser";
-	private static final String		OBJ_TRASHCAN			= "TrashCan";
-
-	private static final String		OBJ_STATE_X				= "StateX";
-	private static final String		OBJ_STATE_A				= "StateA";
-	private static final String		OBJ_STATE_B				= "StateB";
-	private static final String		OBJ_STATE_C				= "StateC";
-	private static final String		OBJ_STATE_D				= "StateD";
-	private static final String		OBJ_STATE_E				= "StateE";
-	private static final String		OBJ_STATE_F				= "StateF";
-	private static final String 	OBJ_STATE_Y				= "StateY";
-
-	private static final String		OBJ_REFEREE				= "WorldReferee";
-
 	public DiaperDomain() {}
 
 /* ============================================================================
@@ -97,78 +37,78 @@ public class DiaperDomain implements DomainGenerator {
 
 		//Values for the physical object class' type attribute
 		List<String> physobjTypes = new ArrayList<String>() {{
-			add(PO_TYPE_DIAPER); 		add(PO_TYPE_WIPES);
-			add(PO_TYPE_CLOTHING);
+			add(S.PO_TYPE_DIAPER); 		add(S.PO_TYPE_WIPES);
+			add(S.PO_TYPE_CLOTHING);
 		}};
 
 		//Values for the container object class' type attribute
 		List<String> containerTypes = new ArrayList<String>() {{
-			add(CT_TYPE_CHANGINGTABLE); add(CT_TYPE_SIDETABLE);
-			add(CT_TYPE_HAMPER); 		add(CT_TYPE_DRESSER);
-			add(CT_TYPE_TRASHCAN);
+			add(S.CT_TYPE_CHANGINGTABLE); add(S.CT_TYPE_SIDETABLE);
+			add(S.CT_TYPE_HAMPER); 		add(S.CT_TYPE_DRESSER);
+			add(S.CT_TYPE_TRASHCAN);
 		}};
 
 		//Attribute for the caregiver's mental state
-		Attribute attrMentalState = new Attribute(domain, ATTR_MENTAL_STATE, Attribute.AttributeType.RELATIONAL);
+		Attribute attrMentalState = new Attribute(domain, S.ATTR_MENTAL_STATE, Attribute.AttributeType.RELATIONAL);
 
 		//Attribute for the type of a physical object
-		Attribute attrPhysobjType = new Attribute(domain, ATTR_PHYSOBJ_TYPE, Attribute.AttributeType.DISC);
+		Attribute attrPhysobjType = new Attribute(domain, S.ATTR_PHYSOBJ_TYPE, Attribute.AttributeType.DISC);
 		attrPhysobjType.setDiscValues(physobjTypes);
 
 		//Attribute for the type of a container
-		Attribute attrContainerType = new Attribute(domain, ATTR_CONTAINER_TYPE, Attribute.AttributeType.DISC);
+		Attribute attrContainerType = new Attribute(domain, S.ATTR_CONTAINER_TYPE, Attribute.AttributeType.DISC);
 		attrContainerType.setDiscValues(containerTypes);
 
 		//Attribute for the cleanliness of an object
-		Attribute attrCleanliness = new Attribute(domain, ATTR_CLEANLINESS, Attribute.AttributeType.DISC);
+		Attribute attrCleanliness = new Attribute(domain, S.ATTR_CLEANLINESS, Attribute.AttributeType.DISC);
 		attrCleanliness.setDiscValuesForRange(0, 1, 1);
 
 		//Attribute for the manipulability of an object
-		Attribute attrManipulable = new Attribute(domain, ATTR_MANIPULABLE, Attribute.AttributeType.DISC);
+		Attribute attrManipulable = new Attribute(domain, S.ATTR_MANIPULABLE, Attribute.AttributeType.DISC);
 		attrManipulable.setDiscValuesForRange(0, 1, 1);
 
 		//Attribute for whether the world needs to be updated
-		Attribute attrNeedsUpdate = new Attribute(domain, ATTR_NEEDS_UPDATE, Attribute.AttributeType.DISC);
+		Attribute attrNeedsUpdate = new Attribute(domain, S.ATTR_NEEDS_UPDATE, Attribute.AttributeType.DISC);
 		attrNeedsUpdate.setDiscValuesForRange(0, 1, 1);
 
 		//Attribute for the contents of a container
-		Attribute attrContents = new Attribute(domain, ATTR_CONTENTS, Attribute.AttributeType.MULTITARGETRELATIONAL);
+		Attribute attrContents = new Attribute(domain, S.ATTR_CONTENTS, Attribute.AttributeType.MULTITARGETRELATIONAL);
 
 		//Attribute for the container holding a physical object
-		Attribute attrContainer = new Attribute(domain, ATTR_CONTAINER, Attribute.AttributeType.RELATIONAL);
+		Attribute attrContainer = new Attribute(domain, S.ATTR_CONTAINER, Attribute.AttributeType.RELATIONAL);
 
 		
 
 		//Class of the human caregiver
-		ObjectClass humanClass = new ObjectClass(domain, CLASS_HUMAN);	
+		ObjectClass humanClass = new ObjectClass(domain, S.CLASS_HUMAN);	
 		humanClass.addAttribute(attrMentalState);
 
 		//Class of the robot
-		ObjectClass robotClass = new ObjectClass(domain, CLASS_ROBOT);
+		ObjectClass robotClass = new ObjectClass(domain, S.CLASS_ROBOT);
 
 		//Class of a container (a location, like a table or dresser)
-		ObjectClass containerClass = new ObjectClass(domain, CLASS_CONTAINER);
+		ObjectClass containerClass = new ObjectClass(domain, S.CLASS_CONTAINER);
 		containerClass.addAttribute(attrContainerType);
 		containerClass.addAttribute(attrContents);
 
 		//Class of a physical object (like a diaper or clothing)
-		ObjectClass physobjClass = new ObjectClass(domain, CLASS_PHYSOBJ);
+		ObjectClass physobjClass = new ObjectClass(domain, S.CLASS_PHYSOBJ);
 		physobjClass.addAttribute(attrPhysobjType);
 		physobjClass.addAttribute(attrContainer);
 		physobjClass.addAttribute(attrCleanliness);
 		physobjClass.addAttribute(attrManipulable);
 
 		//Class of a mental state object
-		ObjectClass stateClass = new ObjectClass(domain, CLASS_STATE);
+		ObjectClass stateClass = new ObjectClass(domain, S.CLASS_STATE);
 
 		//Class of the world (referee)
-		ObjectClass refereeClass = new ObjectClass(domain, CLASS_REFEREE);
+		ObjectClass refereeClass = new ObjectClass(domain, S.CLASS_REFEREE);
 		refereeClass.addAttribute(attrNeedsUpdate);
 
 		//Create actions
-		Action bringAction = new BringAction(domain, ACTION_BRING);
-		Action updateAction = new UpdateAction(domain, ACTION_UPDATE);
-		Action waitAction = new WaitAction(domain, ACTION_WAIT);
+		Action bringAction = new BringAction(domain, S.ACTION_BRING);
+		Action updateAction = new UpdateAction(domain, S.ACTION_UPDATE);
+		Action waitAction = new WaitAction(domain, S.ACTION_WAIT);
 
 		return domain;
 	}
@@ -189,16 +129,16 @@ public class DiaperDomain implements DomainGenerator {
 	public class BringAction extends Action {
 
 		public BringAction(Domain domain, String name) {
-			super(name, domain, new String[]{CLASS_PHYSOBJ, CLASS_CONTAINER});
+			super(name, domain, new String[]{S.CLASS_PHYSOBJ, S.CLASS_CONTAINER});
 		}
 
 		@Override
 		public boolean applicableInState(State st, String[] params) {
 			ObjectInstance object =  st.getObject(params[0]);
-			ObjectInstance referee = st.getObject(OBJ_REFEREE);			
+			ObjectInstance referee = st.getObject(S.OBJ_REFEREE);			
 
-			boolean manipulable = object.getDiscValForAttribute(ATTR_MANIPULABLE) == 1;
-			boolean updated = referee.getDiscValForAttribute(ATTR_NEEDS_UPDATE) == 0;
+			boolean manipulable = object.getDiscValForAttribute(S.ATTR_MANIPULABLE) == 1;
+			boolean updated = referee.getDiscValForAttribute(S.ATTR_NEEDS_UPDATE) == 0;
 			return manipulable && updated;
 		}
 
@@ -206,26 +146,26 @@ public class DiaperDomain implements DomainGenerator {
 		protected State performActionHelper(State st, String[] params) {
 			ObjectInstance object = st.getObject(params[0]);
 			ObjectInstance container = st.getObject(params[1]);
-			ObjectInstance referee = st.getObject(OBJ_REFEREE);
+			ObjectInstance referee = st.getObject(S.OBJ_REFEREE);
 
 			grabObject(st, object);	
 			placeObject(object, container);
 
-			referee.setValue(ATTR_NEEDS_UPDATE, 1);
+			referee.setValue(S.ATTR_NEEDS_UPDATE, 1);
 			return st;
 		}
 
 		private void grabObject(State st, ObjectInstance obj) {
-			String oldContainerName = (String) obj.getAllRelationalTargets(ATTR_CONTAINER).toArray()[0];
+			String oldContainerName = (String) obj.getAllRelationalTargets(S.ATTR_CONTAINER).toArray()[0];
 
 			ObjectInstance oldContainer = st.getObject(oldContainerName);
-			oldContainer.removeRelationalTarget(ATTR_CONTENTS, obj.getName());
-			obj.clearRelationalTargets(ATTR_CONTAINER);
+			oldContainer.removeRelationalTarget(S.ATTR_CONTENTS, obj.getName());
+			obj.clearRelationalTargets(S.ATTR_CONTAINER);
 		}
 
 		private void placeObject(ObjectInstance obj, ObjectInstance cnt) {
-			obj.addRelationalTarget(ATTR_CONTAINER, cnt.getName());
-			cnt.addRelationalTarget(ATTR_CONTENTS, obj.getName());
+			obj.addRelationalTarget(S.ATTR_CONTAINER, cnt.getName());
+			cnt.addRelationalTarget(S.ATTR_CONTENTS, obj.getName());
 		}
 	}
 
@@ -246,9 +186,9 @@ public class DiaperDomain implements DomainGenerator {
 
 		@Override
 		public boolean applicableInState(State st, String[] params) {
-			ObjectInstance referee = st.getObject(OBJ_REFEREE);
+			ObjectInstance referee = st.getObject(S.OBJ_REFEREE);
 
-			boolean needsUpdate = referee.getDiscValForAttribute(ATTR_NEEDS_UPDATE) == 1;
+			boolean needsUpdate = referee.getDiscValForAttribute(S.ATTR_NEEDS_UPDATE) == 1;
 			return needsUpdate;
 		}
 
@@ -260,74 +200,74 @@ public class DiaperDomain implements DomainGenerator {
 		}
 
 		private void tickWorld(State st) {
-			ObjectInstance caregiver = st.getObject(OBJ_CAREGIVER);
-			String state = (String) caregiver.getAllRelationalTargets(ATTR_MENTAL_STATE).toArray()[0];
+			ObjectInstance caregiver = st.getObject(S.OBJ_CAREGIVER);
+			String state = (String) caregiver.getAllRelationalTargets(S.ATTR_MENTAL_STATE).toArray()[0];
 
 			switch(state) {
 
 				//Not yet started.  Can progress always.
-				case OBJ_STATE_X:
-					caregiver.addRelationalTarget(ATTR_MENTAL_STATE, OBJ_STATE_A);
+				case S.OBJ_STATE_X:
+					caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, S.OBJ_STATE_A);
 					break;
 
 				//Removed old clothing.  Can progress if all old clothing in hamper.  Old clothing becomes nonmanipulable.
-				case OBJ_STATE_A:
-					ObjectInstance oldPants = st.getObject(OBJ_OLDPANTS);
-					ObjectInstance oldShirt = st.getObject(OBJ_OLDSHIRT);
-					if(getContainer(oldPants).equals(OBJ_HAMPER) && getContainer(oldShirt).equals(OBJ_HAMPER)) {
-						caregiver.addRelationalTarget(ATTR_MENTAL_STATE, OBJ_STATE_B);
-						oldPants.setValue(ATTR_MANIPULABLE, 0);
-						oldShirt.setValue(ATTR_MANIPULABLE, 0);
+				case S.OBJ_STATE_A:
+					ObjectInstance oldPants = st.getObject(S.OBJ_OLDPANTS);
+					ObjectInstance oldShirt = st.getObject(S.OBJ_OLDSHIRT);
+					if(getContainer(oldPants).equals(S.OBJ_HAMPER) && getContainer(oldShirt).equals(S.OBJ_HAMPER)) {
+						caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, S.OBJ_STATE_B);
+						oldPants.setValue(S.ATTR_MANIPULABLE, 0);
+						oldShirt.setValue(S.ATTR_MANIPULABLE, 0);
 					}
 					break;
 
 				//Removed old diaper.  Can progress if old diaper put in trash.  Old diaper becomes nonmanipulable.
-				case OBJ_STATE_B:
-					ObjectInstance oldDiaper = st.getObject(OBJ_OLDDIAPER);
-					if(getContainer(oldDiaper).equals(OBJ_TRASHCAN)) {
-						caregiver.addRelationalTarget(ATTR_MENTAL_STATE, OBJ_STATE_C);
-						oldDiaper.setValue(ATTR_MANIPULABLE, 0);
+				case S.OBJ_STATE_B:
+					ObjectInstance oldDiaper = st.getObject(S.OBJ_OLDDIAPER);
+					if(getContainer(oldDiaper).equals(S.OBJ_TRASHCAN)) {
+						caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, S.OBJ_STATE_C);
+						oldDiaper.setValue(S.ATTR_MANIPULABLE, 0);
 					}
 					break;
 
 				//Checked for contingencies.  Can progress always
-				case OBJ_STATE_C:
-					caregiver.addRelationalTarget(ATTR_MENTAL_STATE, OBJ_STATE_D);
+				case S.OBJ_STATE_C:
+					caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, S.OBJ_STATE_D);
 					break;
 
 				//Baby clean. Can progress if we're brought the new diaper.  It then becomes nonmanipulable
-				case OBJ_STATE_D:
-					ObjectInstance newDiaper = st.getObject(OBJ_NEWDIAPER);
-					if(getContainer(newDiaper).equals(OBJ_CHANGINGTABLE)) {
-						caregiver.addRelationalTarget(ATTR_MENTAL_STATE, OBJ_STATE_E);
-						newDiaper.setValue(ATTR_MANIPULABLE, 0);
+				case S.OBJ_STATE_D:
+					ObjectInstance newDiaper = st.getObject(S.OBJ_NEWDIAPER);
+					if(getContainer(newDiaper).equals(S.OBJ_CHANGINGTABLE)) {
+						caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, S.OBJ_STATE_E);
+						newDiaper.setValue(S.ATTR_MANIPULABLE, 0);
 					}
 					break;
 
 				//Baby diapered.  Can progress if we're brought new clothing.  It then becomes nonmanipulable.
-				case OBJ_STATE_E:
-					ObjectInstance newShirt = st.getObject(OBJ_NEWSHIRT);
-					ObjectInstance newPants = st.getObject(OBJ_NEWPANTS);
-					if(getContainer(newShirt).equals(OBJ_CHANGINGTABLE) && getContainer(newPants).equals(OBJ_CHANGINGTABLE)) {
-						caregiver.addRelationalTarget(ATTR_MENTAL_STATE, OBJ_STATE_Y);
-						newShirt.setValue(ATTR_MANIPULABLE, 0);
-						newPants.setValue(ATTR_MANIPULABLE, 0);
+				case S.OBJ_STATE_E:
+					ObjectInstance newShirt = st.getObject(S.OBJ_NEWSHIRT);
+					ObjectInstance newPants = st.getObject(S.OBJ_NEWPANTS);
+					if(getContainer(newShirt).equals(S.OBJ_CHANGINGTABLE) && getContainer(newPants).equals(S.OBJ_CHANGINGTABLE)) {
+						caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, S.OBJ_STATE_Y);
+						newShirt.setValue(S.ATTR_MANIPULABLE, 0);
+						newPants.setValue(S.ATTR_MANIPULABLE, 0);
 					}
 					break;
 
-				case OBJ_STATE_Y:
+				case S.OBJ_STATE_Y:
 					System.out.println("Reached State Y!");
 					break;
 			}
 		}
 
 		private void resetReferee(State st) {
-			ObjectInstance referee = st.getObject(OBJ_REFEREE);
-			referee.setValue(ATTR_NEEDS_UPDATE, 0);
+			ObjectInstance referee = st.getObject(S.OBJ_REFEREE);
+			referee.setValue(S.ATTR_NEEDS_UPDATE, 0);
 		}
 
 		private String getContainer(ObjectInstance o) {
-			return (String) o.getAllRelationalTargets(ATTR_CONTAINER).toArray()[0];
+			return (String) o.getAllRelationalTargets(S.ATTR_CONTAINER).toArray()[0];
 		}
 	}
 
@@ -349,16 +289,16 @@ public class DiaperDomain implements DomainGenerator {
 
 		@Override
 		public boolean applicableInState(State st, String[] params) {
-			ObjectInstance referee = st.getObject(OBJ_REFEREE);
+			ObjectInstance referee = st.getObject(S.OBJ_REFEREE);
 
-			boolean updated = referee.getDiscValForAttribute(ATTR_NEEDS_UPDATE) == 0;
+			boolean updated = referee.getDiscValForAttribute(S.ATTR_NEEDS_UPDATE) == 0;
 			return updated;
 		}
 
 		@Override
 		public State performActionHelper(State st, String[] params) {
-			ObjectInstance referee = st.getObject(OBJ_REFEREE);
-			referee.setValue(ATTR_NEEDS_UPDATE, 1);
+			ObjectInstance referee = st.getObject(S.OBJ_REFEREE);
+			referee.setValue(S.ATTR_NEEDS_UPDATE, 1);
 			return st;
 		}
 	}
@@ -371,63 +311,63 @@ public class DiaperDomain implements DomainGenerator {
 		State s = new State();
 
 		//Retrieve classes
-		ObjectClass humanClass = d.getObjectClass(CLASS_HUMAN);
-		ObjectClass robotClass = d.getObjectClass(CLASS_ROBOT);
-		ObjectClass containerClass = d.getObjectClass(CLASS_CONTAINER);
-		ObjectClass physobjClass = d.getObjectClass(CLASS_PHYSOBJ);
-		ObjectClass stateClass = d.getObjectClass(CLASS_STATE);
-		ObjectClass refereeClass = d.getObjectClass(CLASS_REFEREE);
+		ObjectClass humanClass = d.getObjectClass(S.CLASS_HUMAN);
+		ObjectClass robotClass = d.getObjectClass(S.CLASS_ROBOT);
+		ObjectClass containerClass = d.getObjectClass(S.CLASS_CONTAINER);
+		ObjectClass physobjClass = d.getObjectClass(S.CLASS_PHYSOBJ);
+		ObjectClass stateClass = d.getObjectClass(S.CLASS_STATE);
+		ObjectClass refereeClass = d.getObjectClass(S.CLASS_REFEREE);
 
 		//Create caregiver
-		ObjectInstance caregiver = new ObjectInstance(humanClass, OBJ_CAREGIVER);
+		ObjectInstance caregiver = new ObjectInstance(humanClass, S.OBJ_CAREGIVER);
 
 		//Create robot
-		ObjectInstance robot = new ObjectInstance(robotClass, OBJ_ROBOT);
+		ObjectInstance robot = new ObjectInstance(robotClass, S.OBJ_ROBOT);
 
 		//Create the referee
-		ObjectInstance referee = new ObjectInstance(refereeClass, OBJ_REFEREE);
-		referee.setValue(ATTR_NEEDS_UPDATE, 1);
+		ObjectInstance referee = new ObjectInstance(refereeClass, S.OBJ_REFEREE);
+		referee.setValue(S.ATTR_NEEDS_UPDATE, 1);
 
 		//Create all physical objects
-		ObjectInstance oldDiaper = new ObjectInstance(physobjClass, OBJ_OLDDIAPER);
-		makePhysobj(oldDiaper, PO_TYPE_DIAPER, 0, 1);
-		ObjectInstance newDiaper = new ObjectInstance(physobjClass, OBJ_NEWDIAPER);
-		makePhysobj(newDiaper, PO_TYPE_DIAPER, 1, 1);
-		ObjectInstance wipes = new ObjectInstance(physobjClass, OBJ_WIPES);
-		makePhysobj(wipes, PO_TYPE_WIPES, 1, 1);
-		ObjectInstance oldPants = new ObjectInstance(physobjClass, OBJ_OLDPANTS);
-		makePhysobj(oldPants, PO_TYPE_CLOTHING, 0, 1);
-		ObjectInstance oldShirt = new ObjectInstance(physobjClass, OBJ_OLDSHIRT);
-		makePhysobj(oldShirt, PO_TYPE_CLOTHING, 0, 1);
-		ObjectInstance newPants = new ObjectInstance(physobjClass, OBJ_NEWPANTS);
-		makePhysobj(newPants, PO_TYPE_CLOTHING, 1, 1);
-		ObjectInstance newShirt = new ObjectInstance(physobjClass, OBJ_NEWSHIRT);
-		makePhysobj(newShirt, PO_TYPE_CLOTHING, 1, 1);
+		ObjectInstance oldDiaper = new ObjectInstance(physobjClass, S.OBJ_OLDDIAPER);
+		makePhysobj(oldDiaper, S.PO_TYPE_DIAPER, 0, 1);
+		ObjectInstance newDiaper = new ObjectInstance(physobjClass, S.OBJ_NEWDIAPER);
+		makePhysobj(newDiaper, S.PO_TYPE_DIAPER, 1, 1);
+		ObjectInstance wipes = new ObjectInstance(physobjClass, S.OBJ_WIPES);
+		makePhysobj(wipes, S.PO_TYPE_WIPES, 1, 1);
+		ObjectInstance oldPants = new ObjectInstance(physobjClass, S.OBJ_OLDPANTS);
+		makePhysobj(oldPants, S.PO_TYPE_CLOTHING, 0, 1);
+		ObjectInstance oldShirt = new ObjectInstance(physobjClass, S.OBJ_OLDSHIRT);
+		makePhysobj(oldShirt, S.PO_TYPE_CLOTHING, 0, 1);
+		ObjectInstance newPants = new ObjectInstance(physobjClass, S.OBJ_NEWPANTS);
+		makePhysobj(newPants, S.PO_TYPE_CLOTHING, 1, 1);
+		ObjectInstance newShirt = new ObjectInstance(physobjClass, S.OBJ_NEWSHIRT);
+		makePhysobj(newShirt, S.PO_TYPE_CLOTHING, 1, 1);
 
 		//Create all mental states
-		ObjectInstance stateX = new ObjectInstance(stateClass, OBJ_STATE_X);
-		ObjectInstance stateA = new ObjectInstance(stateClass, OBJ_STATE_A);
-		ObjectInstance stateB = new ObjectInstance(stateClass, OBJ_STATE_B);
-		ObjectInstance stateC = new ObjectInstance(stateClass, OBJ_STATE_C);
-		ObjectInstance stateD = new ObjectInstance(stateClass, OBJ_STATE_D);
-		ObjectInstance stateE = new ObjectInstance(stateClass, OBJ_STATE_E);
-		ObjectInstance stateF = new ObjectInstance(stateClass, OBJ_STATE_F);
-		ObjectInstance stateY = new ObjectInstance(stateClass, OBJ_STATE_Y);
+		ObjectInstance stateX = new ObjectInstance(stateClass, S.OBJ_STATE_X);
+		ObjectInstance stateA = new ObjectInstance(stateClass, S.OBJ_STATE_A);
+		ObjectInstance stateB = new ObjectInstance(stateClass, S.OBJ_STATE_B);
+		ObjectInstance stateC = new ObjectInstance(stateClass, S.OBJ_STATE_C);
+		ObjectInstance stateD = new ObjectInstance(stateClass, S.OBJ_STATE_D);
+		ObjectInstance stateE = new ObjectInstance(stateClass, S.OBJ_STATE_E);
+		ObjectInstance stateF = new ObjectInstance(stateClass, S.OBJ_STATE_F);
+		ObjectInstance stateY = new ObjectInstance(stateClass, S.OBJ_STATE_Y);
 
 		//Give caregiver mental state X
-		caregiver.addRelationalTarget(ATTR_MENTAL_STATE, stateX.getName());
+		caregiver.addRelationalTarget(S.ATTR_MENTAL_STATE, stateX.getName());
 
 		//Create all containers
-		ObjectInstance changingTable = new ObjectInstance(containerClass, OBJ_CHANGINGTABLE);
-		makeContainer(changingTable, CT_TYPE_CHANGINGTABLE);
-		ObjectInstance sideTable = new ObjectInstance(containerClass, OBJ_SIDETABLE);
-		makeContainer(sideTable, CT_TYPE_SIDETABLE);
-		ObjectInstance hamper = new ObjectInstance(containerClass, OBJ_HAMPER);
-		makeContainer(hamper, CT_TYPE_HAMPER);
-		ObjectInstance dresser = new ObjectInstance(containerClass, OBJ_DRESSER);
-		makeContainer(dresser, CT_TYPE_DRESSER);
-		ObjectInstance trashCan = new ObjectInstance(containerClass, OBJ_TRASHCAN);
-		makeContainer(trashCan, CT_TYPE_TRASHCAN);
+		ObjectInstance changingTable = new ObjectInstance(containerClass, S.OBJ_CHANGINGTABLE);
+		makeContainer(changingTable, S.CT_TYPE_CHANGINGTABLE);
+		ObjectInstance sideTable = new ObjectInstance(containerClass, S.OBJ_SIDETABLE);
+		makeContainer(sideTable, S.CT_TYPE_SIDETABLE);
+		ObjectInstance hamper = new ObjectInstance(containerClass, S.OBJ_HAMPER);
+		makeContainer(hamper, S.CT_TYPE_HAMPER);
+		ObjectInstance dresser = new ObjectInstance(containerClass, S.OBJ_DRESSER);
+		makeContainer(dresser, S.CT_TYPE_DRESSER);
+		ObjectInstance trashCan = new ObjectInstance(containerClass, S.OBJ_TRASHCAN);
+		makeContainer(trashCan, S.CT_TYPE_TRASHCAN);
 
 		//Fill containers
 		addContents(changingTable, oldDiaper, oldPants, oldShirt);
@@ -442,19 +382,19 @@ public class DiaperDomain implements DomainGenerator {
 	}
 
 	private static void makePhysobj(ObjectInstance obj, String type, int clean, int manip) {
-		obj.setValue(ATTR_PHYSOBJ_TYPE, type);
-		obj.setValue(ATTR_CLEANLINESS, clean);
-		obj.setValue(ATTR_MANIPULABLE, manip);
+		obj.setValue(S.ATTR_PHYSOBJ_TYPE, type);
+		obj.setValue(S.ATTR_CLEANLINESS, clean);
+		obj.setValue(S.ATTR_MANIPULABLE, manip);
 	}
 
 	private static void makeContainer(ObjectInstance cnt, String type) {
-		cnt.setValue(ATTR_CONTAINER_TYPE, type);
+		cnt.setValue(S.ATTR_CONTAINER_TYPE, type);
 	}
 
 	private static void addContents(ObjectInstance cnt, ObjectInstance... conts) {
 		for(ObjectInstance content : conts) {
-			cnt.addRelationalTarget(ATTR_CONTENTS, content.getName());
-			content.addRelationalTarget(ATTR_CONTAINER, cnt.getName());
+			cnt.addRelationalTarget(S.ATTR_CONTENTS, content.getName());
+			content.addRelationalTarget(S.ATTR_CONTAINER, cnt.getName());
 		}
 	}
 
