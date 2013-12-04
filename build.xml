@@ -1,0 +1,62 @@
+<project name="Athena" basedir="." default="compile">
+	
+	<!-- Defining global properties -->
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="jar.dir" value="${build.dir}/jars" />
+	<property name="diaperdomain.class" value="edu/brown/h2r/diapers/athena/DiaperDomain" />
+	<property name="diaperbehavior.class" value="edu/brown/h2r/diapers/athena/Behavior" />
+	<property name="tigerdomain.class" value="edu/brown/h2r/diapers/tiger/TigerDomain" />
+	<property name="lib.dir" value="lib" />
+
+	<!--Defining the classpath-->
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<!-- Clean command.  Just deletes the build directory -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- Compile command.  Makes the classes directory and calls javac -->
+	<target name="compile">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeAntRuntime="false" />
+	</target>
+
+	<!--Run diaper domain command -->
+	<target name="diaperdomain">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile = "${jar.dir}/DiaperDomain.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${diaperdomain.class}" />
+			</manifest>
+		</jar>
+		<java fork="true" classname="${diaperdomain.class}">
+			<classpath>
+				<path refid="classpath" />
+				<path location="${jar.dir}/DiaperDomain.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<!-- Target for running tiger domain explorer -->
+	<target name="tigerdomain">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile = "${jar.dir}/Tiger.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${tigerdomain.class}" />
+			</manifest>
+		</jar>
+		<java fork="true" classname="${tigerdomain.class}">
+			<classpath>
+				<path refid="classpath" />
+				<path location="${jar.dir}/Tiger.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="main" depends="clean" />
+</project>

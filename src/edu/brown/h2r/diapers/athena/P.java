@@ -1,6 +1,8 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.athena;
 
 public class P {
+
+	public static final String ATTR_MENTAL_STATE = "attr.mentalState";
 
 /* ============================================================================
  * Observations
@@ -37,5 +39,7 @@ public class P {
 	public static final String OBJ_STATE_D = "stateD";
 	public static final String OBJ_STATE_E = "stateE";
 	public static final String OBJ_STATE_Y = "stateY";
+
+	public static final String OBJ_HOLDER = "holder";
 
 }

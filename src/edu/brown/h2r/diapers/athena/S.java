@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.athena;
 
 /**
  * S is a utility class containing the string names for all the objects

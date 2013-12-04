@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import burlap.oomdp.core.Domain;
+import burlap.oomdp.singleagent.SADomain;
+
 public class POMDPDomain extends SADomain {
 	protected List<Observation> observations;
 	protected Map<String, Observation> observationMap;

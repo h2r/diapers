@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.athena;
 
 //First import the universe
 import burlap.oomdp.singleagent.RewardFunction;

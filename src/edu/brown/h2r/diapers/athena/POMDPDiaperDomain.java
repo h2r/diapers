@@ -1,6 +1,21 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.athena;
+
+import edu.brown.h2r.diapers.Observation;
+import edu.brown.h2r.diapers.POMDPDomain;
+import edu.brown.h2r.diapers.POMDPState;
 
 import burlap.oomdp.auxiliary.DomainGenerator;
+
+import burlap.oomdp.core.Attribute;
+import burlap.oomdp.core.Domain;
+import burlap.oomdp.core.ObjectClass;
+import burlap.oomdp.core.ObjectInstance;
+import burlap.oomdp.core.State;
+
+import burlap.oomdp.singleagent.Action;
+import burlap.oomdp.singleagent.GroundedAction;
+import burlap.oomdp.singleagent.explorer.TerminalExplorer;
+import burlap.oomdp.singleagent.explorer.VisualExplorer;
 
 public class POMDPDiaperDomain implements DomainGenerator {
 
@@ -54,7 +69,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 
 		holder.addRelationalTarget(P.ATTR_MENTAL_STATE, stateX.getName());	
 
-		this.addObjects(s, holder, stateX, stateA, stateB, stateC, stateD, stateE, stateY);	
+		addObjects(s, holder, stateX, stateA, stateB, stateC, stateD, stateE, stateY);	
 
 		return s;
 	}
@@ -74,20 +89,19 @@ public class POMDPDiaperDomain implements DomainGenerator {
 		private String my_state;
 
 		public SimpleStateObservation(Domain d, String s, String state) {
-			super(d, s);
+			super((POMDPDomain)d, s);
 			this.my_state = state;
 		}
 
 		@Override
 		public double getProbability(State s, GroundedAction a) {
-				ObjectInstance holder = s.getObject(P.OBJ_HOLDER);
-				String state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
-
-				if(state.equals(this.my_state)) {
-					return 1;
-				}
-				return 0;
+			ObjectInstance holder = s.getObject(P.OBJ_HOLDER);
+			String state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
+				
+			if(state.equals(this.my_state)) {
+				return 1;
 			}
+			return 0;
 		}
 	}
 
@@ -114,7 +128,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 		@Override 
 		public boolean applicableInState(State st, String[] params) {
 			ObjectInstance holder = st.getObject(P.OBJ_HOLDER);
-			String mental_state = (String) holder.getAllRelationalTargets().toArray()[0];
+			String mental_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 			return !mental_state.equals(P.OBJ_STATE_Y);
 		}
 
@@ -147,8 +161,9 @@ public class POMDPDiaperDomain implements DomainGenerator {
 				case P.OBJ_STATE_E:
 					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_Y);
 					break;
-
 			}
+
+			return st;
 		}
 	}
 }

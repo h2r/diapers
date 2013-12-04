@@ -1,5 +1,9 @@
 package edu.brown.h2r.diapers;
 
+import burlap.oomdp.core.Domain;
+import burlap.oomdp.core.State;
+import burlap.oomdp.singleagent.GroundedAction;
+
 /**
  * Observation is a class representing a single nuclear observation which could be
  * observed in a POMDP setting.  Each observation must be able to return a probability
@@ -7,12 +11,18 @@ package edu.brown.h2r.diapers;
  */ 
 public class Observation {
 
-	protected Domain domain;
+	protected POMDPDomain domain;
 	protected String name;
+
+	public Observation(POMDPDomain domain, String name) {
+		this.name = name;
+		this.domain = domain;
+		this.domain.addObservation(this);
+	}
 
 	public Observation(Domain domain, String name) {
 		this.name = name;
-		this.domain = domain;
+		this.domain = (POMDPDomain) domain;
 		this.domain.addObservation(this);
 	}
 

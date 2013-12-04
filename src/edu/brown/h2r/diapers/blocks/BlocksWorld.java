@@ -1,6 +1,4 @@
-
-
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.blocks;
 
 import java.util.ArrayList;
 import java.util.List;

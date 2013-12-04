@@ -1,9 +1,11 @@
 #!/bin/sh
 
 if [ $1 = "diaperdomain" ]; then
-	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.DiaperDomain
+	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.athena.DiaperDomain
 elif [ $1 = "behavior" ]; then
-	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.Behavior
+	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.athena.Behavior
+elif [ $1 = "tigerdomain" ]; then
+	java -cp lib/burlap.jar:build:. edu.brown.h2r.diapers.tiger.TigerDomain
 else
 	echo "[run] unfamiliar with that argument"
 fi
