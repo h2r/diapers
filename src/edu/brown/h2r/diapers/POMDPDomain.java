@@ -9,8 +9,10 @@ import burlap.oomdp.core.Domain;
 import burlap.oomdp.singleagent.SADomain;
 
 public class POMDPDomain extends SADomain {
+
 	protected List<Observation> observations;
 	protected Map<String, Observation> observationMap;
+	protected int stateCount = 0;
 
 	public POMDPDomain() {
 		super();
