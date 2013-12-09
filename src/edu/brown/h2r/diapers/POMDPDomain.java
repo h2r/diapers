@@ -6,19 +6,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import burlap.oomdp.core.Domain;
+import burlap.oomdp.core.State;
 import burlap.oomdp.singleagent.SADomain;
 
 public class POMDPDomain extends SADomain {
 
 	protected List<Observation> observations;
 	protected Map<String, Observation> observationMap;
-	protected int stateCount = 0;
 
 	public POMDPDomain() {
 		super();
 
 		observations = new ArrayList<Observation>();
 		observationMap = new HashMap<String, Observation>();
+	}
+
+	public POMDPState getExampleState() {
+		return new POMDPState();
+	}
+
+	public List<State> getAllStates() {
+		return new ArrayList<State>();
 	}
 
 	public List<Observation> getObservations() {

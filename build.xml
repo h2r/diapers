@@ -8,6 +8,7 @@
 	<property name="diaperdomain.class" value="edu/brown/h2r/diapers/athena/DiaperDomain" />
 	<property name="diaperbehavior.class" value="edu/brown/h2r/diapers/athena/Behavior" />
 	<property name="tigerdomain.class" value="edu/brown/h2r/diapers/tiger/TigerDomain" />
+	<property name="tigerbehavior.class" value="edu/brown/h2r/diapers/tiger/TigerBehavior" />
 	<property name="lib.dir" value="lib" />
 
 	<!--Defining the classpath-->
@@ -54,6 +55,21 @@
 			<classpath>
 				<path refid="classpath" />
 				<path location="${jar.dir}/Tiger.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tigerbehavior">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile = "${jar.dir}/TigerBehavior.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${tigerbehavior.class}" />
+			</manifest>
+		</jar>
+		<java fork="true" classname="${tigerbehavior.class}">
+			<classpath>
+				<path refid="classpath" />
+				<path location="${jar.dir}/TigerBehavior.jar" />
 			</classpath>
 		</java>
 	</target>

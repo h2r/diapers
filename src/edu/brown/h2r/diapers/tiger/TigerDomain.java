@@ -16,6 +16,7 @@ import burlap.oomdp.core.ObjectClass;
 import burlap.oomdp.core.ObjectInstance;
 import burlap.oomdp.core.PropositionalFunction;
 import burlap.oomdp.core.State;
+import burlap.oomdp.core.TransitionProbability;
 
 import burlap.oomdp.singleagent.Action;
 import burlap.oomdp.singleagent.GroundedAction;
@@ -31,7 +32,17 @@ public class TigerDomain implements DomainGenerator {
 
 	public Domain generateDomain() {
 
-		Domain domain = new POMDPDomain();
+		Domain domain = new POMDPDomain() {
+			@Override
+			public POMDPState getExampleState() {
+				return TigerDomain.getNewState(this);
+			}
+
+			@Override
+			public List<State> getAllStates() {
+				return TigerDomain.getAllStates(this);
+			}
+		};
 
 		List<String> possibleLocations = new ArrayList<String>() {{
 			add(P.DOOR_LEFT); add(P.DOOR_RIGHT);  
@@ -87,6 +98,40 @@ public class TigerDomain implements DomainGenerator {
 		s.addObject(referee);
 
 		return s;
+	}
+
+	public static List<State> getAllStates(Domain d) {
+		List<State> ret_val = new ArrayList<State>();
+
+		State s1 = new State();
+		State s2 = new State();
+
+		ObjectClass tigerClass = d.getObjectClass(P.CLASS_TIGER);
+		ObjectClass refereeClass = d.getObjectClass(P.CLASS_REFEREE);
+
+		ObjectInstance referee = new ObjectInstance(refereeClass, P.OBJ_REFEREE);
+		ObjectInstance tiger = new ObjectInstance(tigerClass, P.OBJ_TIGER);
+
+		referee.setValue(P.ATTR_DOOR_OPEN, 0);
+		tiger.setValue(P.ATTR_TIGER_LOCATION, P.DOOR_LEFT);
+
+		s1.addObject(tiger);
+		s1.addObject(referee);
+
+		ret_val.add(s1);
+
+		ObjectInstance referee2 = new ObjectInstance(refereeClass, P.OBJ_REFEREE);
+		ObjectInstance tiger2 = new ObjectInstance(tigerClass, P.OBJ_TIGER);
+
+		referee2.setValue(P.ATTR_DOOR_OPEN, 0);
+		tiger2.setValue(P.ATTR_TIGER_LOCATION, P.DOOR_RIGHT);
+
+		s2.addObject(tiger2);
+		s2.addObject(referee2);
+
+		ret_val.add(s2);
+
+		return ret_val;
 	}
 
 /* ============================================================================
@@ -148,6 +193,28 @@ public class TigerDomain implements DomainGenerator {
 
 			return ps;
 		}
+
+		@Override
+		public List<TransitionProbability> getTransitions(State s, String[] params) {
+			List<TransitionProbability> trans = new ArrayList<TransitionProbability>();
+			List<State> states = TigerDomain.getAllStates(domain);
+			
+			State s1 = states.get(0);
+			State s2 = states.get(1);	
+
+			ObjectInstance tiger = s.getObject(P.OBJ_TIGER);
+			String door = tiger.getStringValForAttribute(P.ATTR_TIGER_LOCATION);
+
+			if(door.equals(P.DOOR_LEFT)) {
+				trans.add(new TransitionProbability(s1, 1));
+				trans.add(new TransitionProbability(s2, 0));
+			} else if(door.equals(P.DOOR_RIGHT)) {
+				trans.add(new TransitionProbability(s1, 0));
+				trans.add(new TransitionProbability(s2, 1));
+			}
+
+			return trans;
+		}
 	}
 
 	public class OpenDoorAction extends Action {
@@ -167,6 +234,28 @@ public class TigerDomain implements DomainGenerator {
 			referee.setValue(P.ATTR_DOOR_OPEN, 1);
 
 			return ps;
+		}
+
+		@Override
+		public List<TransitionProbability> getTransitions(State s, String[] params) {
+			List<TransitionProbability> trans = new ArrayList<TransitionProbability>();
+			List<State> states = TigerDomain.getAllStates(domain);
+			
+			State s1 = states.get(0);
+			State s2 = states.get(1);	
+
+			ObjectInstance tiger = s.getObject(P.OBJ_TIGER);
+			String door = tiger.getStringValForAttribute(P.ATTR_TIGER_LOCATION);
+
+			if(door.equals(P.DOOR_LEFT)) {
+				trans.add(new TransitionProbability(s1, 0));
+				trans.add(new TransitionProbability(s2, 0));
+			} else if(door.equals(P.DOOR_RIGHT)) {
+				trans.add(new TransitionProbability(s1, 0));
+				trans.add(new TransitionProbability(s2, 0));
+			}
+
+			return trans;
 		}
 	}
 
