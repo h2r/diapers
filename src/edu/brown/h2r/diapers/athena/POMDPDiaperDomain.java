@@ -1,5 +1,8 @@
 package edu.brown.h2r.diapers.athena;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
@@ -11,6 +14,7 @@ import burlap.oomdp.core.Domain;
 import burlap.oomdp.core.ObjectClass;
 import burlap.oomdp.core.ObjectInstance;
 import burlap.oomdp.core.State;
+import burlap.oomdp.core.TransitionProbability;
 
 import burlap.oomdp.singleagent.Action;
 import burlap.oomdp.singleagent.GroundedAction;
@@ -67,8 +71,8 @@ public class POMDPDiaperDomain implements DomainGenerator {
  * State access methods
  * ========================================================================= */
 
-	public static State getNewState(Domain d) {
-		State s = new State();
+	public static POMDPState getNewState(Domain d) {
+		POMDPState s = new POMDPState();
 
 		ObjectClass stateHolderClass = d.getObjectClass(P.CLASS_STATE_HOLDER);
 		ObjectClass mentalStateClass = d.getObjectClass(P.CLASS_MENTAL_STATE);
@@ -201,7 +205,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			POMDPState ps = new POMDPState(st);
 			POMDPDomain dom = (POMDPDomain) domain;
 
-			ObjectInstance holder = s.getObject(P.OBJ_HOLDER);
+			ObjectInstance holder = ps.getObject(P.OBJ_HOLDER);
 			String state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
 			switch(state) {
@@ -242,7 +246,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 
 			for(State test_state : states) {
 				
-				ObjectInstance test_holder = current_state.getObject(P.OBJ_HOLDER);
+				ObjectInstance test_holder = test_state.getObject(P.OBJ_HOLDER);
 				String test_mental_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
 				if(holder_state.equals(test_mental_state)) {
@@ -306,7 +310,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 					break;
 			}
 
-			ps.addObservation(dom.getObservation(P.NULL_OBSERVATION));
+			ps.setObservation(dom.getObservation(P.NULL_OBSERVATION));
 			return ps;
 		}
 
@@ -315,17 +319,17 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			List<TransitionProbability> trans = new ArrayList<TransitionProbability>();
 			List<State> states = POMDPDiaperDomain.getAllStates(domain);
 
-			ObjectInstance mental_state = st.getObject(params[0]);
+			ObjectInstance mental_state = s.getObject(params[0]);
 
 			for(State test_state : states) {
 
-				ObjectInstance test_holder = current_state.getObject(P.OBJ_HOLDER);
-				String test_mental_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
+				ObjectInstance test_holder = test_state.getObject(P.OBJ_HOLDER);
+				String test_mental_state = (String) test_holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
 				if(test_mental_state.equals(mental_state)) {
-					trans.put(new TransitionProbability(test_state, 1));
+					trans.add(new TransitionProbability(test_state, 1));
 				} else {
-					trans.put(new TransitionProbability(test_state, 0));
+					trans.add(new TransitionProbability(test_state, 0));
 				}
 			}
 
