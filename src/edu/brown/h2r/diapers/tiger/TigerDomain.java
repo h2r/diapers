@@ -3,6 +3,7 @@ package edu.brown.h2r.diapers.tiger;
 import edu.brown.h2r.diapers.POMDPDomain;
 import edu.brown.h2r.diapers.POMDPState;
 import edu.brown.h2r.diapers.Observation;
+import edu.brown.h2r.diapers.tiger.namespace.P;
 
 import java.util.List;
 import java.util.ArrayList;

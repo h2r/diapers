@@ -19,6 +19,8 @@ import burlap.oomdp.singleagent.SADomain;
 import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 import burlap.oomdp.singleagent.explorer.VisualExplorer;
 
+import edu.brown.h2r.diapers.athena.namespace.S;
+
 /**
  * Domain generator for the Diaper changing domain.
  *

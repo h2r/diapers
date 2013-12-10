@@ -17,6 +17,8 @@ import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 import burlap.oomdp.singleagent.explorer.VisualExplorer;
 
+import edu.brown.h2r.diapers.athena.namespace.P;
+
 public class POMDPDiaperDomain implements DomainGenerator {
 
 	public POMDPDiaperDomain() {}
@@ -272,6 +274,9 @@ public class POMDPDiaperDomain implements DomainGenerator {
 
 		@Override
 		public State performActionHelper(State st, String[] params) {
+			POMDPState ps = new POMDPState(st);
+			POMDPDomain dom = (POMDPDomain) domain;
+
 			ObjectInstance mental_state = st.getObject(params[0]);
 			ObjectInstance holder = st.getObject(P.OBJ_HOLDER);
 
@@ -301,7 +306,8 @@ public class POMDPDiaperDomain implements DomainGenerator {
 					break;
 			}
 
-			return st;
+			ps.addObservation(dom.getObservation(P.NULL_OBSERVATION));
+			return ps;
 		}
 
 		@Override
