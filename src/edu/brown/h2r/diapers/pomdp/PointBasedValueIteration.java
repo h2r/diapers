@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.pomdp;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -14,6 +14,8 @@ import burlap.oomdp.singleagent.GroundedAction;
 
 import burlap.behavior.statehashing.StateHashFactory;
 import burlap.behavior.statehashing.StateHashTuple;
+
+import edu.brown.h2r.diapers.util.Tuple;
 
 public class PointBasedValueIteration {
 

@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.pomdp;
 
 import java.util.Map;
 import java.util.List;

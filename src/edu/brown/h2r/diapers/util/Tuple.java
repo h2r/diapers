@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers;
+package edu.brown.h2r.diapers.util;
 
 public class Tuple<X, Y> {
 	

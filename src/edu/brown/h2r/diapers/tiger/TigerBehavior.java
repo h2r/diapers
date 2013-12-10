@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import edu.brown.h2r.diapers.POMDPDomain;
-import edu.brown.h2r.diapers.PointBasedValueIteration;
-import edu.brown.h2r.diapers.Tuple;
+import edu.brown.h2r.diapers.pomdp.POMDPDomain;
+import edu.brown.h2r.diapers.pomdp.PointBasedValueIteration;
+import edu.brown.h2r.diapers.util.Tuple;
 import edu.brown.h2r.diapers.tiger.namespace.P;
 
 import burlap.oomdp.singleagent.RewardFunction;

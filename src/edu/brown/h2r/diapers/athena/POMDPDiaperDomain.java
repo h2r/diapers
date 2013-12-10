@@ -1,8 +1,8 @@
 package edu.brown.h2r.diapers.athena;
 
-import edu.brown.h2r.diapers.Observation;
-import edu.brown.h2r.diapers.POMDPDomain;
-import edu.brown.h2r.diapers.POMDPState;
+import edu.brown.h2r.diapers.pomdp.Observation;
+import edu.brown.h2r.diapers.pomdp.POMDPDomain;
+import edu.brown.h2r.diapers.pomdp.POMDPState;
 
 import burlap.oomdp.auxiliary.DomainGenerator;
 
@@ -39,7 +39,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			public List<State> getAllStates() {
 				return POMDPDiaperDomain.getAllStates(this);
 			}
-		}
+		};
 
 		Attribute attrMentalState = new Attribute(domain, P.ATTR_MENTAL_STATE, Attribute.AttributeType.RELATIONAL);
 

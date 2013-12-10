@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.tiger;
+package edu.brown.h2r.diapers.tiger.namespace;
 
 public class P {
 

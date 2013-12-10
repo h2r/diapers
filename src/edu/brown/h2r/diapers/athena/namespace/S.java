@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.athena;
+package edu.brown.h2r.diapers.athena.namespace;
 
 /**
  * S is a utility class containing the string names for all the objects
