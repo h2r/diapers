@@ -29,7 +29,12 @@ public class P {
  * Actions
  * ========================================================================= */
 
-	public static final String ACTION_ADVANCE = "act.advance";
+	public static final String ACTION_SX_ADVANCE = "act.advanceStateX";
+	public static final String ACTION_SA_ADVANCE = "act.advanceStateA";
+	public static final String ACTION_SB_ADVANCE = "act.advanceStateB";
+	public static final String ACTION_SC_ADVANCE = "act.advanceStateC";
+	public static final String ACTION_SD_ADVANCE = "act.advanceStateD";
+	public static final String ACTION_SE_ADVANCE = "act.advanceStateE";
 	public static final String ACTION_SPEAK = "act.speak";
 
 /* ============================================================================

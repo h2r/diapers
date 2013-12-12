@@ -11,11 +11,13 @@ import burlap.oomdp.core.TransitionProbability;
 
 import burlap.oomdp.singleagent.RewardFunction;
 import burlap.oomdp.singleagent.GroundedAction;
+import burlap.oomdp.singleagent.Action;
 
 import burlap.behavior.statehashing.StateHashFactory;
 import burlap.behavior.statehashing.StateHashTuple;
 
 import edu.brown.h2r.diapers.util.Tuple;
+import edu.brown.h2r.diapers.athena.namespace.P;
 
 public class PointBasedValueIteration {
 
@@ -57,10 +59,10 @@ public class PointBasedValueIteration {
 			return null;
 		}
 
-		System.out.println("NUMBER OF STATES " + num_states);
-		System.out.println("STATES " + states.size());
+		// System.out.println("NUMBER OF STATES " + num_states);
+		// System.out.println("STATES " + states.size());
 
-		System.out.println("Gamma:" + gamma);
+		// System.out.println("Gamma:" + gamma);
 
 		List<Tuple<GroundedAction, double[]>> returnVectors = new ArrayList<Tuple<GroundedAction, double[]>>();
 		for(int k = 0; k < num_belief_points; ++k) {
@@ -100,7 +102,13 @@ public class PointBasedValueIteration {
 
 									if(this.statesAreEqual(tp.s, states.get(sPrimeIndex))) {
 										prob = tp.p;
-									//	System.out.println("probability["+stateIndex+"]["+actionIndex+"]["+sPrimeIndex+"]= " + prob);
+										// if(actions.get(actionIndex).action.getName().equals(P.ACTION_SX_ADVANCE) && tp.p == 1) {
+										// System.out.println("----------");
+										// System.out.println("S  = " + states.get(stateIndex).getObject(P.OBJ_HOLDER).getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0]);
+										// System.out.println("A  = " + actions.get(actionIndex).action.getName());
+										// System.out.println("S' = " + states.get(sPrimeIndex).getObject(P.OBJ_HOLDER).getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0]);
+										// System.out.println("Probability = " + tp.p); }
+										//System.out.println("probability["+stateIndex+"]["+actionIndex+"]["+sPrimeIndex+"]= " + prob);
 									}
 								}
 								nextStateSum += prob * observations.get(observationIndex).getProbability(states.get(sPrimeIndex), actions.get(actionIndex)) * returnVectors.get(rvIndex).getY()[sPrimeIndex];
@@ -275,6 +283,9 @@ public class PointBasedValueIteration {
 
 			POMDPState s = this.domain.getExampleState();
 			this.actions = s.getAllGroundedActionsFor(this.domain.getActions());
+			// for(GroundedAction a : this.actions) {
+			// 	System.out.println(a.action.getName());
+			// }
 			this.num_actions = this.actions.size();
 
 			return true;

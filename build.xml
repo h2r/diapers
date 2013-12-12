@@ -6,7 +6,7 @@
 	<property name="classes.dir" value="${build.dir}/classes" />
 	<property name="jar.dir" value="${build.dir}/jars" />
 	<property name="diaperdomain.class" value="edu/brown/h2r/diapers/athena/DiaperDomain" />
-	<property name="diaperbehavior.class" value="edu/brown/h2r/diapers/athena/Behavior" />
+	<property name="diaperbehavior.class" value="edu/brown/h2r/diapers/athena/PBVIBehavior" />
 	<property name="tigerdomain.class" value="edu/brown/h2r/diapers/tiger/TigerDomain" />
 	<property name="tigerbehavior.class" value="edu/brown/h2r/diapers/tiger/TigerBehavior" />
 	<property name="lib.dir" value="lib" />
@@ -58,7 +58,8 @@
 			</classpath>
 		</java>
 	</target>
-
+	
+	<!-- Target for running simple tiger behavior -->
 	<target name="tigerbehavior">
 		<mkdir dir="${jar.dir}" />
 		<jar destfile = "${jar.dir}/TigerBehavior.jar" basedir="${classes.dir}">
@@ -70,6 +71,22 @@
 			<classpath>
 				<path refid="classpath" />
 				<path location="${jar.dir}/TigerBehavior.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<!-- Target for running diaper PBVI -->
+	<target name="diaperbehavior">
+		<mkdir dir="${jar.dir}" />
+		<jar destfile = "${jar.dir}/DiaperBehavior.jar" basedir="${classes.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${diaperbehavior.class}" />
+			</manifest>
+		</jar>
+		<java fork="true" classname="${diaperbehavior.class}">
+			<classpath>
+				<path refid="classpath" />
+				<path location="${jar.dir}/DiaperBehavior.jar" />
 			</classpath>
 		</java>
 	</target>

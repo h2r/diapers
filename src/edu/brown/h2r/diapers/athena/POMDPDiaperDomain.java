@@ -52,7 +52,13 @@ public class POMDPDiaperDomain implements DomainGenerator {
 
 		ObjectClass mentalStateClass = new ObjectClass(domain, P.CLASS_MENTAL_STATE);
 
-		Action advanceAction = new AdvanceAction(domain, P.ACTION_ADVANCE);
+		Action sXAdvanceAction = new AdvanceAction(domain, P.ACTION_SX_ADVANCE, P.OBJ_STATE_X, P.OBJ_STATE_A);
+		Action sAAdvanceAction = new AdvanceAction(domain, P.ACTION_SA_ADVANCE, P.OBJ_STATE_A, P.OBJ_STATE_B);
+		Action sBAdvanceAction = new AdvanceAction(domain, P.ACTION_SB_ADVANCE, P.OBJ_STATE_B, P.OBJ_STATE_C);
+		Action sCAdvanceAction = new AdvanceAction(domain, P.ACTION_SC_ADVANCE, P.OBJ_STATE_C, P.OBJ_STATE_D);
+		Action sDAdvanceAction = new AdvanceAction(domain, P.ACTION_SD_ADVANCE, P.OBJ_STATE_D, P.OBJ_STATE_E);
+		Action sEAdvanceAction = new AdvanceAction(domain, P.ACTION_SE_ADVANCE, P.OBJ_STATE_E, P.OBJ_STATE_Y);
+
 		Action speakAction = new SpeakAction(domain, P.ACTION_SPEAK);
 
 		Observation stateXObservation = new SimpleStateObservation(domain, P.OBS_STATE_X, P.OBJ_STATE_X);
@@ -247,7 +253,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			for(State test_state : states) {
 				
 				ObjectInstance test_holder = test_state.getObject(P.OBJ_HOLDER);
-				String test_mental_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
+				String test_mental_state = (String) test_holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
 				if(holder_state.equals(test_mental_state)) {
 					trans.add(new TransitionProbability(test_state, 1));
@@ -265,15 +271,22 @@ public class POMDPDiaperDomain implements DomainGenerator {
  * ========================================================================= */
 
 	public class AdvanceAction extends Action {
-		public AdvanceAction(Domain domain, String name) {
-			super(name, domain, new String[]{P.CLASS_MENTAL_STATE});
+
+		private String fromState;
+		private String toState;
+
+		public AdvanceAction(Domain domain, String name, String from_state, String to_state) {
+			super(name, domain, new String[]{});
+			fromState = from_state;
+			toState = to_state;
 		}
 
 		@Override 
 		public boolean applicableInState(State st, String[] params) {
-			ObjectInstance holder = st.getObject(P.OBJ_HOLDER);
-			String mental_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
-			return !mental_state.equals(P.OBJ_STATE_Y);
+			// ObjectInstance holder = st.getObject(P.OBJ_HOLDER);
+			// String mental_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
+			// return mental_state.equals(fromState);
+			return true;
 		}
 
 		@Override
@@ -281,34 +294,8 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			POMDPState ps = new POMDPState(st);
 			POMDPDomain dom = (POMDPDomain) domain;
 
-			ObjectInstance mental_state = st.getObject(params[0]);
 			ObjectInstance holder = st.getObject(P.OBJ_HOLDER);
-
-			switch(mental_state.getName()) {
-				case P.OBJ_STATE_X:
-					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_A);
-					break;
-
-				case P.OBJ_STATE_A:
-					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_B);
-					break;
-
-				case P.OBJ_STATE_B:
-					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_C);
-					break;
-
-				case P.OBJ_STATE_C:
-					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_D);
-					break;
-
-				case P.OBJ_STATE_D:
-					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_E);
-					break;
-
-				case P.OBJ_STATE_E:
-					holder.addRelationalTarget(P.ATTR_MENTAL_STATE, P.OBJ_STATE_Y);
-					break;
-			}
+			holder.addRelationalTarget(P.ATTR_MENTAL_STATE, toState);
 
 			ps.setObservation(dom.getObservation(P.NULL_OBSERVATION));
 			return ps;
@@ -319,14 +306,17 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			List<TransitionProbability> trans = new ArrayList<TransitionProbability>();
 			List<State> states = POMDPDiaperDomain.getAllStates(domain);
 
-			ObjectInstance mental_state = s.getObject(params[0]);
+			ObjectInstance holder = s.getObject(P.OBJ_HOLDER);
+			String holder_state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
 			for(State test_state : states) {
 
 				ObjectInstance test_holder = test_state.getObject(P.OBJ_HOLDER);
 				String test_mental_state = (String) test_holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
-				if(test_mental_state.equals(mental_state)) {
+				if(test_mental_state.equals(toState) && holder_state.equals(fromState) && !holder_state.equals(P.OBJ_STATE_Y)) {
+					trans.add(new TransitionProbability(test_state, 1));
+				} else if(!holder_state.equals(fromState) && test_mental_state.equals(holder_state) && !holder_state.equals(P.OBJ_STATE_Y)) {
 					trans.add(new TransitionProbability(test_state, 1));
 				} else {
 					trans.add(new TransitionProbability(test_state, 0));
