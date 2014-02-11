@@ -4,6 +4,16 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
+
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.PointBasedValueIteration;
 import edu.brown.h2r.diapers.util.Tuple;
@@ -69,19 +79,106 @@ public class PBVIBehavior {
 
 	public class AthenaRewardFunction implements RewardFunction {
 		public double reward(State s, GroundedAction a, State sprime) {
+			if(a.toString().equals("act.speak")){
+				return -0.5;
+			}
 			return -1;
 		}
 	}
 
-	public void doValueIteration(String outputPath) {
-		outputPath += !outputPath.endsWith("/") ? "/" : "";
-	
+	public void doValueIteration(int doVI) throws IOException {
+		//outputPath += !outputPath.endsWith("/") ? "/" : "";
+		if(doVI==1)
+		{	
 		beliefPoints = makeBeliefPoints(domain.getAllStates().size(), 4);
 		PointBasedValueIteration pbvi = makePBVIInstance(beliefPoints);
 
 		System.out.println("[PBVIBehavior.doValueIteration] Running PBVI...");
 
 		result = pbvi.doValueIteration();
+		// need to write out this result
+		CSVWriter beliefPointsWriter = new CSVWriter(new FileWriter("src\\edu\\brown\\h2r\\diapers\\data\\beliefPoints.csv"), ',');
+		CSVWriter resultWriter = new CSVWriter(new FileWriter("src\\edu\\brown\\h2r\\diapers\\data\\result.csv"), ',');
+		for(int beliefPointCounter = 0;beliefPointCounter < beliefPoints.size();beliefPointCounter++)
+		{
+			String [] tempString = new String[beliefPoints.get(beliefPointCounter).size()];
+			for(int BPinternalCounter = 0; BPinternalCounter < beliefPoints.get(beliefPointCounter).size();BPinternalCounter++)
+			{
+				tempString[BPinternalCounter]=String.valueOf(beliefPoints.get(beliefPointCounter).get(BPinternalCounter));
+		}
+			beliefPointsWriter.writeNext(tempString);
+		}
+		
+		for(int resultCounter = 0;resultCounter < result.size();resultCounter++)
+		{
+			String [] tempString = new String[result.get(resultCounter).getY().length+1];
+			tempString[0]=result.get(resultCounter).getX().toString();
+			for(int resultInternalCounter = 0; resultInternalCounter < result.get(resultCounter).getY().length;resultInternalCounter++)
+			{
+				tempString[resultInternalCounter+1]=String.valueOf(result.get(resultCounter).getY()[resultInternalCounter]);
+		}
+			resultWriter.writeNext(tempString);
+		}
+		resultWriter.close();
+		beliefPointsWriter.close();
+		}
+		else
+		{
+			File currentDir = new File("");
+			System.out.println(currentDir.getAbsolutePath());
+			System.out.println("[PBVIBehavior.doValueIteration] Loading csv...");
+			String BeliefPointPath = "src\\edu\\brown\\h2r\\diapers\\data\\beliefPoints.csv";
+			String resultTuplePath =  "src\\edu\\brown\\h2r\\diapers\\data\\result.csv";
+			
+			List<List<Double>> beliefPointsTemp = new ArrayList<List<Double>>();
+			
+			CSVReader beliefPointReader = new CSVReader(new FileReader(BeliefPointPath));
+			CSVReader resultReader = new CSVReader(new FileReader(resultTuplePath));
+			
+			String [] nextLine;
+			while ((nextLine = beliefPointReader.readNext()) != null) {
+				List<Double> beliefPoint = new ArrayList<Double>();
+				for (int beliefPointCounter=0;beliefPointCounter<nextLine.length;beliefPointCounter++)
+				{
+					System.out.print(nextLine);
+//					beliefPoint.add(1.0);
+					beliefPoint.add(Double.parseDouble(nextLine[beliefPointCounter]));
+				}
+				beliefPointsTemp.add(beliefPoint);
+			}
+			beliefPoints = beliefPointsTemp;
+//			String [] nextLine;
+			List<Tuple<GroundedAction, double[]>> resultTemp = new ArrayList<Tuple<GroundedAction, double[]>>();
+		    List<GroundedAction> actionList = domain.getExampleState().getAllGroundedActionsFor(domain.getActions());
+			while ((nextLine = resultReader.readNext()) != null) {
+				String actionName = nextLine[0];
+				GroundedAction individualAction = null;
+				for (int actionCount=0;actionCount<actionList.size();actionCount++)
+				{
+//					System.out.println(actionName);
+//					System.out.println("bored");
+//					System.out.println(actionList.get(actionCount).toString());
+//					System.out.println("meToo");
+					if(actionList.get(actionCount).toString().equals(actionName))
+					{
+						individualAction =actionList.get(actionCount);
+						System.out.println("trial");
+//						System.out.println(individualAction.toString());
+						break;
+					}
+				}
+				double[] actionVector = new double[nextLine.length-1];
+				for (int resultCounter=0;resultCounter<nextLine.length-1;resultCounter++)
+				{
+					actionVector[resultCounter]=Double.parseDouble(nextLine[resultCounter+1]);
+				}
+				resultTemp.add(new Tuple<GroundedAction, double[]>(individualAction,actionVector));
+				
+			}
+			result=resultTemp;
+			
+			
+		}
 
 		valueArray = new double[beliefPoints.size()];
 		namesArray = new String[beliefPoints.size()];
@@ -125,7 +222,10 @@ public class PBVIBehavior {
 			}
 
 			vals[i] = maxValue;
-			names[i] = pbvi_result.get(maxIndex).getX().action.getName();
+			names[i] =pbvi_result.get(maxIndex).getX().action.getName();
+//			System.out.println(pbvi_result.get(i).getY()[6]);
+			
+//					pbvi_result.get(maxIndex).getX().action.getName();
 		}
 	}
 
@@ -191,6 +291,7 @@ public class PBVIBehavior {
 	}
 
 	public static int findClosestBeliefPointIndex(List<Double> input_belief_point) {
+		// this is wrong needs to be fixed
 		int min_index = -1;
 		double min_dist = Double.POSITIVE_INFINITY;
 		for(int i = 0; i < beliefPoints.size(); ++i) {
@@ -213,11 +314,13 @@ public class PBVIBehavior {
 		return Math.sqrt(sqsum);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		PBVIBehavior test = new PBVIBehavior();
 		String outputPath = "output/";
+		File currentDir = new File("");
+		System.out.println(currentDir.getAbsolutePath());
 
-		test.doValueIteration(outputPath);
+		test.doValueIteration(0);
 
 		java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
 

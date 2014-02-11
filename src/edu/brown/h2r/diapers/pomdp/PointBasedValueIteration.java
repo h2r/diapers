@@ -17,7 +17,7 @@ import burlap.behavior.statehashing.StateHashFactory;
 import burlap.behavior.statehashing.StateHashTuple;
 
 import edu.brown.h2r.diapers.util.Tuple;
-import edu.brown.h2r.diapers.athena.namespace.P;
+//import edu.brown.h2r.diapers.athena.namespace.P;
 
 public class PointBasedValueIteration {
 
