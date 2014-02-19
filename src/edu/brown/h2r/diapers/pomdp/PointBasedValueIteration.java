@@ -216,6 +216,33 @@ public class PointBasedValueIteration {
 		}
 		return ret;
 	}
+	
+	
+	public static String findClosestBeliefPointIndex(List<Double> input_belief_point, List<Tuple<GroundedAction, double[]>> VectorList) {
+		// this is wrong needs to be fixed
+		int maxIndex = -1;
+		double min_dist = Double.POSITIVE_INFINITY;
+		List<Double> sum =new ArrayList<Double>(VectorList.size());
+		for(int i = 0; i < VectorList.size(); ++i) {
+			Double tempSum=0.0;
+			for (int j=0; j < VectorList.get(i).getY().length;++j){
+				tempSum+=VectorList.get(i).getY()[j]*input_belief_point.get(j);
+				}
+			sum.add(i, tempSum);
+			
+		}
+		Double maxValue=Double.NEGATIVE_INFINITY;
+		
+		for(int i=0;i<sum.size();++i){
+			if(sum.get(i)>maxValue){
+				maxValue=sum.get(i);
+				maxIndex=i;
+			}
+		}
+			
+		//return maxIndex;
+		return VectorList.get(maxIndex).getX().toString();
+	}
 
 	private boolean allInitialized() {
 		return this.domain != null && this.reward_function != null

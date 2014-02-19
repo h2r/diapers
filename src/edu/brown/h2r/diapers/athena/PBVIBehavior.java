@@ -162,7 +162,7 @@ public class PBVIBehavior {
 					if(actionList.get(actionCount).toString().equals(actionName))
 					{
 						individualAction =actionList.get(actionCount);
-						System.out.println("trial");
+						//System.out.println("trial");
 //						System.out.println(individualAction.toString());
 						break;
 					}
@@ -352,8 +352,10 @@ public class PBVIBehavior {
 			} catch (java.io.IOException e) {
 			}
 
-			int i = findClosestBeliefPointIndex(input_bp);
-			System.out.println("Best POMDP Action: " + namesArray[i]);
+			//int i = findClosestBeliefPointIndex(input_bp);
+			String j = PointBasedValueIteration.findClosestBeliefPointIndex(input_bp, result); 
+			//System.out.println("Best POMDP Action: " + namesArray[j]);
+			System.out.println("Best POMDP Action: " + j);
 		}
 
 		// List<List<Double>> bp_test = makeBeliefPoints(7, 2);
