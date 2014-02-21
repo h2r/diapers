@@ -115,7 +115,13 @@ public class DiaperDomain implements DomainGenerator {
 		Action waitAction = new WaitAction(domain, S.ACTION_WAIT);
 
 		//Create propositional function
-		PropositionalFunction pfInStateY = new InStateYPropFun(domain, S.PROP_IN_STATE_Y);
+		PropositionalFunction pfInStateX = new InGivenStatePropFun(domain, S.PROP_IN_STATE_X, S.OBJ_STATE_X);
+		PropositionalFunction pfInStateA = new InGivenStatePropFun(domain, S.PROP_IN_STATE_A, S.OBJ_STATE_A);
+		PropositionalFunction pfInStateB = new InGivenStatePropFun(domain, S.PROP_IN_STATE_B, S.OBJ_STATE_B);
+		PropositionalFunction pfInStateC = new InGivenStatePropFun(domain, S.PROP_IN_STATE_C, S.OBJ_STATE_C);
+		PropositionalFunction pfInStateD = new InGivenStatePropFun(domain, S.PROP_IN_STATE_D, S.OBJ_STATE_D);
+		PropositionalFunction pfInStateE = new InGivenStatePropFun(domain, S.PROP_IN_STATE_E, S.OBJ_STATE_E);
+		PropositionalFunction pfInStateY = new InGivenStatePropFun(domain, S.PROP_IN_STATE_Y, S.OBJ_STATE_Y);
 
 		return domain;
 	}
@@ -313,6 +319,21 @@ public class DiaperDomain implements DomainGenerator {
 /* ============================================================================
  * Class definition for In State Y Prop. Function
  * ========================================================================= */
+
+	public class InGivenStatePropFun extends PropositionalFunction {
+		String myState;
+		public InGivenStatePropFun(Domain domain, String name, String stateName) {
+			super(name, domain, new String[]{S.CLASS_HUMAN});
+			myState = stateName;
+		}
+
+		@Override
+		public boolean isTrue(State st, String[] params) {
+			String mentalState = (String) st.getObject(params[0]).getAllRelationalTargets(S.ATTR_MENTAL_STATE).toArray()[0];
+			boolean inState = mentalState.equals(myState);
+			return inState;
+		}
+	}
 
 	public class InStateYPropFun extends PropositionalFunction {
 		public InStateYPropFun(Domain domain, String name) {

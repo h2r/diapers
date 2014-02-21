@@ -91,6 +91,12 @@ public class S {
 /* ============================================================================
  * Propositional Functions
  * ========================================================================= */
-
+	
+	public static final String PROP_IN_STATE_X = "prop.inStateX";
+	public static final String PROP_IN_STATE_A = "prop.inStateA";
+	public static final String PROP_IN_STATE_B = "prop.inStateB";
+	public static final String PROP_IN_STATE_C = "prop.inStateC";
+	public static final String PROP_IN_STATE_D = "prop.inStateD";
+	public static final String PROP_IN_STATE_E = "prop.inStateE";
 	public static final String PROP_IN_STATE_Y = "prop.inStateY";
 }

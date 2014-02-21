@@ -1,3 +1,21 @@
+package edu.brown.h2r.diapers.athena;
+
+import edu.brown.h2r.diapers.pomdp.POMDPDomain;
+import edu.brown.h2r.diapers.pomdp.PointBasedValueIteration;
+import edu.brown.h2r.diapers.util.Tuple;
+import edu.brown.h2r.diapers.athena.namespace.P;
+
+import burlap.oomdp.core.State;
+import burlap.oomdp.singleagent.GroundedAction;
+import burlap.oomdp.auxiliary.StateParser;
+import burlap.oomdp.auxiliary.common.UniversalStateParser;
+import burlap.behavior.singleagent.planning.StateConditionTest;
+import burlap.behavior.statehashing.NameDependentStateHashFactory;
+import burlap.oomdp.singleagent.RewardFunction;
+
+import java.util.List;
+import java.util.ArrayList;
+
 public class HLPlanner {
 
 	private PointBasedValueIteration pbvi;
@@ -20,14 +38,14 @@ public class HLPlanner {
 		initialState = diaperDomain.getNewState(domain);
 		hashFactory = new NameDependentStateHashFactory();
 		rewardFunction = new HLPRewardFunction();
-		beliefPoints = makeBeliefPoints();
+		beliefPoints = makeBeliefPoints(domain.getAllStates().size(), 4);
 
 		pbvi = makePBVIInstance(beliefPoints);
 		result = pbvi.doValueIteration();
 	}
 
 	public String getBestAction(List<Double> beliefState) {
-		return pbvi.findFlosestBeliefPointIndex(beliefState, result);
+		return pbvi.findClosestBeliefPointIndex(beliefState, result);
 	}
 
 	public class HLPRewardFunction implements RewardFunction {
@@ -50,7 +68,7 @@ public class HLPlanner {
 			setGamma(0.95);
 			setMaxDelta(0.001);
 			setMaxIterations(30);
-		}}
+		}};
 	}
 
 	private static List<List<Double>> makeBeliefPoints(int num_states, int granularity) {

@@ -1,5 +1,17 @@
+package edu.brown.h2r.diapers.athena;
+
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
+import edu.brown.h2r.diapers.pomdp.Observation;
+import edu.brown.h2r.diapers.util.Tuple;
+
+import burlap.oomdp.singleagent.Action;
+import burlap.oomdp.core.TransitionProbability;
+import burlap.oomdp.core.State;
+
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class AthenaAgent extends Agent {
 	private POMDPDomain domain;
@@ -14,12 +26,12 @@ public class AthenaAgent extends Agent {
 
 	public void init() {
 		hlplanner = new HLPlanner();
-		llplanner = new LLPlanner();
+		llplanner = new LLPlanner(environment);
 
 		hlplanner.init();
 
 		for(int i = 0; i < domain.getAllStates().size(); ++i) {
-			currentBeliefState.add(1/domain.getAllStates().size());
+			currentBeliefState.add(new Double(1/domain.getAllStates().size()));
 		}
 
 		domain = (POMDPDomain)(new POMDPDiaperDomain().generateDomain());
@@ -27,25 +39,29 @@ public class AthenaAgent extends Agent {
 
 	public void run() {
 
-		while(!inGoalState()) {
+		while(true) {
+
+			System.out.println("current belief state: " + currentBeliefState);
+
 			String bestPOMDPAction = hlplanner.getBestAction(currentBeliefState);
 			List<Tuple<Action, String[]>> bestOOMDPActions = llplanner.convert(bestPOMDPAction);
 			for(Tuple<Action, String[]> tup : bestOOMDPActions) {
 				environment.perform(tup.getX(), tup.getY());
 			}
 			Observation o = environment.observe();
-			currentBeliefState = forward(currentBeliefState, o, bestPOMDPAction, {});
+			currentBeliefState = forward(currentBeliefState, o, domain.getAction(bestPOMDPAction), new String[]{});
+			if(inGoalState(o)) break;
 		}
 		System.out.println("Done!");
 	}
 
-	public boolean inGoalState() {
-		List<POMDPState> allStates = domain.getAllStates();
-		return currentObservation.getProbability(allStates.get(allStates))
+	public boolean inGoalState(Observation o) {
+		List<State> allStates = domain.getAllStates();
+		return o.getProbability(allStates.get(allStates.size() - 1), null) == 1;
 	}
 
 	private List<Double> forward(List<Double> prevBeliefState, Observation observation, Action action, String[] params) {
-		List<POMDPState> allStates = domain.getAllStates();
+		List<State> allStates = domain.getAllStates();
 		List<Double> newBeliefState = new ArrayList<Double>();
 
 		for(int sPrimeIndex = 0; sPrimeIndex < allStates.size(); sPrimeIndex++) {

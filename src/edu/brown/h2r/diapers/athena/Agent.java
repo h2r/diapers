@@ -1,3 +1,5 @@
+package edu.brown.h2r.diapers.athena;
+
 /**
  * Agent is an abstract class which can be run on an environment
  */
