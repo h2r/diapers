@@ -11,7 +11,7 @@ public class AgentDemo {
 		Domain dom = dd.generateDomain();
 
 		DiaperEnvironment env = new DiaperEnvironment(DiaperDomain.getNewState(dom));
-		AthenaAgent agent = new AthenaAgent(env);
+		RandomAgent agent = new RandomAgent(env);
 
 		agent.run();
 	}

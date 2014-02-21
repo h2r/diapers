@@ -9,8 +9,10 @@ import edu.brown.h2r.diapers.athena.namespace.P;
 import burlap.oomdp.singleagent.Action;
 import burlap.oomdp.core.TransitionProbability;
 import burlap.oomdp.core.State;
+import burlap.oomdp.core.Domain;
 import burlap.behavior.statehashing.NameDependentStateHashFactory;
 import burlap.behavior.statehashing.StateHashTuple;
+import burlap.oomdp.singleagent.GroundedAction;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 public class RandomAgent extends Agent {
 	
 	private LLPlanner llplanner;
-	private POMDPDomain domain;
+	private Domain domain;
 	private String[] possibleActions = 
 		new String[]{
 			P.ACTION_SPEAK,
@@ -29,6 +31,7 @@ public class RandomAgent extends Agent {
 			P.ACTION_SD_ADVANCE,
 			P.ACTION_SE_ADVANCE
 		};
+	private List<Action> llactions;
 
 	public RandomAgent(Environment e) {
 		super(e);
@@ -37,17 +40,15 @@ public class RandomAgent extends Agent {
 
 	public void init() {
 		llplanner = new LLPlanner(environment);
-		domain = (POMDPDomain)(new POMDPDiaperDomain().generateDomain());
+		domain = (new DiaperDomain().generateDomain());
+		llactions = domain.getActions();
 	}
 
 	public void run() {
 		while(true) {
-			String bestPOMDPAction = chooseActionAtRandom();
-			List<Tuple<Action, String[]>> bestOOMDPActions = llplanner.convert(bestPOMDPAction);
-
-			for(Tuple<Action, String[]> tup : bestOOMDPActions) {
-				environment.perform(tup.getX(), tup.getY());
-			}
+			Tuple<Action, String[]> actiontup = chooseActionAtRandom();
+			System.out.println(actiontup.getX() + ", " + actiontup.getY());
+			environment.perform(actiontup.getX(), actiontup.getY());
 
 			Observation o = environment.observe();
 			if(inGoalState(o)) break;
@@ -55,12 +56,19 @@ public class RandomAgent extends Agent {
 	}
 
 	public boolean inGoalState(Observation o) {
-		List<State> allStates = domain.getAllStates();
-		return o.getProbability(allStates.get(allStates.size() - 1), null) == 1;
+		return false;
 	}
 
-	private String chooseActionAtRandom() {
-		int randIndex = (int) (new java.util.Random().nextDouble() * possibleActions.length);
-		return possibleActions[randIndex];
+	private Tuple<Action, String[]> chooseActionAtRandom() {
+		List<GroundedAction> allPossible = new ArrayList<GroundedAction>();
+		while(true) {
+			int randIndex = (int) (new java.util.Random().nextDouble() * llactions.size());
+			Action chosen = llactions.get(randIndex);
+			allPossible = environment.getCurrentState().getAllGroundedActionsFor(chosen);
+			if(allPossible.size() > 0) break;
+		}
+		int randIndex = (int) (new java.util.Random().nextDouble() * allPossible.size());
+		GroundedAction gaChosen = allPossible.get(randIndex);
+		return new Tuple<Action, String[]>(gaChosen.action, gaChosen.params);
 	}
 }
