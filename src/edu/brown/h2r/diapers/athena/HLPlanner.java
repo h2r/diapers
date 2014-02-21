@@ -41,7 +41,12 @@ public class HLPlanner {
 		beliefPoints = makeBeliefPoints(domain.getAllStates().size(), 4);
 
 		pbvi = makePBVIInstance(beliefPoints);
+
+		System.out.println("[HLPlanner.init()] Running PBVI...");
+		long init = System.nanoTime();
 		result = pbvi.doValueIteration();
+		long duration = System.nanoTime() - init;
+		System.out.println("[HLPlanner.init()] PBVI complete in " + duration/1E9 + " seconds!");
 	}
 
 	public String getBestAction(List<Double> beliefState) {

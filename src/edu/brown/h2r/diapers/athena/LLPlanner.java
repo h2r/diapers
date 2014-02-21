@@ -64,7 +64,13 @@ public class LLPlanner {
 			case P.ACTION_SE_ADVANCE:
 				return planTo(S.OBJ_STATE_Y);
 			case P.ACTION_SPEAK:
-				break;
+
+				Action update = domain.getAction(S.ACTION_UPDATE);
+				Action wait = domain.getAction(S.ACTION_WAIT);
+				String[] params = new String[]{};
+
+				result.add(new Tuple<Action, String[]>(update, params));
+				result.add(new Tuple<Action, String[]>(wait, params));
 		}
 
 		return result;
