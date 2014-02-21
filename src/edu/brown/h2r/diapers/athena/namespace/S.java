@@ -79,13 +79,13 @@ public class S {
 	public static final String OBJ_HAMPER = "hamper";
 	public static final String OBJ_DRESSER = "dresser";
 	public static final String OBJ_TRASHCAN = "trashcan";
-	public static final String OBJ_STATE_X = "stateX";
-	public static final String OBJ_STATE_A = "stateA";
-	public static final String OBJ_STATE_B = "stateB";
-	public static final String OBJ_STATE_C = "stateC";
-	public static final String OBJ_STATE_D = "stateD";
-	public static final String OBJ_STATE_E = "stateE";
-	public static final String OBJ_STATE_Y = "stateY";
+	public static final String OBJ_STATE_X = "obj.stateX";
+	public static final String OBJ_STATE_A = "obj.stateA";
+	public static final String OBJ_STATE_B = "obj.stateB";
+	public static final String OBJ_STATE_C = "obj.stateC";
+	public static final String OBJ_STATE_D = "obj.stateD";
+	public static final String OBJ_STATE_E = "obj.stateE";
+	public static final String OBJ_STATE_Y = "obj.stateY";
 	public static final String OBJ_REFEREE = "referee";
 
 /* ============================================================================

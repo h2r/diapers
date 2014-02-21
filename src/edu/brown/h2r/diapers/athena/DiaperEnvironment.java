@@ -24,7 +24,7 @@ public class DiaperEnvironment implements Environment {
 			@Override public double getProbability(State s, GroundedAction a) {
 				String state = (String) s.getObject(P.OBJ_HOLDER).getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
-				if(state.equals(caregiverRealState)) {
+				if(state.equals(caregiverRealState) || state.substring(4).equals(caregiverRealState)) {
 					return 1;
 				}
 				return 0;

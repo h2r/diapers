@@ -8,6 +8,8 @@ import edu.brown.h2r.diapers.util.Tuple;
 import burlap.oomdp.singleagent.Action;
 import burlap.oomdp.core.TransitionProbability;
 import burlap.oomdp.core.State;
+import burlap.behavior.statehashing.NameDependentStateHashFactory;
+import burlap.behavior.statehashing.StateHashTuple;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class AthenaAgent extends Agent {
 	private List<Double> currentBeliefState = new ArrayList<Double>();
 	private HLPlanner hlplanner;
 	private LLPlanner llplanner;
+	private NameDependentStateHashFactory hash_factory = new NameDependentStateHashFactory();
 
 	public AthenaAgent(Environment e) {
 		super(e);
@@ -108,7 +111,7 @@ public class AthenaAgent extends Agent {
 	private double getTransitionProbability(State s1, State s2, Action a, String[] params) {
 		List<TransitionProbability> tplist = a.getTransitions(s1, params);
 		for(TransitionProbability tp : tplist) {
-			if(tp.s.equals(s2)) {
+			if(statesAreEqual(tp.s, s2)) {
 				return tp.p;
 			}
 		}
@@ -120,8 +123,15 @@ public class AthenaAgent extends Agent {
 		for(int i = 0; i < in.size(); ++i) {
 			sum += in.get(i);
 		}
+		if(sum == 0) return;
 		for(int i = 0; i < in.size(); ++i) {
 			in.set(i, in.get(i)/sum);
 		}
+	}
+
+	private boolean statesAreEqual(State s1, State s2) {
+		StateHashTuple st1 = hash_factory.hashState(s1);
+		StateHashTuple st2 = hash_factory.hashState(s2);
+		return st1.equals(st2);
 	}
 }
