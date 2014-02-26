@@ -269,7 +269,7 @@ public class DiaperDomain implements DomainGenerator {
 					break;
 
 				case S.OBJ_STATE_Y:
-					System.out.println("Reached State Y!");
+					System.out.println("[DiaperDomain.tickWorld()] Reached State Y!");
 					break;
 			}
 		}
