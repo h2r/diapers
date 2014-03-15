@@ -17,7 +17,7 @@ public class DiaperEnvironment implements Environment {
 	private ObservationStyle obsStyle;
 
 	public enum ObservationStyle {
-		DETERMINISTIC, TWO_STATE
+		DETERMINISTIC, BLURRY
 	}
 
 	public DiaperEnvironment(State initialState) {
@@ -39,8 +39,8 @@ public class DiaperEnvironment implements Environment {
 		String caregiverRealState = (String) currentState.getObject(S.OBJ_CAREGIVER).getAllRelationalTargets(S.ATTR_MENTAL_STATE).toArray()[0];
 
 		switch(obsStyle) {
-			case TWO_STATE:
-				return getTwoStateEvenObservation(caregiverRealState);
+			case BLURRY:
+				return getBlurryObsrevation(caregiverRealState);
 			case DETERMINISTIC:
 			default:
 				return getDeterministicObservation(caregiverRealState);
@@ -62,7 +62,7 @@ public class DiaperEnvironment implements Environment {
 		};
 	}
 
-	private Observation getTwoStateEvenObservation(String caregiverState) {	
+	private Observation getBlurryObsrevation(String caregiverState) {	
 		final String cs = caregiverState;
 		List<String> selected = pickNStates(3);
 		final String os1 = selected.get(0);
@@ -85,6 +85,7 @@ public class DiaperEnvironment implements Environment {
 	}
 
 	private List<String> pickNStates(int n) {
+		@SuppressWarnings("serial")
 		List<String> states = new ArrayList<String>() {{
 			add(S.OBJ_STATE_X); add(S.OBJ_STATE_A); add(S.OBJ_STATE_B);
 			add(S.OBJ_STATE_C); add(S.OBJ_STATE_D); add(S.OBJ_STATE_E); add(S.OBJ_STATE_Y);

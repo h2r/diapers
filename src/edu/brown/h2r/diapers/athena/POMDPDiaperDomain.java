@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
+import edu.brown.h2r.diapers.util.Util;
 
 import burlap.oomdp.auxiliary.DomainGenerator;
 
@@ -24,6 +25,12 @@ import burlap.oomdp.singleagent.explorer.VisualExplorer;
 import edu.brown.h2r.diapers.athena.namespace.P;
 
 public class POMDPDiaperDomain implements DomainGenerator {
+	private double TransitionNoise = 0.0;
+	
+	public boolean setTransitionNoise(double TN) {
+		this.TransitionNoise=TN;
+		return true;
+	}
 
 	public POMDPDiaperDomain() {}
 
@@ -60,7 +67,10 @@ public class POMDPDiaperDomain implements DomainGenerator {
 		Action sEAdvanceAction = new AdvanceAction(domain, P.ACTION_SE_ADVANCE, P.OBJ_STATE_E, P.OBJ_STATE_Y);
 
 		Action speakAction = new SpeakAction(domain, P.ACTION_SPEAK);
+		
+		spawnObservations((POMDPDomain)domain, 7, 2);
 
+		/*
 		Observation stateXObservation = new SimpleStateObservation(domain, P.OBS_STATE_X, P.OBJ_STATE_X);
 		Observation stateAObservation = new SimpleStateObservation(domain, P.OBS_STATE_A, P.OBJ_STATE_A);
 		Observation stateBObservation = new SimpleStateObservation(domain, P.OBS_STATE_B, P.OBJ_STATE_B);
@@ -69,8 +79,25 @@ public class POMDPDiaperDomain implements DomainGenerator {
 		Observation stateEObservation = new SimpleStateObservation(domain, P.OBS_STATE_E, P.OBJ_STATE_E);
 		Observation stateYObservation = new SimpleStateObservation(domain, P.OBS_STATE_Y, P.OBJ_STATE_Y);
 		Observation nullObservation = new Observation(domain, P.NULL_OBSERVATION);
-
+*/
+		
 		return domain;
+	}
+	
+	private void spawnObservations(POMDPDomain d, int dim, int gran) {
+		
+		List<List<Double>> observationDistros = Util.makeDistro(dim, gran);
+		
+		for(int i = 0; i < observationDistros.size(); ++i) {
+			
+			final List<Double> obs = observationDistros.get(i);
+			new Observation(d, "OBSERVATION" + i) {
+				@Override public double getProbability(State s, GroundedAction a) {
+					int i = domain.getAllStates().indexOf(s);
+					return obs.get(i);
+				}
+			};
+		}
 	}
 
 /* ============================================================================
@@ -173,7 +200,7 @@ public class POMDPDiaperDomain implements DomainGenerator {
 	}
 
 /* ============================================================================
- * Observation definition
+ * Observation definition change probability here for changing the learner's behaviour
  * ========================================================================= */
 
 	public class SimpleStateObservation extends Observation {
@@ -190,13 +217,14 @@ public class POMDPDiaperDomain implements DomainGenerator {
 			ObjectInstance holder = s.getObject(P.OBJ_HOLDER);
 			String state = (String) holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 				
-			if(state.equals(this.my_state)) {
-				return 1;
+			if(state.equals(this.my_state)) {//this.my_state
+				return 0.8;
 			}
-			return 0;
+			
+			return 0.2/6;
 		}
 	}
-
+	
 /* ============================================================================
  * Speak action definition
  * ========================================================================= */
@@ -315,11 +343,14 @@ public class POMDPDiaperDomain implements DomainGenerator {
 				String test_mental_state = (String) test_holder.getAllRelationalTargets(P.ATTR_MENTAL_STATE).toArray()[0];
 
 				if(test_mental_state.equals(toState) && holder_state.equals(fromState) && !holder_state.equals(P.OBJ_STATE_Y)) {
-					trans.add(new TransitionProbability(test_state, 1));
-				} else if(!holder_state.equals(fromState) && test_mental_state.equals(holder_state) && !holder_state.equals(P.OBJ_STATE_Y)) {
-					trans.add(new TransitionProbability(test_state, 1));
+					trans.add(new TransitionProbability(test_state, 1 - TransitionNoise));
+				//}else if(test_mental_state.equals(fromState) && holder_state.equals(fromState) && !holder_state.equals(P.OBJ_STATE_Y)) {
+				//	trans.add(new TransitionProbability(test_state, TransitionNoise));
+				}
+				else if(!holder_state.equals(fromState) && test_mental_state.equals(holder_state) && !holder_state.equals(P.OBJ_STATE_Y)) {
+					trans.add(new TransitionProbability(test_state, 1- TransitionNoise));
 				} else {
-					trans.add(new TransitionProbability(test_state, 0));
+					trans.add(new TransitionProbability(test_state, TransitionNoise/6));
 				}
 			}
 

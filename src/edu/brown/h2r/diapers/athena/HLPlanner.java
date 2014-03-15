@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class HLPlanner {
 
-	private PointBasedValueIteration pbvi;
+	public static PointBasedValueIteration pbvi;
 	private List<Tuple<GroundedAction, double[]>> result;
 
 	private POMDPDiaperDomain diaperDomain;
@@ -29,45 +29,61 @@ public class HLPlanner {
 	private State initialState;
 	private NameDependentStateHashFactory hashFactory;
 
-	private List<List<Double>> beliefPoints;
+	//private List<List<Double>> beliefPoints;
 
 	public void init() {
 		diaperDomain = new POMDPDiaperDomain();
+		double noise = 0.1;
+		diaperDomain.setTransitionNoise(noise);
+		System.out.println("the certainty of transition is " + (1.0-noise));
 		domain = (POMDPDomain) diaperDomain.generateDomain();
 		stateParser = new UniversalStateParser(domain);
 		initialState = diaperDomain.getNewState(domain);
 		hashFactory = new NameDependentStateHashFactory();
 		rewardFunction = new HLPRewardFunction();
-		beliefPoints = makeBeliefPoints(domain.getAllStates().size(), 4);
+		//beliefPoints = makeBeliefPoints(domain.getAllStates().size(), 4);
 
-		pbvi = makePBVIInstance(beliefPoints);
+		//pbvi = makePBVIInstance();
+		
+		
+		int granularity=4;
+		boolean doCompleteVI=true;
+		
+		this.pbvi = makePBVIInstance(granularity);
+		this.pbvi.setDataPath("src\\edu\\brown\\h2r\\diapers\\data\\"); 
+		
+		this.pbvi.doValueIteration(doCompleteVI);
 
 		System.out.println("[HLPlanner.init()] Running PBVI...");
 		long init = System.nanoTime();
-		result = pbvi.doValueIteration();
+		//pbvi.doValueIteration(false);
+		result = this.pbvi.getAplhaVectors();
 		long duration = System.nanoTime() - init;
 		System.out.println("[HLPlanner.init()] PBVI complete in " + duration/1E9 + " seconds!");
 	}
 
 	public String getBestAction(List<Double> beliefState) {
-		return pbvi.findClosestBeliefPointIndex(beliefState, result);
+		//System.out.println(beliefState);
+		System.out.println(this.pbvi.getAplhaVectors().size());
+		System.out.println(beliefState.size());
+		return this.pbvi.findClosestBeliefPointIndex(beliefState); 
 	}
 
 	public class HLPRewardFunction implements RewardFunction {
 		public double reward(State s, GroundedAction a, State sprime) {
 			if(a.toString().equals(P.ACTION_SPEAK)) {
-				return -0.5;
+				return -0.4;
 			}
 			return -1;
 		}
 	}
 
-	private PointBasedValueIteration makePBVIInstance(List<List<Double>> beliefPoints) {
-		final List<List<Double>> bp = beliefPoints;
+	/*private PointBasedValueIteration makePBVIInstance() {
+		//final List<List<Double>> bp = beliefPoints;
 		return new PointBasedValueIteration() {{
 			setDomain(domain);
 			setStates(domain.getAllStates());
-			setBeliefPoints(bp);
+			//setBeliefPoints(bp);
 			setHashFactory(hashFactory);
 			setRewardFunction(rewardFunction);
 			setGamma(0.95);
@@ -75,8 +91,27 @@ public class HLPlanner {
 			setMaxIterations(30);
 		}};
 	}
+	*/
+	
+	private PointBasedValueIteration makePBVIInstance(int granularity) {
+		//final List<List<Double>> bp = belief_points;
+		final int myGranularity=granularity;
+		return new PointBasedValueIteration() {{
+			setDomain(domain);
+			setStates(domain.getAllStates());
+			setGranularity(myGranularity);
+			setHashFactory(hashFactory);
+			setRewardFunction(rewardFunction);
+			setGamma(0.95);
+			setMaxDelta(0.001);
+			setMaxIterations(30);
+		}};
+	}
+}
 
-	private static List<List<Double>> makeBeliefPoints(int num_states, int granularity) {
+
+
+	/*private static List<List<Double>> makeBeliefPoints(int num_states, int granularity) {
 		List<List<Double>> result = new ArrayList<List<Double>>();
 		int num = multichoose(num_states, granularity);
 
@@ -125,4 +160,4 @@ public class HLPlanner {
 	public static int multichoose(int n, int k) {
 		return factorial(n + k - 1)/(factorial(k) * factorial(n - 1));
 	}
-}
+}*/

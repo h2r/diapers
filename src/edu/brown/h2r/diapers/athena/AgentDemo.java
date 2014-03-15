@@ -11,7 +11,7 @@ public class AgentDemo {
 		Domain dom = dd.generateDomain();
 
 		DiaperEnvironment env = new DiaperEnvironment(DiaperDomain.getNewState(dom));
-		env.setObservationStyle(DiaperEnvironment.ObservationStyle.TWO_STATE);
+		env.setObservationStyle(DiaperEnvironment.ObservationStyle.DETERMINISTIC);
 		Agent agent = new AthenaAgent(env);
 
 		agent.run();

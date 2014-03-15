@@ -6,6 +6,7 @@ import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.util.Tuple;
 
 import burlap.oomdp.singleagent.Action;
+import burlap.oomdp.core.Domain;
 import burlap.oomdp.core.TransitionProbability;
 import burlap.oomdp.core.State;
 import burlap.behavior.statehashing.NameDependentStateHashFactory;
@@ -34,7 +35,10 @@ public class AthenaAgent extends Agent {
 		llplanner = new LLPlanner(environment);
 
 		System.out.println("[AthenaAgent.init()] Building domain");
+		
 		domain = (POMDPDomain)(new POMDPDiaperDomain().generateDomain());
+		
+		
 
 		System.out.println("[AthenaAgent.init()] Initializing high-level planner");
 		hlplanner.init();
@@ -109,8 +113,12 @@ public class AthenaAgent extends Agent {
 	}
 
 	private double getTransitionProbability(State s1, State s2, Action a, String[] params) {
+		//System.out.println(a.getName());
+		
 		List<TransitionProbability> tplist = a.getTransitions(s1, params);
 		for(TransitionProbability tp : tplist) {
+			//System.out.println(tp.p);
+			//System.out.println(tp.s);
 			if(statesAreEqual(tp.s, s2)) {
 				return tp.p;
 			}

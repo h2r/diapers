@@ -56,5 +56,23 @@ public class Observation {
 	public int hashCode() {
 		return name.hashCode();
 	}
+	
+	public String toString(GroundedAction a) {
+		String result =  "[observation NAME=" + this.name + " PROBS=[";
+		for(int i = 0; i < this.domain.getAllStates().size(); ++i) {
+			State current = this.domain.getAllStates().get(i);
+			result += (i + ": " + Math.floor(this.getProbability(current, a) * 1000)/1000 + ", ");
+		}
+		result += "]]";
+		return result;
+	}
+	
+	public String truncate(double d, int k) {
+		String retVal = "";
+		for(int i = 0; i < k; ++i) {
+			retVal += d % Math.pow(10, -i);
+		}
+		return retVal;
+	}
 
 }
