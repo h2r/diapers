@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.pomdp;
+lipackage edu.brown.h2r.diapers.pomdp;
 
 import java.io.FileReader;
 import java.io.FileWriter;
