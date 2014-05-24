@@ -1,3 +1,5 @@
+package edu.brown.h2r.diapers.pomdp;
+
 class MonteCarloNode {
 	private Map<HistoryElement, MonteCarloNode> children;
 	private List<POMDPState> beliefParticles;
