@@ -2,6 +2,18 @@ package edu.brown.h2r.diapers.athena;
 
 import edu.brown.h2r.diapers.pomdp.MonteCarloNode;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
+import edu.brown.h2r.diapers.pomdp.POMDPState;
+import edu.brown.h2r.diapers.pomdp.Observation;
+import edu.brown.h2r.diapers.tiger.TigerDomain;
+import edu.brown.h2r.diapers.tiger.namespace.P;
+
+import burlap.oomdp.singleagent.GroundedAction;
+import burlap.oomdp.singleagent.Action;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * POMCPAgent is an agent whose behavior is driven by an implementation
@@ -29,7 +41,7 @@ public class POMCPAgent extends Agent {
 	 */
 	public POMCPAgent(Environment e) {
 		super(e);
-		domain = (POMDPDomain) new TigerDomain.generateDomain();
+		domain = (POMDPDomain) new TigerDomain().generateDomain();
 	}
 
 	/**
@@ -38,7 +50,7 @@ public class POMCPAgent extends Agent {
 	 * an action is chosen in a reasonable amount of time.
 	 */
 	public void setTimer() {
-		timer = new Calendar();
+		timer = new GregorianCalendar();
 	}
 
 	/**
@@ -46,7 +58,7 @@ public class POMCPAgent extends Agent {
 	 * elapsed.
 	 */
 	public boolean timeout() {
-		Calendar now = new Calendar();
+		Calendar now = new GregorianCalendar();
 		if(now.getTimeInMillis() >= timer.getTimeInMillis() + this.TIME_ALLOWED) {
 			return true;
 		}
@@ -62,7 +74,7 @@ public class POMCPAgent extends Agent {
 	 */
 	public void run() {
 		for(int i = 0; i < this.NUM_PARTICLES; ++i) {
-			root.addParticle((POMDPState)domain.getNewState());
+			root.addParticle((POMDPState)domain.getExampleState());
 		}
 
 		while(true) {
@@ -73,7 +85,9 @@ public class POMCPAgent extends Agent {
 			}
 
 			GroundedAction a = root.bestRealAction();
-			Observation o = environment.perform(a);
+			environment.perform(a.action, a.params);
+			Observation o = environment.observe();
+
 			if(isSuccess(o)) {
 				break;
 			}
@@ -83,9 +97,9 @@ public class POMCPAgent extends Agent {
 
 			while(root.particleCount() < this.NUM_PARTICLES) {
 				POMDPState s = parent.sampleParticles();
-				POMDPState s_ = a.performAction(s);
+				POMDPState s_ = (POMDPState) a.action.performAction(s, a.params);
 				Observation o_ = s_.getObservation();
-				if(this.compareObserations(o_, s_)) {
+				if(this.compareObservations(o_, o)) {
 					root.addParticle(s_);
 				}
 			}
@@ -118,7 +132,7 @@ public class POMCPAgent extends Agent {
 		}
 
 		GroundedAction a = node.bestExploringAction();
-		POMDPState sPrime = (POMDPState) a.performAction(state);
+		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
 
 		Observation o = sPrime.getObservation();
 		double r = sPrime.getReward();
@@ -146,7 +160,7 @@ public class POMCPAgent extends Agent {
 		}
 
 		GroundedAction a = getGroundedActions(state).get((int)(Math.random() * getGroundedActions(state).size()));
-		POMDPState sPrime = a.performAction(state);
+		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
 		return sPrime.getReward() + this.GAMMA * this.rollout(sPrime, depth + 1);
 	}
 
@@ -161,5 +175,15 @@ public class POMCPAgent extends Agent {
 			result.addAll(state.getAllGroundedActionsFor(a));
 		}
 		return result;
+	}
+
+	private boolean isSuccess(Observation o) {
+		String[] arr = new String[1];
+		arr[0] = P.OBJ_REFEREE;
+		return domain.getPropFunction(P.PROP_DOOR_OPENED).isTrue(environment.getCurrentState(), arr);
+	}
+
+	private boolean compareObservations(Observation o1, Observation o2) {
+		return o1.getName().compareTo(o2.getName()) == 0;
 	}
 }

@@ -1,23 +1,33 @@
 package edu.brown.h2r.diapers.pomdp;
 
-class MonteCarloNode {
+import burlap.oomdp.singleagent.GroundedAction;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+public class MonteCarloNode {
 	private Map<HistoryElement, MonteCarloNode> children;
 	private List<POMDPState> beliefParticles;
 
 	private int visits;
 	private double value;
 
+	private final double C = 0.5;
+
 	public MonteCarloNode() {
-		return new MonteCarloNode(0,0);
+		this.visits = 0;
+		this.value = 0;
 	}
  	
-	public MonteCarloNode(int vis double val) {
+	public MonteCarloNode(int vis, double val) {
 		this.visits = vis;
 		this.value = val;
 	}
 
 	public void visit() {
-		visits++
+		visits++;
 	}
 
 	public void augmentValue(double inc) {
@@ -51,13 +61,13 @@ class MonteCarloNode {
 		return bestAction;
 	}
 
-	public GroundedAction bextExploringAction() {
+	public GroundedAction bestExploringAction() {
 		double maxValue = Double.NEGATIVE_INFINITY;
 		GroundedAction bestAction = null;
 
 		for(HistoryElement h : children.keySet()) {
 			MonteCarloNode child = children.get(h);
-			double test = child.getValue() + this.C * Math.sqrt(Math.log(this.getNumber())/child.getNumber());
+			double test = child.getValue() + this.C * Math.sqrt(Math.log(this.getVisits())/child.getVisits());
 			if(test > maxValue) {
 				maxValue = test;
 				bestAction = h.getAction();
@@ -100,8 +110,18 @@ class MonteCarloNode {
 	}
 
 	public void addChild(HistoryElement h, int vis, double val) {
-		List<HistoryElement> newNodeHistory = new ArrayList<HistoryElement>(history);
-		newNodeHistory.add(h);
-		this.children.put(h, new MonteCarloNode(newNodeHistory, vis, val));
+		this.children.put(h, new MonteCarloNode(vis, val));
+	}
+
+	public boolean isLeaf() {
+		return this.children.isEmpty();
+	}
+
+	public int getVisits() {
+		return this.visits;
+	}
+
+	public double getValue() {
+		return this.value;
 	}
 }

@@ -1,5 +1,7 @@
 package edu.brown.h2r.diapers.pomdp;
 
+import burlap.oomdp.singleagent.GroundedAction;
+
 public class HistoryElement {
 	private Observation observation = null;
 	private GroundedAction action = null;

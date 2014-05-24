@@ -1,0 +1,7 @@
+Buildfile: /gpfs/main/home/iebaker/course/cs2951k/diapers/build.xml
+
+compile:
+    [javac] Compiling 6 source files to /gpfs/main/home/iebaker/course/cs2951k/diapers/build/classes
+
+BUILD SUCCESSFUL
+Total time: 1 second
