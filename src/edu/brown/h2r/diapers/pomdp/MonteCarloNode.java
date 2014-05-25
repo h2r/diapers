@@ -96,6 +96,13 @@ public class MonteCarloNode {
 	}
 
 	public MonteCarloNode advance(HistoryElement h) {
+		//System.out.println("Does the hashmap have the key? " + children.containsKey(h));
+		for(HistoryElement hist : children.keySet()) {
+			if(hist.hashCode() == h.hashCode()) {
+			//	System.out.println("Found it!!");
+				return children.get(hist);
+			}
+		}
 		return children.get(h);
 	}
 

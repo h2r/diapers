@@ -5,6 +5,7 @@ import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.tiger.namespace.P;
 import edu.brown.h2r.diapers.athena.Environment;
+import edu.brown.h2r.diapers.athena.Agent;
 
 import burlap.oomdp.core.State;
 import burlap.oomdp.singleagent.GroundedAction;
@@ -16,13 +17,18 @@ import java.util.ArrayList;
 public class TigerEnvironment implements Environment {
 	private State currentState;
 	private POMDPDomain domain = (POMDPDomain) new TigerDomain().generateDomain();
+	private Agent agent;
 
 	public TigerEnvironment(State initialState) {
 		currentState = initialState;
 	}
 
+	public void addAgent(Agent a) {
+		agent = a;
+	}
+
 	public Observation observe() {
-		String tigerRealState = (String) currentState.getObject(P.OBJ_TIGER).getAllRelationalTargets(P.ATTR_TIGER_LOCATION).toArray()[0];
+		String tigerRealState = (String) currentState.getObject(P.OBJ_TIGER).getStringValForAttribute(P.ATTR_TIGER_LOCATION);
 
 		if(tigerRealState.equals(P.DOOR_LEFT)) {
 			if(new java.util.Random().nextDouble() < 0.3) {
@@ -44,6 +50,7 @@ public class TigerEnvironment implements Environment {
 	public void perform(Action a, String[] params) {
 		if(a.applicableInState(currentState, params)) {
 			currentState = a.performAction(currentState, params);
+			agent.giveReward(((POMDPState)currentState).getReward());
 		} else {
 			System.err.println("Agent requested to perfom an action impossible in the current state");
 		}

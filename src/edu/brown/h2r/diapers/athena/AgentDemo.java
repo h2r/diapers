@@ -15,6 +15,7 @@ public class AgentDemo {
 
 		TigerEnvironment env = new TigerEnvironment(TigerDomain.getNewState(tigerDomain));
 		Agent agent = new POMCPAgent(env);
+		env.addAgent(agent);
 
 		/*
 		DiaperDomain dd = new DiaperDomain();

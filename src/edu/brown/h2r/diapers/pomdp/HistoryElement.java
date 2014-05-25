@@ -21,4 +21,17 @@ public class HistoryElement {
 	public GroundedAction getAction() {
 		return action;
 	}
+
+	@Override 
+	public int hashCode() {
+		if(action != null) {
+			return action.action.getName().hashCode();
+		} 
+
+		if(observation != null) {
+			return observation.getName().hashCode();
+		}
+
+		return 0;
+	}
 }

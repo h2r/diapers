@@ -8,4 +8,5 @@ public interface Environment {
 	public Observation observe();
 	public void perform(Action a, String[] params);
 	public State getCurrentState();
+	public void addAgent(Agent a);
 }

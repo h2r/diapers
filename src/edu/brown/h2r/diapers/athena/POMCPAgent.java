@@ -27,6 +27,7 @@ public class POMCPAgent extends Agent {
 	
 	private POMDPDomain domain;
 	private MonteCarloNode root = new MonteCarloNode();
+	private double totalReward = 0;
 
 	private Calendar timer;
 
@@ -51,6 +52,10 @@ public class POMCPAgent extends Agent {
 	 */
 	public void setTimer() {
 		timer = new GregorianCalendar();
+	}
+
+	public void giveReward(double r) {
+		totalReward += r;
 	}
 
 	/**
@@ -104,6 +109,8 @@ public class POMCPAgent extends Agent {
 				}
 			}
 		}
+
+		System.out.println("Agent solved the problem receiving total reward " + totalReward);
 	}
 
 	/**
@@ -120,39 +127,40 @@ public class POMCPAgent extends Agent {
 	 * following the given history and executing an optimal policy.
 	 */
 	public double simulate(POMDPState state, MonteCarloNode node, int depth) {
-		System.out.println("NODE " + node);
+		//System.out.println("NODE " + node);
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON) {
-			System.out.println("[POMCPAgent.simulate()] simulation hit bottom, returning 0");
+			//System.out.println("[POMCPAgent.simulate()] simulation hit bottom, returning 0");
 			return 0;
 		}
 
 		if(node.isLeaf()) {
-			System.out.println("[POMCPAgent.simulate()] found leaf node, populating...]");
+			//System.out.println("[POMCPAgent.simulate()] found leaf node, populating...]");
 			for(GroundedAction a : getGroundedActions(state)) {
-				System.out.println("[POMCPAgent.simulate()] adding node for action " + a.action.getName());
+				//System.out.println("[POMCPAgent.simulate()] adding node for action " + a.action.getName());
 				node.addChild(a);
 			}
 
-			System.out.println("[POMCPAgent.simulate()] Beginning rollout...]");
+			//System.out.println("[POMCPAgent.simulate()] Beginning rollout...]");
 			return this.rollout(state, depth);
 		}
 
-		System.out.println("[POMCPAgent.simulate()] Selecting action to explore!");
+		//System.out.println("[POMCPAgent.simulate()] Selecting action to explore!");
 		GroundedAction a = node.bestExploringAction();
-		System.out.println(a);
+		//System.out.println(a);
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
 
-		System.out.println("[POMCPAgent.simulate()] Chose action " + a.action.getName());
+		//System.out.println("[POMCPAgent.simulate()] Chose action " + a.action.getName());
 		Observation o = sPrime.getObservation();
 		double r = sPrime.getReward();
 
-		System.out.println("[POMCPAgent.simulate()] Executed agtion, received observation " + o.getName() + " and reward " + r);
-		System.out.println("[POMCPAgent.simulate()] Recurring...");
+		//System.out.println("[POMCPAgent.simulate()] Executed agtion, received observation " + o.getName() + " and reward " + r);
+		//System.out.println("[POMCPAgent.simulate()] Recurring...");
 
+		//System.out.println("NEXT NODE " + node.advance(a));
 		node.advance(a).addChild(o);
 		double expectedReward = r + this.GAMMA * this.simulate(sPrime, node.advance(a).advance(o), depth + 1);
 
-		System.out.println("[POMCPAgent.simulate()] Updating visits and values");
+		//System.out.println("[POMCPAgent.simulate()] Updating visits and values");
 		node.addParticle(state);
 		node.visit();
 		node.advance(a).visit();

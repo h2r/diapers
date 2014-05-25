@@ -10,5 +10,7 @@ public abstract class Agent {
 		environment = e;
 	}
 
+	public abstract void giveReward(double reward);
+
 	public abstract void run();
 }
