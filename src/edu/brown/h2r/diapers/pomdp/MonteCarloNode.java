@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class MonteCarloNode {
-	private Map<HistoryElement, MonteCarloNode> children;
-	private List<POMDPState> beliefParticles;
+	private Map<HistoryElement, MonteCarloNode> children = new HashMap<HistoryElement, MonteCarloNode>();
+	private List<POMDPState> beliefParticles = new ArrayList<POMDPState>();
 
 	private int visits;
 	private double value;
@@ -17,7 +17,7 @@ public class MonteCarloNode {
 	private final double C = 0.5;
 
 	public MonteCarloNode() {
-		this.visits = 0;
+		this.visits = 1;
 		this.value = 0;
 	}
  	
@@ -66,13 +66,23 @@ public class MonteCarloNode {
 		GroundedAction bestAction = null;
 
 		for(HistoryElement h : children.keySet()) {
+		//	System.out.println("[MonteCarloNode.bestExploringAction()] Examining action " + h.getAction().action.getName());
 			MonteCarloNode child = children.get(h);
 			double test = child.getValue() + this.C * Math.sqrt(Math.log(this.getVisits())/child.getVisits());
+
+			/*
+			System.out.println("this.getVisits() " + this.getVisits());
+			System.out.println("child.getVisits() " + child.getVisits());
+			System.out.println("log(this.getVisits() " + Math.log(this.getVisits()));
+			System.out.println("log(this.getVisits())/child.getVisits() " + Math.log(this.getVisits())/child.getVisits());
+			System.out.println("sqrt(log(this.getVisits())/child.getVisits()) " + Math.sqrt(Math.log(this.getVisits())/child.getVisits()));
+			System.out.println("Value of action " + h.getAction().action.getName() + " is " + test); */
 			if(test > maxValue) {
 				maxValue = test;
 				bestAction = h.getAction();
 			}
 		}
+
 
 		return bestAction;
 	}
@@ -90,15 +100,15 @@ public class MonteCarloNode {
 	}
 
 	public void addChild(Observation o) {
-		addChild(new HistoryElement(o), 0, 0);
+		addChild(new HistoryElement(o), 1, 0);
 	}
 
 	public void addChild(GroundedAction a) {
-		addChild(new HistoryElement(a), 0, 0);
+		addChild(new HistoryElement(a), 1, 0);
 	}
 
 	public void addChild(HistoryElement h) {
-		addChild(h, 0, 0);
+		addChild(h, 1, 0);
 	}
 
 	public void addChild(Observation o, int vis, double val) {
