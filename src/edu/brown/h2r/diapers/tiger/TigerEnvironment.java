@@ -6,6 +6,7 @@ import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.tiger.namespace.P;
 import edu.brown.h2r.diapers.athena.Environment;
 import edu.brown.h2r.diapers.athena.Agent;
+import edu.brown.h2r.diapers.util.ANSIColor;
 
 import burlap.oomdp.core.State;
 import burlap.oomdp.singleagent.GroundedAction;
@@ -49,6 +50,15 @@ public class TigerEnvironment implements Environment {
 
 	public void perform(Action a, String[] params) {
 		if(a.applicableInState(currentState, params)) {
+			ANSIColor.purple("[TigerEnvironment.perform()] ");
+			System.out.print("The agent chose to perform action ");
+		   	ANSIColor.purple(a.getName()); 
+			System.out.print(" with parameters [");
+			for(String param : params) {
+				System.out.print(param + ",");
+			}
+			System.out.print("].");
+			System.out.println();
 			currentState = a.performAction(currentState, params);
 			agent.giveReward(((POMDPState)currentState).getReward());
 		} else {

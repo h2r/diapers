@@ -6,6 +6,7 @@ import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.tiger.TigerDomain;
 import edu.brown.h2r.diapers.tiger.namespace.P;
+import edu.brown.h2r.diapers.util.ANSIColor;
 
 import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.singleagent.Action;
@@ -31,11 +32,11 @@ public class POMCPAgent extends Agent {
 
 	private Calendar timer;
 
-	private final int NUM_PARTICLES = 50;
-	private final long TIME_ALLOWED = 10000;
-	private final double GAMMA = 0.95;
+	private final int NUM_PARTICLES = 500;
+	private final long TIME_ALLOWED = 5000;
+	private final double GAMMA = 0.99;
 	private final double EPSILON = 1E-5;
-	private final double C = 0.5;
+	private final double C = 0.1;
 
 	/**
 	 * Constructor.
@@ -83,11 +84,18 @@ public class POMCPAgent extends Agent {
 		}
 
 		while(true) {
+			ANSIColor.green("[POMCPAgent.run()] ");
+
+			int simulations = 0;
 			setTimer();
 			while(!timeout()) {
+				simulations++;
 				POMDPState s = root.sampleParticles();
 				this.simulate(s, root, 0);
 			}
+
+			ANSIColor.green("" + simulations);
+			System.out.println(" simulations performed.");
 
 			GroundedAction a = root.bestRealAction();
 			environment.perform(a.action, a.params);
@@ -99,6 +107,11 @@ public class POMCPAgent extends Agent {
 
 			MonteCarloNode parent = root;
 			root = root.advance(a).advance(o);
+
+			ANSIColor.green("[POMCPAgent.run()] ");
+			System.out.print("Root node has ");
+			ANSIColor.green("" + root.particleCount());
+			System.out.println(" particles.  Replenishing...");
 
 			while(root.particleCount() < this.NUM_PARTICLES) {
 				POMDPState s = parent.sampleParticles();
