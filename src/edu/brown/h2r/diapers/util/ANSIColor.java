@@ -1,5 +1,8 @@
 package edu.brown.h2r.diapers.util;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class ANSIColor {
 	public static final String RESET  = "\u001B[0m";
 	public static final String BLACK  = "\u001B[30m";
@@ -10,6 +13,19 @@ public class ANSIColor {
 	public static final String PURPLE = "\u001B[35m";
 	public static final String CYAN   = "\u001B[36m";
 	public static final String WHITE  = "\u001B[37m";
+
+	public static Map<String, String> colors = new HashMap<String, String>();
+
+	static {
+		colors.put("black", BLACK);
+		colors.put("red", RED);
+		colors.put("green", GREEN);
+		colors.put("yellow", YELLOW);
+		colors.put("blue", BLUE);
+		colors.put("purple", PURPLE);
+		colors.put("cyan", CYAN);
+		colors.put("white", WHITE);
+	}
 
 	public static void reset() {
 		System.out.print(RESET);
@@ -45,6 +61,10 @@ public class ANSIColor {
 
 	public static void white() {
 		System.out.print(WHITE);
+	}
+
+	public static String in(String color, String text) {
+		return colors.get(color) + text + RESET;
 	}
 
 	public static void black(String text) {

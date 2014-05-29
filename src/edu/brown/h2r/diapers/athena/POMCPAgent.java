@@ -32,10 +32,10 @@ public class POMCPAgent extends Agent {
 
 	private Calendar timer;
 
-	private final int NUM_PARTICLES = 500;
-	private final long TIME_ALLOWED = 5000;
-	private final double GAMMA = 0.99;
-	private final double EPSILON = 1E-5;
+	private final int NUM_PARTICLES = 5000;
+	private final long TIME_ALLOWED = 10000;
+	private final double GAMMA = 0.95;
+	private final double EPSILON = 1E-1;
 	private final double C = 0.1;
 
 	/**
@@ -100,6 +100,7 @@ public class POMCPAgent extends Agent {
 			GroundedAction a = root.bestRealAction();
 			environment.perform(a.action, a.params);
 			Observation o = environment.observe();
+			System.out.println("POMCPAgent.run: Observation: "+o.getName());
 
 			if(isSuccess(o)) {
 				break;
@@ -140,14 +141,19 @@ public class POMCPAgent extends Agent {
 	 * following the given history and executing an optimal policy.
 	 */
 	public double simulate(POMDPState state, MonteCarloNode node, int depth) {
-		//System.out.println("NODE " + node);
+		//ANSIColor.green("[POMCPAgent.simulate()] ");
+		//System.out.print("Performing simulation with state ");
+		//ANSIColor.green(state.getObject(P.OBJ_TIGER).getStringValForAttribute(P.ATTR_TIGER_LOCATION) + "/" + 
+		//				state.getObject(P.OBJ_REFEREE).getStringValForAttribute(P.ATTR_DOOR_OPEN));
+		//System.out.println();
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON) {
 			//System.out.println("[POMCPAgent.simulate()] simulation hit bottom, returning 0");
 			return 0;
 		}
 
 		if(node.isLeaf()) {
-			//System.out.println("[POMCPAgent.simulate()] found leaf node, populating...]");
+			//ANSIColor.green("[POMCPAgent.simulate()] ");
+			//System.out.println("Node was leaf, rolling out.");
 			for(GroundedAction a : getGroundedActions(state)) {
 				//System.out.println("[POMCPAgent.simulate()] adding node for action " + a.action.getName());
 				node.addChild(a);
@@ -157,20 +163,30 @@ public class POMCPAgent extends Agent {
 			return this.rollout(state, depth);
 		}
 
-		//System.out.println("[POMCPAgent.simulate()] Selecting action to explore!");
 		GroundedAction a = node.bestExploringAction();
-		//System.out.println(a);
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
-
-		//System.out.println("[POMCPAgent.simulate()] Chose action " + a.action.getName());
 		Observation o = sPrime.getObservation();
 		double r = sPrime.getReward();
+
+		//ANSIColor.green("[POMCPAgent.simulate()] ");
+		//System.out.print("Action selected was ");
+		//ANSIColor.green(a.action.getName());
+		//System.out.print(". State received was ");
+		//ANSIColor.green(sPrime.getObject(P.OBJ_TIGER).getStringValForAttribute(P.ATTR_TIGER_LOCATION) + "/" + 
+//						sPrime.getObject(P.OBJ_REFEREE).getStringValForAttribute(P.ATTR_DOOR_OPEN));
+		//System.out.print(". Observation received was ");
+		//ANSIColor.green(o.getName());
+		//System.out.print(". Reward received was ");
+		//ANSIColor.green("" + r);
+		//System.out.println();
 
 		//System.out.println("[POMCPAgent.simulate()] Executed agtion, received observation " + o.getName() + " and reward " + r);
 		//System.out.println("[POMCPAgent.simulate()] Recurring...");
 
 		//System.out.println("NEXT NODE " + node.advance(a));
-		node.advance(a).addChild(o);
+
+		
+		if(!node.advance(a).hasChild(o)) node.advance(a).addChild(o);
 		double expectedReward = r + this.GAMMA * this.simulate(sPrime, node.advance(a).advance(o), depth + 1);
 
 		//System.out.println("[POMCPAgent.simulate()] Updating visits and values");

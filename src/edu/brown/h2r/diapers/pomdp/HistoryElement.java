@@ -34,4 +34,22 @@ public class HistoryElement {
 
 		return 0;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof HistoryElement)) {
+			return false;
+		} else {
+			HistoryElement h = (HistoryElement) o;
+			if(h.getAction() != null) {
+				return h.getAction().action.getName().equals(this.action.action.getName());
+			}
+
+			if(h.getObservation() != null) {
+				return h.getObservation().getName().equals(this.observation.getName());
+			}
+		}
+
+		return false;
+	}
 }

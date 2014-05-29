@@ -177,16 +177,16 @@ public class TigerDomain implements DomainGenerator {
 			ObjectInstance tiger = ps.getObject(P.OBJ_TIGER);
 			String door = tiger.getStringValForAttribute(P.ATTR_TIGER_LOCATION);
 			Random gen = new Random();
-			ps.setReward(-1);
+			ps.setReward(100);
 
 			if(door.equals(P.DOOR_LEFT)) {
-				if(gen.nextFloat() >= 0.7) {
+				if(gen.nextFloat() >= 1.0) {
 					ps.setObservation(dom.getObservation(P.RIGHT_DOOR_OBSERVATION));
 				} else {
 					ps.setObservation(dom.getObservation(P.LEFT_DOOR_OBSERVATION));
 				}
 			} else if(door.equals(P.DOOR_RIGHT)) {
-				if(gen.nextFloat() >= 0.7) {
+				if(gen.nextFloat() >= 1.0) {
 					ps.setObservation(dom.getObservation(P.LEFT_DOOR_OBSERVATION));
 				} else {
 					ps.setObservation(dom.getObservation(P.RIGHT_DOOR_OBSERVATION));
@@ -240,9 +240,9 @@ public class TigerDomain implements DomainGenerator {
 			String tigerLocation = tiger.getStringValForAttribute(P.ATTR_TIGER_LOCATION);
 
 			if(tigerLocation.equals(P.DOOR_LEFT) && this.getName().equals(P.ACTION_OPEN_LEFT_DOOR)) {
-				ps.setReward(-100);
+				ps.setReward(-10);
 			} else if(tigerLocation.equals(P.DOOR_RIGHT) && this.getName().equals(P.ACTION_OPEN_RIGHT_DOOR)) {
-				ps.setReward(-100);
+				ps.setReward(-10);
 			} else {
 				ps.setReward(10);
 			}

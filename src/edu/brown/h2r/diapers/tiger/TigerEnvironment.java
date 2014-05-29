@@ -32,13 +32,13 @@ public class TigerEnvironment implements Environment {
 		String tigerRealState = (String) currentState.getObject(P.OBJ_TIGER).getStringValForAttribute(P.ATTR_TIGER_LOCATION);
 
 		if(tigerRealState.equals(P.DOOR_LEFT)) {
-			if(new java.util.Random().nextDouble() < 0.3) {
+			if(new java.util.Random().nextDouble() < 0.0) {
 				return domain.getObservation(P.RIGHT_DOOR_OBSERVATION);
 			} else {
 				return domain.getObservation(P.LEFT_DOOR_OBSERVATION);
 			}
 		} else if(tigerRealState.equals(P.DOOR_RIGHT)) {
-			if(new java.util.Random().nextDouble() < 0.3) {
+			if(new java.util.Random().nextDouble() < 0.0) {
 				return domain.getObservation(P.LEFT_DOOR_OBSERVATION);
 			} else {
 				return domain.getObservation(P.RIGHT_DOOR_OBSERVATION);

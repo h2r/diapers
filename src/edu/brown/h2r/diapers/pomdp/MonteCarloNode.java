@@ -1,5 +1,7 @@
 package edu.brown.h2r.diapers.pomdp;
 
+import edu.brown.h2r.diapers.util.ANSIColor;
+
 import burlap.oomdp.singleagent.GroundedAction;
 
 import java.util.List;
@@ -14,7 +16,7 @@ public class MonteCarloNode {
 	private int visits;
 	private double value;
 
-	private final double C = 0.5;
+	private final double C = 10;
 
 	public MonteCarloNode() {
 		this.visits = 1;
@@ -48,10 +50,14 @@ public class MonteCarloNode {
 	}
 
 	public GroundedAction bestRealAction() {
+		ANSIColor.blue("[MonteCarloNode.bestRealAction()] ");
+		System.out.println("Actions and values are: ");
 		double maxValue = Double.NEGATIVE_INFINITY;
 		GroundedAction bestAction = null;
 		
 		for(HistoryElement h : children.keySet()) {
+			ANSIColor.blue("[MonteCarloNode.bestRealAction()] ");
+			System.out.println("   " + h.getAction().action.getName() + " has value " + children.get(h).getValue());
 			if(children.get(h).getValue() > maxValue) {
 				maxValue = children.get(h).getValue();
 				bestAction = h.getAction();
@@ -104,6 +110,10 @@ public class MonteCarloNode {
 			}
 		}
 		return children.get(h);
+	}
+
+	public boolean hasChild(Observation o) {
+		return children.containsKey(new HistoryElement(o));
 	}
 
 	public void addChild(Observation o) {
