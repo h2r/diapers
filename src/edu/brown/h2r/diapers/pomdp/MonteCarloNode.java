@@ -151,4 +151,8 @@ public class MonteCarloNode {
 	public double getValue() {
 		return this.value;
 	}
+
+	public Map<HistoryElement, MonteCarloNode> getMap() {
+		return children;
+	}
 }

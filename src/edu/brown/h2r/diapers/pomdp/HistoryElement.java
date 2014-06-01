@@ -22,6 +22,15 @@ public class HistoryElement {
 		return action;
 	}
 
+	public String getName() {
+		if(observation != null) {
+			return observation.getName();
+		} else if(action != null) {
+			return action.action.getName();
+		}
+		return "";
+	}
+
 	@Override 
 	public int hashCode() {
 		if(action != null) {

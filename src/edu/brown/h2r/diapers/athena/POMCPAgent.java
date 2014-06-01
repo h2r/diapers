@@ -4,6 +4,7 @@ import edu.brown.h2r.diapers.pomdp.MonteCarloNode;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.pomdp.Observation;
+import edu.brown.h2r.diapers.pomdp.NodeExplorer;
 import edu.brown.h2r.diapers.tiger.TigerDomain;
 import edu.brown.h2r.diapers.tiger.namespace.P;
 import edu.brown.h2r.diapers.util.ANSIColor;
@@ -33,7 +34,7 @@ public class POMCPAgent extends Agent {
 	private Calendar timer;
 
 	private final int NUM_PARTICLES = 5000;
-	private final long TIME_ALLOWED = 10000;
+	private final long TIME_ALLOWED = 1000;
 	private final double GAMMA = 0.95;
 	private final double EPSILON = 1E-1;
 	private final double C = 0.1;
@@ -93,6 +94,8 @@ public class POMCPAgent extends Agent {
 				POMDPState s = root.sampleParticles();
 				this.simulate(s, root, 0);
 			}
+
+			new NodeExplorer().explore(root);
 
 			ANSIColor.green("" + simulations);
 			System.out.println(" simulations performed.");
