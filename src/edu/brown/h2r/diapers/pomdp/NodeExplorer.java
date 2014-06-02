@@ -1,6 +1,9 @@
 package edu.brown.h2r.diapers.pomdp;
 
 import edu.brown.h2r.diapers.util.ANSIColor;
+import edu.brown.h2r.diapers.tiger.namespace.P;
+
+import burlap.oomdp.core.State;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -65,6 +68,9 @@ public class NodeExplorer {
 			case "children":
 				displayChildren();
 				break;
+			case "belief":
+				displayBelief();
+				break;
 			case "back":
 				if(!history.isEmpty()) {
 					use(history.remove(history.size() - 1));
@@ -94,10 +100,38 @@ public class NodeExplorer {
 		}
 	}
 
+	private void displayBelief() {
+		List<POMDPState> particles = current.getParticles();
+		Map<String, Integer> states = new HashMap<String, Integer>();
+
+		for(POMDPState s : particles) {
+			String stateName = nameState(s);
+
+			if(states.containsKey(stateName)) {
+				states.put(stateName, states.get(stateName) + 1);
+			} else {
+				states.put(stateName, 1);
+			}
+		}
+
+		for(String stateName : states.keySet()) {
+			System.out.println(stateName + " " + states.get(stateName));
+		}
+	}
+
 	private void displayChildren() {
 		for(int i = 0; i < children.size(); ++i) {
 			double val = Math.round(values.get(i) * 1000)/1000;
 			System.out.println("(" + i + ") " + names.get(i) + " [" + val + "] [" + visits.get(i) + "]");
 		}
+	}
+
+	private String nameState(State s) {
+		String tigerLocation = s.getObject(P.OBJ_TIGER).getStringValForAttribute(P.ATTR_TIGER_LOCATION);
+		String doorOpen = s.getObject(P.OBJ_REFEREE).getStringValForAttribute(P.ATTR_DOOR_OPEN);
+
+		doorOpen = doorOpen.equals("0") ? "closed" : "open";
+
+		return "state." + tigerLocation + "." + doorOpen;
 	}
 }

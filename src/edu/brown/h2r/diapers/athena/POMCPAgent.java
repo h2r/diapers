@@ -33,11 +33,11 @@ public class POMCPAgent extends Agent {
 
 	private Calendar timer;
 
-	private final int NUM_PARTICLES = 5000;
-	private final long TIME_ALLOWED = 1000;
-	private final double GAMMA = 0.95;
-	private final double EPSILON = 1E-1;
-	private final double C = 0.1;
+	private final int NUM_PARTICLES = 1000;
+	private final long TIME_ALLOWED = 5000;
+	private final double GAMMA = 0.99;
+	private final double EPSILON = 1E-3;
+	private final double EXP_BONUS = 500;
 
 	/**
 	 * Constructor.
@@ -166,7 +166,7 @@ public class POMCPAgent extends Agent {
 			return this.rollout(state, depth);
 		}
 
-		GroundedAction a = node.bestExploringAction();
+		GroundedAction a = node.bestExploringAction(EXP_BONUS);
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
 		Observation o = sPrime.getObservation();
 		double r = sPrime.getReward();
@@ -193,7 +193,7 @@ public class POMCPAgent extends Agent {
 		double expectedReward = r + this.GAMMA * this.simulate(sPrime, node.advance(a).advance(o), depth + 1);
 
 		//System.out.println("[POMCPAgent.simulate()] Updating visits and values");
-		node.addParticle(state);
+		if(depth > 0) node.addParticle(state);
 		node.visit();
 		node.advance(a).visit();
 		node.advance(a).augmentValue((expectedReward - node.advance(a).getValue())/node.advance(a).getVisits());

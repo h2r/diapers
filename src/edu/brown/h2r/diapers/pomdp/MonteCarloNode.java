@@ -16,8 +16,6 @@ public class MonteCarloNode {
 	private int visits;
 	private double value;
 
-	private final double C = 10;
-
 	public MonteCarloNode() {
 		this.visits = 1;
 		this.value = 0;
@@ -50,14 +48,14 @@ public class MonteCarloNode {
 	}
 
 	public GroundedAction bestRealAction() {
-		ANSIColor.blue("[MonteCarloNode.bestRealAction()] ");
-		System.out.println("Actions and values are: ");
+		//ANSIColor.blue("[MonteCarloNode.bestRealAction()] ");
+		//System.out.println("Actions and values are: ");
 		double maxValue = Double.NEGATIVE_INFINITY;
 		GroundedAction bestAction = null;
 		
 		for(HistoryElement h : children.keySet()) {
-			ANSIColor.blue("[MonteCarloNode.bestRealAction()] ");
-			System.out.println("   " + h.getAction().action.getName() + " has value " + children.get(h).getValue());
+			//ANSIColor.blue("[MonteCarloNode.bestRealAction()] ");
+			//System.out.println("   " + h.getAction().action.getName() + " has value " + children.get(h).getValue());
 			if(children.get(h).getValue() > maxValue) {
 				maxValue = children.get(h).getValue();
 				bestAction = h.getAction();
@@ -67,14 +65,14 @@ public class MonteCarloNode {
 		return bestAction;
 	}
 
-	public GroundedAction bestExploringAction() {
+	public GroundedAction bestExploringAction(double C) {
 		double maxValue = Double.NEGATIVE_INFINITY;
 		GroundedAction bestAction = null;
 
 		for(HistoryElement h : children.keySet()) {
 		//	System.out.println("[MonteCarloNode.bestExploringAction()] Examining action " + h.getAction().action.getName());
 			MonteCarloNode child = children.get(h);
-			double test = child.getValue() + this.C * Math.sqrt(Math.log(this.getVisits())/child.getVisits());
+			double test = child.getValue() + C * Math.sqrt(Math.log(this.getVisits())/child.getVisits());
 
 			/*
 			System.out.println("this.getVisits() " + this.getVisits());
@@ -150,6 +148,10 @@ public class MonteCarloNode {
 
 	public double getValue() {
 		return this.value;
+	}
+
+	public List<POMDPState> getParticles() {
+		return this.beliefParticles;
 	}
 
 	public Map<HistoryElement, MonteCarloNode> getMap() {
