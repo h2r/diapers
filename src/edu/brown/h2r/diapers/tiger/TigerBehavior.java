@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.tiger;
+/* package edu.brown.h2r.diapers.tiger;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -116,7 +116,7 @@ public class TigerBehavior {
 		List<Tuple<GroundedAction, double[]>> result = null;
 
 		try {
-			result = pbvi.doValueIteration();
+			result = pbvi.doValueIteration(true);
 		} catch (Exception e) {
 			System.out.println("Nullpointer");
 			System.exit(0);
@@ -183,4 +183,4 @@ public class TigerBehavior {
 
 		test.doValueIteration(outputPath);
 	}
-}
+} */

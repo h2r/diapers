@@ -25,6 +25,10 @@ public class DiaperEnvironment implements Environment {
 		obsStyle = ObservationStyle.DETERMINISTIC;
 	}
 
+	public void addAgent(Agent a) {
+		return;
+	}
+
 	public DiaperEnvironment(State initialState, ObservationStyle os) {
 		currentState = initialState;
 		obsStyle = os;

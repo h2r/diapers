@@ -71,4 +71,8 @@ public class RandomAgent extends Agent {
 		GroundedAction gaChosen = allPossible.get(randIndex);
 		return new Tuple<Action, String[]>(gaChosen.action, gaChosen.params);
 	}
+
+	public void giveReward(double r) {
+		return;
+	}
 }

@@ -34,7 +34,7 @@ public class HistoryElement {
 	@Override 
 	public int hashCode() {
 		if(action != null) {
-			return action.action.getName().hashCode();
+			return action.action.getName().hashCode() + action.params.hashCode();
 		} 
 
 		if(observation != null) {
@@ -51,7 +51,7 @@ public class HistoryElement {
 		} else {
 			HistoryElement h = (HistoryElement) o;
 			if(h.getAction() != null) {
-				return h.getAction().action.getName().equals(this.action.action.getName());
+				return h.getAction().action.getName().equals(this.action.action.getName()) && h.getAction().params.equals(this.action.params);
 			}
 
 			if(h.getObservation() != null) {

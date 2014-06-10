@@ -38,9 +38,12 @@ public class MonteCarloNode {
 		beliefParticles.add(s);
 	}
 
+	public void removeParticle(int index) {
+		beliefParticles.remove(index);
+	}
+
 	public POMDPState sampleParticles() {
-		int index = (int) Math.random() * (beliefParticles.size() - 1);
-		return beliefParticles.get(index);
+		return beliefParticles.get(new java.util.Random().nextInt(beliefParticles.size()));
 	}
 
 	public int particleCount() {

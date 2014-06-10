@@ -180,13 +180,13 @@ public class TigerDomain implements DomainGenerator {
 			ps.setReward(-1);
 
 			if(door.equals(P.DOOR_LEFT)) {
-				if(gen.nextFloat() >= 1.0) {
+				if(gen.nextFloat() < 0.3) {
 					ps.setObservation(dom.getObservation(P.RIGHT_DOOR_OBSERVATION));
 				} else {
 					ps.setObservation(dom.getObservation(P.LEFT_DOOR_OBSERVATION));
 				}
 			} else if(door.equals(P.DOOR_RIGHT)) {
-				if(gen.nextFloat() >= 1.0) {
+				if(gen.nextFloat() < 0.3) {
 					ps.setObservation(dom.getObservation(P.LEFT_DOOR_OBSERVATION));
 				} else {
 					ps.setObservation(dom.getObservation(P.RIGHT_DOOR_OBSERVATION));

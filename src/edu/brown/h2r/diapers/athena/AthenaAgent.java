@@ -142,4 +142,8 @@ public class AthenaAgent extends Agent {
 		StateHashTuple st2 = hash_factory.hashState(s2);
 		return st1.equals(st2);
 	}
+
+	public void giveReward(double r) {
+		return;
+	}
 }
