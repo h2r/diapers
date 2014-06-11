@@ -26,7 +26,11 @@ public class HistoryElement {
 		if(observation != null) {
 			return observation.getName();
 		} else if(action != null) {
-			return action.action.getName();
+			String name = action.action.getName() + " ";
+			for(String s : action.params) {
+				name += (s + " ");
+			}
+			return name;
 		}
 		return "";
 	}

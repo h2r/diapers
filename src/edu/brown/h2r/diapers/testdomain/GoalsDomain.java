@@ -92,7 +92,7 @@ public class GoalsDomain implements DomainGenerator {
 			@Override
 			public boolean applicableInState(State st, String[] params) {
 				PropositionalFunction open = domain.getPropFunction(Names.PROP_OPEN);
-				return open.isTrue(st, st.getObject(params[0]).getStringValForAttribute(Names.ATTR_CONTAINER));
+				return open.isTrue(st, st.getObject(params[0]).getStringValForAttribute(Names.ATTR_CONTAINER)) && open.isTrue(st, params[1]);
 			}
 
 			@Override
@@ -102,8 +102,8 @@ public class GoalsDomain implements DomainGenerator {
 				grabObject(ps, ps.getObject(params[0]));
 				placeObject(ps.getObject(params[0]), ps.getObject(params[1]));
 
-				ps.setReward(-10);
-				ps.setObservation(new Observation(domain, ""));
+				ps.setReward(-100);
+				ps.setObservation(new Observation(domain, "null"));
 
 				caregiverThink(domain, ps);
 
@@ -158,7 +158,7 @@ public class GoalsDomain implements DomainGenerator {
 				POMDPState ps = new POMDPState(st);
 				
 				ps.getObject(params[0]).setValue(Names.ATTR_OPEN, 1);
-				ps.setObservation(new Observation(domain, ""));
+				ps.setObservation(new Observation(domain, "null"));
 				ps.setReward(-10);
 				caregiverThink(domain, ps);
 				return ps;
@@ -176,8 +176,8 @@ public class GoalsDomain implements DomainGenerator {
 			@Override
 			protected State performActionHelper(State st, String[] params) {
 				POMDPState ps = new POMDPState(st);
-				ps.setObservation(new Observation(domain, ""));
-				ps.setReward(-5);
+				ps.setObservation(new Observation(domain, "null"));
+				ps.setReward(-10);
 				caregiverThink(domain, ps);
 				return ps;
 			}
@@ -250,21 +250,21 @@ public class GoalsDomain implements DomainGenerator {
 			ObjectInstance myGoal = null;
 
 			//If the old clothing is still at the changing table, we need to get that to the hamper
-			if(d.getPropFunction(Names.PROP_FIND).isTrue(s, new String[]{Names.OBJ_CHANGING_TABLE, Names.OBJ_OLD_CLOTHES})) {
+			if(!d.getPropFunction(Names.PROP_FIND).isTrue(s, new String[]{Names.OBJ_HAMPER, Names.OBJ_OLD_CLOTHES})) {
 				myGoal = new ObjectInstance(goalClass, Names.OBJ_OLD_CLOTHES + ":" + Names.OBJ_HAMPER);
 
 			//Then, if the baby has a rash, we need the lotion
-			} else if(d.getPropFunction(Names.PROP_RASH).isTrue(s, new String[]{})) {
+			} else if(d.getPropFunction(Names.PROP_RASH).isTrue(s, new String[]{}) && !d.getPropFunction(Names.PROP_FIND).isTrue(s, new String[]{Names.OBJ_CHANGING_TABLE, Names.OBJ_LOTION})) {
 				myGoal = new ObjectInstance(goalClass, Names.OBJ_LOTION + ":" + Names.OBJ_CHANGING_TABLE);
 
 			//Then, if the new clothes aren't at the changing table, we need them
-			} else if(!d.getPropFunction(Names.PROP_FIND).isTrue(s, new String[]{Names.OBJ_CHANGING_TABLE, Names.OBJ_OLD_CLOTHES})) {
+			} else if(!d.getPropFunction(Names.PROP_FIND).isTrue(s, new String[]{Names.OBJ_CHANGING_TABLE, Names.OBJ_NEW_CLOTHES})) {
 				myGoal = new ObjectInstance(goalClass, Names.OBJ_NEW_CLOTHES + ":" + Names.OBJ_CHANGING_TABLE);
 			
 			//Otherwise, the problem is solved
 			} else {
 				myGoal = new ObjectInstance(goalClass, "done");
-				((POMDPState)s).setReward(100);
+				//((POMDPState)s).setReward(100);
 			}
 
 			caregiver.addRelationalTarget(Names.ATTR_MENTAL_STATE, myGoal.getName());

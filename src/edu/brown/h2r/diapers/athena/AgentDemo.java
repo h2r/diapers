@@ -9,6 +9,7 @@ import edu.brown.h2r.diapers.testdomain.GoalsEnvironment;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 
 import burlap.oomdp.core.Domain;
+import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 
 public class AgentDemo {
 	public static void main(String... args) {
@@ -20,6 +21,9 @@ public class AgentDemo {
 
 		Agent agent = new POMCPAgent(env);
 		env.addAgent(agent);
+
+		//TerminalExplorer exp = new TerminalExplorer(goalsDomain);
+		//exp.exploreFromState(env.getCurrentState());
 
 		/*
 		Domain tigerDomain = new TigerDomain().generateDomain();

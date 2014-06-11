@@ -35,10 +35,10 @@ public class POMCPAgent extends Agent {
 	private Calendar timer;
 
 	private final int NUM_PARTICLES = 5000;
-	private final long TIME_ALLOWED = 20000;
-	private final double GAMMA = 0.99;
-	private final double EPSILON = 1E-5;
-	private final double EXP_BONUS = 9;
+	private final long TIME_ALLOWED = 10000;
+	private final double GAMMA = 0.95;
+	private final double EPSILON = 1E-3;
+	private final double EXP_BONUS = 200;
 
 	/**
 	 * Constructor.
@@ -97,7 +97,7 @@ public class POMCPAgent extends Agent {
 				this.simulate(s, root, 0);
 			}
 
-			//new NodeExplorer().explore(root);
+			new NodeExplorer().explore(root);
 
 			ANSIColor.green("" + simulations);
 			System.out.println(" simulations performed.");
@@ -151,6 +151,7 @@ public class POMCPAgent extends Agent {
 	 */
 	public double simulate(POMDPState state, MonteCarloNode node, int depth) {
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) {
+			//System.out.println("Hit the bottom in simulate: " + isTerminal(state));
 			return 0;
 		}
 
@@ -186,6 +187,7 @@ public class POMCPAgent extends Agent {
 	 */
 	private double rollout(POMDPState state, int depth) {
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) {
+			//System.out.println("Hit the bottom in rollout: " + isTerminal(state));
 			return 0;
 		}
 
