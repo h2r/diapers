@@ -9,6 +9,8 @@ import edu.brown.h2r.diapers.tiger.TigerDomain;
 import edu.brown.h2r.diapers.tiger.namespace.P;
 import edu.brown.h2r.diapers.testdomain.GoalsDomain;
 import edu.brown.h2r.diapers.util.ANSIColor;
+import edu.brown.h2r.diapers.pomdp.SimulationRecord;
+import edu.brown.h2r.diapers.testdomain.GoalsDomainStateParser;
 
 import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.singleagent.Action;
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * POMCPAgent is an agent whose behavior is driven by an implementation
+ * POMCPAgent is an agent whose behavior is driven iby an implementation
  * of David Silver's POMCP algorithm.  It's behavior can be tweaked by 
  * altering the value of some constants: The number of particles used to
  * approximate the belief state, the time allowed for simulation in 
@@ -38,7 +40,10 @@ public class POMCPAgent extends Agent {
 	private final long TIME_ALLOWED = 10000;
 	private final double GAMMA = 0.95;
 	private final double EPSILON = 1E-3;
-	private final double EXP_BONUS = 200;
+	private final double EXP_BONUS = 20;
+
+	private String filebase = "output/output_simulation";
+	private SimulationRecord sr = new SimulationRecord(new GoalsDomainStateParser());
 
 	/**
 	 * Constructor.
@@ -94,6 +99,10 @@ public class POMCPAgent extends Agent {
 			while(!timeout()) {
 				simulations++;
 				POMDPState s = root.sampleParticles();
+				
+				sr.toFile(filebase + simulations);
+				sr = new SimulationRecord(new GoalsDomainStateParser());
+
 				this.simulate(s, root, 0);
 			}
 
@@ -168,6 +177,8 @@ public class POMCPAgent extends Agent {
 		Observation o = sPrime.getObservation();
 		double r = sPrime.getReward();
 
+		sr.recordTurn(state, a, o, "PO-UCT", r);
+
 		if(!node.advance(a).hasChild(o)) node.advance(a).addChild(o);
 		double expectedReward = r + this.GAMMA * this.simulate(sPrime, node.advance(a).advance(o), depth + 1);
 
@@ -193,6 +204,9 @@ public class POMCPAgent extends Agent {
 
 		GroundedAction a = getGroundedActions(state).get((int)(Math.random() * getGroundedActions(state).size()));
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
+
+		sr.recordTurn(state, a, sPrime.getObservation(), "rollout", sPrime.getReward());
+
 		return sPrime.getReward() + this.GAMMA * this.rollout(sPrime, depth + 1);
 	}
 

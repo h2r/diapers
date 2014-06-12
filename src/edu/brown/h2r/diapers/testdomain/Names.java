@@ -1,5 +1,8 @@
 package edu.brown.h2r.diapers.testdomain;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class Names {
 	public static final String ATTR_MENTAL_STATE = "attr.mentalState";
 	public static final String ATTR_CONTENTS = "attr.contents";
@@ -31,4 +34,23 @@ public class Names {
 	public static final String OBJ_SIDE_TABLE = "obj.sideTable";
 	public static final String OBJ_HAMPER = "obj.hamper";
 	public static final String OBJ_DRESSER = "obj.dresser";
+
+	public static Map<String, String> prettyNames = new HashMap<String, String>();
+
+	static {
+		prettyNames.put(OBJ_OLD_CLOTHES, "the old clothes");
+		prettyNames.put(OBJ_NEW_CLOTHES, "the new clothes");
+		prettyNames.put(OBJ_LOTION, "the lotion");
+		prettyNames.put(OBJ_CAREGIVER, "the caregiver");
+		prettyNames.put(OBJ_BABY, "the baby");
+		prettyNames.put(OBJ_CHANGING_TABLE, "the changing table");
+		prettyNames.put(OBJ_SIDE_TABLE, "the side table");
+		prettyNames.put(OBJ_HAMPER, "the hamper");
+		prettyNames.put(OBJ_DRESSER, "the dresser");
+	}
+
+	public static String prettify(String name) {
+		String res = prettyNames.get(name);
+		return res == null ? "???" : res;
+	}
 }
