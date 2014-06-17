@@ -1,0 +1,21 @@
+TURN 0
+POLICY PO-UCT
+STATE The lotion is in the changing table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby has a rash. The caregiver's mental state is 'done'. 
+ACTION action.wait()
+OBSERVATION null
+REWARD -100.0
+
+TURN 1
+POLICY PO-UCT
+STATE The lotion is in the changing table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby has a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.newClothes,obj.changingTable,)
+OBSERVATION null
+REWARD -100.0
+
+TURN 2
+POLICY rollout
+STATE The lotion is in the changing table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby has a rash. The caregiver's mental state is 'done'. 
+ACTION action.ask()
+OBSERVATION done
+REWARD 8.0
+

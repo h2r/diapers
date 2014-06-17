@@ -29,6 +29,10 @@ public class DiaperEnvironment implements Environment {
 		return;
 	}
 
+	public void reset() {
+		return;
+	}
+
 	public DiaperEnvironment(State initialState, ObservationStyle os) {
 		currentState = initialState;
 		obsStyle = os;

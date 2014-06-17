@@ -11,9 +11,11 @@ import edu.brown.h2r.diapers.testdomain.GoalsDomain;
 import edu.brown.h2r.diapers.util.ANSIColor;
 import edu.brown.h2r.diapers.pomdp.SimulationRecord;
 import edu.brown.h2r.diapers.testdomain.GoalsDomainStateParser;
+import edu.brown.h2r.diapers.testdomain.GoalsDomainRewardFunction;
 
 import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.singleagent.Action;
+import burlap.oomdp.singleagent.RewardFunction;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -32,27 +34,33 @@ public class POMCPAgent extends Agent {
 	
 	private POMDPDomain domain;
 	private MonteCarloNode root = new MonteCarloNode();
-	private double totalReward = 0;
 
 	private Calendar timer;
 
-	private final int NUM_PARTICLES = 5000;
+	private final int NUM_PARTICLES = 50000;
 	private final long TIME_ALLOWED = 10000;
 	private final double GAMMA = 0.95;
-	private final double EPSILON = 1E-3;
-	private final double EXP_BONUS = 20;
+	private final double EPSILON = 1E-2;
+	private final double EXP_BONUS = 130;
 
 	private String filebase = "output/output_simulation";
 	private SimulationRecord sr = new SimulationRecord(new GoalsDomainStateParser());
+	private RewardFunction rf = new GoalsDomainRewardFunction(100);
 
 	/**
 	 * Constructor.
 	 */
 	public POMCPAgent(Environment e) {
 		super(e);
-		// domain = (POMDPDomain) new TigerDomain().generateDomain();
+		environment.addAgent(this);
 		domain = (POMDPDomain) new GoalsDomain().generateDomain();
 	}
+
+	@Override
+	public void clearReward() {
+		totalReward = 0;
+		root = new MonteCarloNode();
+	}		
 
 	/**
 	 * Updates a reference date at the start of the simulation
@@ -61,10 +69,6 @@ public class POMCPAgent extends Agent {
 	 */
 	public void setTimer() {
 		timer = new GregorianCalendar();
-	}
-
-	public void giveReward(double r) {
-		totalReward += r;
 	}
 
 	/**
@@ -106,7 +110,7 @@ public class POMCPAgent extends Agent {
 				this.simulate(s, root, 0);
 			}
 
-			new NodeExplorer().explore(root);
+			//new NodeExplorer().explore(root);
 
 			ANSIColor.green("" + simulations);
 			System.out.println(" simulations performed.");
@@ -173,9 +177,13 @@ public class POMCPAgent extends Agent {
 		}
 
 		GroundedAction a = node.bestExploringAction(EXP_BONUS);
+		//System.out.println(a.action.performAction(state, a.params) instanceof POMDPState);
+		//System.out.println(state instanceof POMDPState);
+		//System.out.println();
+		if(!(a.action.performAction(state, a.params) instanceof POMDPState)) System.out.println("WARN " + a.action.getName());
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
 		Observation o = sPrime.getObservation();
-		double r = sPrime.getReward();
+		double r = rf.reward(state, a, sPrime);
 
 		sr.recordTurn(state, a, o, "PO-UCT", r);
 

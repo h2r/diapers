@@ -10,6 +10,7 @@ import edu.brown.h2r.diapers.util.ANSIColor;
 import burlap.oomdp.core.State;
 import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.singleagent.Action;
+import burlap.oomdp.singleagent.RewardFunction;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,13 +19,20 @@ public class GoalsEnvironment implements Environment {
 	private State currentState;
 	private POMDPDomain domain = (POMDPDomain) new GoalsDomain().generateDomain();
 	private Agent agent;
+	private RewardFunction rf = new GoalsDomainRewardFunction(100);
 
-	public GoalsEnvironment(State initialState) {
-		currentState = initialState;
+	public GoalsEnvironment(POMDPDomain d) {
+		domain = d;
+		currentState = (POMDPState) domain.getExampleState();
+	}
+
+	public void reset() {
+		currentState = (POMDPState) domain.getExampleState();
 	}
 
 	public void addAgent(Agent a) {
 		agent = a;
+
 	}
 
 	public Observation observe() {
@@ -42,8 +50,9 @@ public class GoalsEnvironment implements Environment {
 			}
 			System.out.print("].");
 			System.out.println();
-			currentState = a.performAction(currentState, params);
-			agent.giveReward(((POMDPState)currentState).getReward());
+			State sPrime = a.performAction(currentState, params);
+			agent.giveReward(rf.reward(currentState, new GroundedAction(a, params), sPrime));
+			currentState = sPrime;
 		} else {
 			ANSIColor.purple("[GoalsEnvironment.perform()] Agent requested to perform an action impossible in the current state");
 		}

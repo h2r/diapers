@@ -5,12 +5,25 @@ package edu.brown.h2r.diapers.athena;
  */
 public abstract class Agent {
 	protected Environment environment;
+	protected double totalReward;
 
 	public Agent(Environment e) {
 		environment = e;
 	}
 
-	public abstract void giveReward(double reward);
+	public void giveReward(double reward) {
+		totalReward += reward;
+	}
+
+	public double getReward() {
+		return totalReward;
+	}
+
+	public void clearReward() {
+		totalReward = 0;
+	}
 
 	public abstract void run();
+
+
 }

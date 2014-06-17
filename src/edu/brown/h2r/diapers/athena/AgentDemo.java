@@ -17,30 +17,9 @@ public class AgentDemo {
 		System.out.println("AgentDemo running!");
 
 		POMDPDomain goalsDomain = (POMDPDomain) new GoalsDomain().generateDomain();
-		GoalsEnvironment env = new GoalsEnvironment(goalsDomain.getExampleState());
-
+		GoalsEnvironment env = new GoalsEnvironment(goalsDomain);
 		Agent agent = new POMCPAgent(env);
-		env.addAgent(agent);
 
-		//TerminalExplorer exp = new TerminalExplorer(goalsDomain);
-		//exp.exploreFromState(env.getCurrentState());
-
-		/*
-		Domain tigerDomain = new TigerDomain().generateDomain();
-
-		TigerEnvironment env = new TigerEnvironment(TigerDomain.getNewState(tigerDomain));
-		Agent agent = new POMCPAgent(env);
-		env.addAgent(agent);
-		*/
-
-		/*
-		DiaperDomain dd = new DiaperDomain();
-		Domain dom = dd.generateDomain();
-
-		DiaperEnvironment env = new DiaperEnvironment(DiaperDomain.getNewState(dom));
-		env.setObservationStyle(DiaperEnvironment.ObservationStyle.DETERMINISTIC);
-		Agent agent = new AthenaAgent(env); */
-
-		agent.run();
+		new AgentTester(agent, env, 100).runTests();
 	}
 }

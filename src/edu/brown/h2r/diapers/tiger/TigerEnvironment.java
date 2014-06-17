@@ -28,6 +28,11 @@ public class TigerEnvironment implements Environment {
 		agent = a;
 	}
 
+	public void reset() {
+
+			return;
+	}
+
 	public Observation observe() {
 		String tigerRealState = (String) currentState.getObject(P.OBJ_TIGER).getStringValForAttribute(P.ATTR_TIGER_LOCATION);
 
