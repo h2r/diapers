@@ -1,7 +1,126 @@
 TURN 0
 POLICY PO-UCT
-STATE The lotion is in the changing table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby has a rash. The caregiver's mental state is 'done'. 
+STATE The lotion is in the side table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.newClothes,obj.changingTable,)
+OBSERVATION null
+REWARD -100.0
+
+TURN 1
+POLICY PO-UCT
+STATE The lotion is in the side table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.lotion,obj.dresser,)
+OBSERVATION null
+REWARD -100.0
+
+TURN 2
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.lotion,obj.dresser,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 3
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.oldClothes,obj.hamper,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 4
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.wait()
+OBSERVATION null
+REWARD -5.0
+
+TURN 5
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.oldClothes,obj.changingTable,)
+OBSERVATION null
+REWARD -9.0
+
+TURN 6
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the changing table. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'obj.oldClothes:obj.hamper'. 
+ACTION action.bring(obj.oldClothes,obj.dresser,)
+OBSERVATION null
+REWARD -9.0
+
+TURN 7
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the dresser. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'obj.oldClothes:obj.hamper'. 
+ACTION action.bring(obj.oldClothes,obj.hamper,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 8
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.oldClothes,obj.dresser,)
+OBSERVATION null
+REWARD -9.0
+
+TURN 9
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the dresser. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'obj.oldClothes:obj.hamper'. 
+ACTION action.bring(obj.lotion,obj.changingTable,)
+OBSERVATION null
+REWARD -9.0
+
+TURN 10
+POLICY rollout
+STATE The lotion is in the changing table. The old clothes are in the dresser. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'obj.oldClothes:obj.hamper'. 
+ACTION action.bring(obj.oldClothes,obj.hamper,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 11
+POLICY rollout
+STATE The lotion is in the changing table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.lotion,obj.dresser,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 12
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.newClothes,obj.changingTable,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 13
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.wait()
+OBSERVATION null
+REWARD -5.0
+
+TURN 14
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.newClothes,obj.changingTable,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 15
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.newClothes,obj.changingTable,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 16
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
+ACTION action.bring(obj.oldClothes,obj.hamper,)
+OBSERVATION null
+REWARD 0.0
+
+TURN 17
+POLICY rollout
+STATE The lotion is in the dresser. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby doesn't have a rash. The caregiver's mental state is 'done'. 
 ACTION action.ask()
 OBSERVATION done
-REWARD -100.0
+REWARD 8.0
 
