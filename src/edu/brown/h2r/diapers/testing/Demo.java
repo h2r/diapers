@@ -2,6 +2,9 @@ package edu.brown.h2r.diapers.testing;
 
 import edu.brown.h2r.diapers.domain.tiger.TigerDomain;
 import edu.brown.h2r.diapers.domain.tiger.TigerRewardFunction;
+import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerDomain;
+import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
+
 import edu.brown.h2r.diapers.solver.Solver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
@@ -23,6 +26,10 @@ public class Demo {
 					case "tiger":
 						domain = (POMDPDomain) new TigerDomain().generateDomain();
 						reward = new TigerRewardFunction();
+						break;
+					case "infinitiger":
+						domain = (POMDPDomain) new InfinitigerDomain(10, 1).generateDomain();
+						reward = new InfinitigerRewardFunction();
 						break;
 				}
 			} else if(arg.startsWith("S")) {

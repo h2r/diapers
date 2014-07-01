@@ -21,7 +21,7 @@ public class POMCPSolver extends Solver {
 	private Calendar timer;
 
 	private int NUM_PARTICLES = 50000;
-	private long TIME_ALLOWED = 30000;
+	private long TIME_ALLOWED = 10000;
 	private double GAMMA = 0.95;
 	private double EPSILON = 1E-2;
 	private double EXP_BONUS = 130;
