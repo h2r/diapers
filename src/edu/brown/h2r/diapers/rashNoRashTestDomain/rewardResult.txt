@@ -1,3 +1,0 @@
-Result for RashNoRashDomain:
-100 iterations with explore action solved with average reward of: -3.49
-100 iterations without explore action solved with average reward of: -7.71
