@@ -20,7 +20,7 @@ public class POMCPSolver extends Solver {
 
 	private Calendar timer;
 
-	private int NUM_PARTICLES = 50000;
+	private int NUM_PARTICLES = 5000;
 	private long TIME_ALLOWED = 10000;
 	private double GAMMA = 0.95;
 	private double EPSILON = 1E-2;
@@ -57,6 +57,7 @@ public class POMCPSolver extends Solver {
 			GroundedAction a = root.bestRealAction();
 			environment.perform(a);
 			Observation o = environment.observe(a);
+			System.out.println("Agent observed " + o.getName());
 
 			if(isSuccess(o)) break;
 

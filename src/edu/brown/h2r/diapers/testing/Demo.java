@@ -28,7 +28,7 @@ public class Demo {
 						reward = new TigerRewardFunction();
 						break;
 					case "infinitiger":
-						domain = (POMDPDomain) new InfinitigerDomain(10, 1).generateDomain();
+						domain = (POMDPDomain) new InfinitigerDomain(10, 100).generateDomain();
 						reward = new InfinitigerRewardFunction();
 						break;
 				}

@@ -151,9 +151,9 @@ public class InfinitigerDomain implements DomainGenerator {
 			Observation right = d.getObservation(Names.OBS_RIGHT_DOOR + random.nextInt(observationsPerState));
 
 			if(leftDoorTiger == 1) {
-				return random.nextDouble() < 0.7 ? left : right;
+				return random.nextDouble() < 0.9 ? left : right;
 			} else {
-				return random.nextDouble() < 0.7 ? right : left;
+				return random.nextDouble() < 0.9 ? right : left;
 			}
 		} else {
 			return d.getObservation(Names.OBS_NULL);

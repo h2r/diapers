@@ -36,7 +36,9 @@ public class Environment {
 		System.out.println("]");
 		if(a.applicableInState(currentState, params)) {
 			POMDPState sPrime = (POMDPState) a.performAction(currentState, params);
-			totalReward += reward.reward(currentState, new GroundedAction(a, params), sPrime);
+			double r = reward.reward(currentState, new GroundedAction(a, params), sPrime);
+			totalReward += r;
+			System.out.println("The agent received reward " + r);
 			currentState = sPrime;
 		}
 	}
