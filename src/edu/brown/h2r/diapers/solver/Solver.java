@@ -8,6 +8,8 @@ import edu.brown.h2r.diapers.testing.Environment;
 import burlap.oomdp.singleagent.RewardFunction;
 import burlap.oomdp.core.TerminalFunction;
 
+import java.util.Map;
+
 public abstract class Solver {
 	protected Environment environment;
 	protected RewardFunction rewardFunction;
@@ -19,12 +21,21 @@ public abstract class Solver {
 		domain = d;
 	}
 
+	public void init(POMDPDomain d, RewardFunction r, Map<String, Double> p) {
+		init(d, r);
+		setParams(p);
+	}
+
 	protected boolean isSuccess(Observation o) {
 		return domain.isSuccess(o);
 	}
 
 	protected boolean isTerminal(POMDPState s) {
 		return domain.isTerminal(s);
+	}
+
+	public void setParams(Map<String, Double> params) { 
+		return;
 	}
 
 	public abstract void run();

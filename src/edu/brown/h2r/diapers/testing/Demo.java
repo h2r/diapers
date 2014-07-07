@@ -12,14 +12,24 @@ import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import burlap.oomdp.singleagent.common.UniformCostRF;
 import burlap.oomdp.singleagent.RewardFunction;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.HashMap;
+
+
 public class Demo {
 
 	private static Solver solver;
+	private static Map<String, Double> params;
 	private static POMDPDomain domain;
 	private static Environment environment;
 	private static RewardFunction reward = new UniformCostRF();
 
 	public static void main(String[] args) {
+		System.out.println("Demo running... parsing input...");
 		for(String arg : args) {
 			if(arg.startsWith("D")) {
 				switch(arg.split("=")[1]) {
@@ -38,12 +48,41 @@ public class Demo {
 						solver = new POMCPSolver();
 						break;
 				}
+			} else if(arg.startsWith("P")) {
+				params = parseFile(arg.split("=")[1]);
 			}
 		}
 
+
 		if(solver != null && domain != null) {
-			solver.init(domain, reward);
+			System.out.println("Parse successful, running");
+			if(params != null) {
+				solver.init(domain, reward, params);
+			} else {
+				solver.init(domain, reward);
+			}
 			solver.run();
-		}	
+		} else {
+			System.out.println("Unable to create solver and/or domain, check your arguments...");
+		}
+	}
+
+	public static Map<String, Double> parseFile(String filename) {
+		Map<String, Double> retval = new HashMap<String, Double>();
+		String line = "";
+
+
+		try(BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+			while((line = reader.readLine()) != null) {
+				String[] pieces = line.split("=");
+				retval.put(pieces[0], Double.parseDouble(pieces[1]));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+
+		return retval;
 	}
 }

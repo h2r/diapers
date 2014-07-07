@@ -36,16 +36,15 @@ public class InfinitigerDomain implements DomainGenerator {
 		Attribute tigerness = new Attribute(domain, Names.ATTR_TIGERNESS, Attribute.AttributeType.DISC);
 		tigerness.setDiscValuesForRange(0, 1, 1);
 
-		Attribute position = new Attribute(domain, Names.ATTR_POSITION, Attribute.AttributeType.DISC);
-		position.setDiscValues(new ArrayList<String>() {{ add(Names.LEFT); add(Names.RIGHT); }});
-
 		Attribute index = new Attribute(domain, Names.ATTR_INDEX, Attribute.AttributeType.DISC);
 		index.setDiscValuesForRange(0, iterations, 1);
+
+		Attribute position = new Attribute(domain, Names.ATTR_POSITION, Attribute.AttributeType.DISC);
+		position.setDiscValues(new ArrayList<String>() {{ add(Names.LEFT); add(Names.RIGHT); }});
 
 		ObjectClass doorClass = new ObjectClass(domain, Names.CLASS_DOOR);
 		doorClass.addAttribute(tigerness);
 		doorClass.addAttribute(position);
-		doorClass.addAttribute(index);
 
 		ObjectClass indexerClass = new ObjectClass(domain, Names.CLASS_INDEXER);
 		indexerClass.addAttribute(index);
@@ -70,20 +69,15 @@ public class InfinitigerDomain implements DomainGenerator {
 		}
 
 		@Override
-		public boolean applicableInState(State st, String[] params) {
-			ObjectInstance door = st.getObject(params[0]);
-			ObjectInstance indexer = st.getObject(Names.OBJ_INDEXER);
-
-			return door.getDiscValForAttribute(Names.ATTR_INDEX) == indexer.getDiscValForAttribute(Names.ATTR_INDEX);
-		}
-
-		@Override
 		public State performActionHelper(State st, String[] params) {
 			POMDPState ps = new POMDPState(st);
 
-			ObjectInstance indexer = ps.getObject(Names.OBJ_INDEXER);
-			int currIndex = indexer.getDiscValForAttribute(Names.ATTR_INDEX);
-			indexer.setValue(Names.ATTR_INDEX, currIndex + 1);
+			int index = ps.getObject(Names.OBJ_INDEXER).getDiscValForAttribute(Names.ATTR_INDEX);
+			ps.getObject(Names.OBJ_INDEXER).setValue(Names.ATTR_INDEX, index + 1);
+
+			boolean doorChoice = new java.util.Random().nextBoolean();
+			ps.getObject(Names.OBJ_LEFT_DOOR).setValue(Names.ATTR_TIGERNESS, doorChoice ? 0 : 1);
+			ps.getObject(Names.OBJ_RIGHT_DOOR).setValue(Names.ATTR_TIGERNESS, doorChoice ? 1 : 0);
 
 			return ps;
 		}
@@ -110,23 +104,18 @@ public class InfinitigerDomain implements DomainGenerator {
 		indexer.setValue(Names.ATTR_INDEX, 0);
 		s.addObject(indexer);
 
-		for(int i = 0; i < iterations; ++i) {
-			ObjectInstance leftDoor = new ObjectInstance(doorClass, Names.OBJ_LEFT_DOOR + i);
-			ObjectInstance rightDoor = new ObjectInstance(doorClass, Names.OBJ_RIGHT_DOOR + i);
+		ObjectInstance leftDoor = new ObjectInstance(doorClass, Names.OBJ_LEFT_DOOR);
+		ObjectInstance rightDoor = new ObjectInstance(doorClass, Names.OBJ_RIGHT_DOOR);
 
-			leftDoor.setValue(Names.ATTR_POSITION, Names.LEFT);
-			leftDoor.setValue(Names.ATTR_INDEX, i);
+		leftDoor.setValue(Names.ATTR_POSITION, Names.LEFT);
+		rightDoor.setValue(Names.ATTR_POSITION, Names.RIGHT);
 
-			rightDoor.setValue(Names.ATTR_POSITION, Names.RIGHT);
-			rightDoor.setValue(Names.ATTR_INDEX, i);
+		boolean doorChoice = new java.util.Random().nextBoolean();
+		leftDoor.setValue(Names.ATTR_TIGERNESS, doorChoice ? 0 : 1);
+		rightDoor.setValue(Names.ATTR_TIGERNESS, doorChoice ? 1 : 0);
 
-			boolean doorChoice = new java.util.Random().nextBoolean();
-			leftDoor.setValue(Names.ATTR_TIGERNESS, doorChoice ? 0 : 1);
-			rightDoor.setValue(Names.ATTR_TIGERNESS, doorChoice ? 1 : 0);
-
-			s.addObject(leftDoor);
-			s.addObject(rightDoor);
-		}
+		s.addObject(leftDoor);
+		s.addObject(rightDoor);
 
 		return s;
 	}
@@ -139,8 +128,8 @@ public class InfinitigerDomain implements DomainGenerator {
 			return d.getObservation(Names.OBS_COMPLETE);
 		}
 
-		ObjectInstance leftDoor = s.getObject(Names.OBJ_LEFT_DOOR + index);
-		ObjectInstance rightDoor = s.getObject(Names.OBJ_RIGHT_DOOR + index);
+		ObjectInstance leftDoor = s.getObject(Names.OBJ_LEFT_DOOR);
+		ObjectInstance rightDoor = s.getObject(Names.OBJ_RIGHT_DOOR);
 
 		int leftDoorTiger = leftDoor.getDiscValForAttribute(Names.ATTR_TIGERNESS);
 		java.util.Random random = new java.util.Random();
@@ -151,9 +140,9 @@ public class InfinitigerDomain implements DomainGenerator {
 			Observation right = d.getObservation(Names.OBS_RIGHT_DOOR + random.nextInt(observationsPerState));
 
 			if(leftDoorTiger == 1) {
-				return random.nextDouble() < 0.9 ? left : right;
+				return random.nextDouble() < 0.85 ? left : right;
 			} else {
-				return random.nextDouble() < 0.9 ? right : left;
+				return random.nextDouble() < 0.85 ? right : left;
 			}
 		} else {
 			return d.getObservation(Names.OBS_NULL);

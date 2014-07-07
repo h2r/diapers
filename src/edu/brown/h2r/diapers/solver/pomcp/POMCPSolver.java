@@ -14,20 +14,36 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 public class POMCPSolver extends Solver {
 	private MonteCarloNode root = new MonteCarloNode();
 
 	private Calendar timer;
 
-	private int NUM_PARTICLES = 5000;
-	private long TIME_ALLOWED = 10000;
-	private double GAMMA = 0.95;
+	private int NUM_PARTICLES = 10;
+	private long TIME_ALLOWED = 500;
+	private double GAMMA = 0.99;
 	private double EPSILON = 1E-2;
 	private double EXP_BONUS = 130;
 
 	public POMCPSolver() {
 		super();
+	}
+
+	@Override
+	public void setParams(Map<String, Double> params) {
+		Double NP = params.get("NUM_PARTICLES");
+		Double TA = params.get("TIME_ALLOWED");
+		Double GM = params.get("GAMMA");
+		Double EP = params.get("EPSILON");
+		Double EB = params.get("EXP_BONUS");
+
+		NUM_PARTICLES = (int) (NP == null ? NUM_PARTICLES : NP);
+		TIME_ALLOWED = (long) (TA == null ? TIME_ALLOWED : TA);
+		GAMMA = GM == null ? GAMMA : GM;
+		EPSILON = EP == null ? EPSILON : EP;
+		EXP_BONUS = EB == null ? EXP_BONUS : EB;
 	}
 
 	private void setTimer() {
@@ -36,6 +52,10 @@ public class POMCPSolver extends Solver {
 
 	private boolean timeout() {
 		return new GregorianCalendar().getTimeInMillis() >= timer.getTimeInMillis() + this.TIME_ALLOWED;
+	}
+
+	private long timeElapsed() {
+		return new GregorianCalendar().getTimeInMillis() - timer.getTimeInMillis();
 	}
 
 	@Override
@@ -53,6 +73,8 @@ public class POMCPSolver extends Solver {
 				POMDPState s = root.sampleParticles();
 				simulate(s, root, 0);
 			}
+
+			// new NodeExplorer().explore(root); 
 			
 			GroundedAction a = root.bestRealAction();
 			environment.perform(a);
@@ -62,14 +84,18 @@ public class POMCPSolver extends Solver {
 			if(isSuccess(o)) break;
 
 			MonteCarloNode parent = root;
+
+			if(root.advance(a).advance(o) == null) root.advance(a).addChild(o);		
 			root = root.advance(a).advance(o);
 
+			setTimer();
 			while(root.particleCount() < this.NUM_PARTICLES) {
 				POMDPState s = parent.sampleParticles();
 				POMDPState s_ = (POMDPState) a.action.performAction(s, a.params);
 				Observation o_ = domain.makeObservationFor(a, s_);
 				if(compareObservations(o, o_)) root.addParticle(s_);
 			}
+			System.out.println("Forwarding took " + timeElapsed());
 		}
 
 		System.out.println("Agent solved the problem receiving total reward " + environment.getTotalReward());
