@@ -25,6 +25,12 @@ public class POMDPDomain extends SADomain {
 	public POMDPState sampleInitialState() {
 		return new POMDPState();
 	}
+	
+	public List<POMDPState> getAllInitialStates(){
+		List<POMDPState> tempList = new ArrayList<POMDPState>();
+		tempList.add(sampleInitialState());
+		return tempList;
+	}
 
 	public boolean isSuccess(Observation o) {
 		return false;
