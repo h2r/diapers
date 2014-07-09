@@ -47,7 +47,7 @@ public class InfinitigerDomain implements DomainGenerator {
 			@Override public POMDPState sampleInitialState() { return InfinitigerDomain.getNewState(this); }
 			@Override public Observation makeObservationFor(GroundedAction a, POMDPState s) { return InfinitigerDomain.makeObservationFor(this, a, s); }
 			@Override public boolean isSuccess(Observation o) { return InfinitigerDomain.isSuccess(o); }
-			@Override public boolean isTerminal(State s) { return InfinitigerDomain.isTerminal(this, s); }
+			@Override public boolean isTerminal(POMDPState s) { return InfinitigerDomain.isTerminal(this, s); }
 			@Override
 			public List<POMDPState> getAllInitialStates(){
 				NameDependentStateHashFactory hashFactory = new NameDependentStateHashFactory();

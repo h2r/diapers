@@ -52,7 +52,7 @@ public class RashDomain implements DomainGenerator {
 			return o.getName().equals(Names.OBS_GOAL);
 		}
 		@Override 
-		public boolean isTerminal(State s){
+		public boolean isTerminal(POMDPState s){
 			String mentalState = s.getObject(Names.OBJ_HUMAN).getStringValForAttribute(Names.ATTR_MENTAL_STATE);
 			return mentalState.equals(Names.MS_TYPE_GOAL);
 		}

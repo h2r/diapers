@@ -974,7 +974,7 @@ public class PointBasedValueIteration extends Solver{
 				@Override
 				public boolean isTerminal(State s) {
 					
-					return this.domain.isTerminal(s);
+					return this.domain.isTerminal((POMDPState)s);
 				}
 				
 			};
