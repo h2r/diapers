@@ -9,10 +9,10 @@ import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.core.State;
 
 public class Environment {
-	private POMDPDomain domain;
-	private POMDPState currentState;
-	private RewardFunction reward;
-	private double totalReward;
+	protected POMDPDomain domain;
+	protected POMDPState currentState;
+	protected RewardFunction reward;
+	protected double totalReward;
 	
 	public Environment(POMDPDomain d, RewardFunction r) {
 		domain = d;

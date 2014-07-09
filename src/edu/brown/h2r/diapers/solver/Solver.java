@@ -4,9 +4,11 @@ import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.testing.Environment;
+import edu.brown.h2r.diapers.testing.UserEnvironment;
 
 import burlap.oomdp.singleagent.RewardFunction;
 import burlap.oomdp.core.TerminalFunction;
+import burlap.oomdp.auxiliary.StateParser;
 
 import java.util.Map;
 
@@ -26,12 +28,24 @@ public abstract class Solver {
 		setParams(p);
 	}
 
+	public void printEnvironmentType() {
+		if(environment instanceof UserEnvironment) {
+			System.out.println("USER");
+		} else {
+			System.out.println("NORMAL");
+		}
+	}
+
 	protected boolean isSuccess(Observation o) {
 		return domain.isSuccess(o);
 	}
 
 	protected boolean isTerminal(POMDPState s) {
 		return domain.isTerminal(s);
+	}
+
+	public void userMode(StateParser s) {
+		environment = new UserEnvironment(domain, rewardFunction, s);
 	}
 
 	public void setParams(Map<String, Double> params) { 

@@ -6,7 +6,7 @@ import edu.brown.h2r.diapers.domain.easydiaper.RashDomain;
 import edu.brown.h2r.diapers.domain.easydiaper.RashDomainRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerDomain;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
-
+import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
 import edu.brown.h2r.diapers.solver.Solver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
@@ -14,6 +14,7 @@ import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
 
 import burlap.oomdp.singleagent.common.UniformCostRF;
 import burlap.oomdp.singleagent.RewardFunction;
+import burlap.oomdp.auxiliary.StateParser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,6 +30,8 @@ public class Demo {
 	private static POMDPDomain domain;
 	private static Environment environment;
 	private static RewardFunction reward = new UniformCostRF();
+	private static boolean user = false;
+	private static StateParser sparse;
 
 	public static void main(String[] args) {
 	System.out.println("Demo running... parsing input...");
@@ -42,6 +45,7 @@ public class Demo {
 					case "infinitiger":
 						domain = (POMDPDomain) new InfinitigerDomain(4, 1).generateDomain();
 						reward = new InfinitigerRewardFunction();
+						sparse = new InfinitigerStateParser();
 						break;
 					case "easydiaper":
 						domain = (POMDPDomain) new RashDomain().generateDomain();
@@ -60,6 +64,8 @@ public class Demo {
 				}
 			} else if(arg.startsWith("P")) {
 				params = parseFile(arg.split("=")[1]);
+			} else if(arg.equals("U")) {
+				user = true;
 			}
 		}
 
@@ -70,6 +76,10 @@ public class Demo {
 				solver.init(domain, reward, params);
 			} else {
 				solver.init(domain, reward);
+			}
+			if(user) {
+				solver.userMode(sparse);
+				System.out.println("usermode");
 			}
 			solver.run();
 			long totalTime = System.currentTimeMillis() - startTime;
