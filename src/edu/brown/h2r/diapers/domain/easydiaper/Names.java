@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.domain.easy_diaper;
+package edu.brown.h2r.diapers.domain.easydiaper;
 
 /**
  * Names is a utility class containing the string names for all the objects

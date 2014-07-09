@@ -10,12 +10,14 @@ import java.util.Arrays;
 import java.util.Set;
 
 
+
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 //import burlap.oomdp.core.Domain;
 //import burlap.oomdp.core.ObjectInstance;
 //import burlap.oomdp.core.PropositionalFunction;
 import burlap.oomdp.core.State;
+import burlap.oomdp.core.TerminalFunction;
 //import burlap.oomdp.core.TerminalFunction;
 import burlap.oomdp.core.TransitionProbability;
 
@@ -68,9 +70,10 @@ public class PointBasedValueIteration extends Solver{
 	private POMDPDomain domain;
 	private StateHashFactory hash_factory;
 	private RewardFunction reward_function;
+	private TerminalFunction terminal_function;
 	private double gamma = 0.95;
 	private double max_delta = 0.001;
-	private int max_iterations = 30;
+	private int max_iterations = 10;
 	private int granularity= 4;
 	private boolean VIDone = false;
 
@@ -129,6 +132,7 @@ public class PointBasedValueIteration extends Solver{
 						tempBeliefValue=1.0;
 					}
 				}
+//				System.out.println("PBVI: run: "+ s.getCompleteStateDescription() + " " + tempBeliefValue);
 				inputBP.add(tempBeliefValue);
 			}
 			listNorm(inputBP);
@@ -161,6 +165,8 @@ public class PointBasedValueIteration extends Solver{
 		this.hash_factory=new NameDependentStateHashFactory();
 		environment = new Environment(d, r);
 		rewardFunction = r;
+
+		
 //		domain = d;
 		setDomain(d);
 		domain=this.domain;
@@ -208,13 +214,23 @@ public class PointBasedValueIteration extends Solver{
 			newBeliefState.add(sum);
 		}
 
+
+
+
+
+
+
+
+
 		//System.out.println("belief state prior to normalization " + newBeliefState);
 		listNorm(newBeliefState);
 		//System.out.println("belief state after normalization " + newBeliefState);
 		return newBeliefState;
+
 	}
 	
 	
+
 	public List<List<Double>> getBeliefPoints(){
 		if(belief_points.equals(null)){
 			System.out.println("The belief points were not set");
@@ -254,9 +270,13 @@ public class PointBasedValueIteration extends Solver{
 
 
 
+
+
+
 		int num = multichoose(num_states, granularity);
 		System.out.println("PBVI: num "+ num);
 		for(int bIndex = 0; bIndex < num; ++bIndex) {
+
 
 			List<Double> temp;
 			while(true) {
@@ -334,10 +354,19 @@ public class PointBasedValueIteration extends Solver{
 					System.out.println("Start state " + states.get(stateIndex).toString());
 					for(int actionIndex = 0; actionIndex < num_actions; ++actionIndex) {
 						System.out.println("Action " + actions.get(actionIndex).toString());
+						if(actions.get(actionIndex).params.length>0){
+							System.out.println(actions.get(actionIndex).params[0]);
+						}
 						List<TransitionProbability> tprobs = actions.get(actionIndex).action.getTransitions(states.get(stateIndex), new String[]{""});
 						for(TransitionProbability prob : tprobs)
 						System.out.println("State " + prob.s.toString() + " probability: " + prob.p);
+					
 						
+						for(int observationIndex=0;observationIndex < num_observations; observationIndex++){
+							System.out.println("Observation: " + observations.get(observationIndex).getName() + " " + observations.get(observationIndex).getProbability(states.get(stateIndex), actions.get(actionIndex)));
+						}
+						
+						System.out.println("reward: " +reward_function.reward(states.get(stateIndex), actions.get(actionIndex), null));
 					}
 				}
 				System.out.println("PointBasedValueIteration: test end");
@@ -368,7 +397,10 @@ public class PointBasedValueIteration extends Solver{
 //		double [][][] transitionProbabilityMatrix = null;//sas'
 //		double [][][] observationProbabilityMatrix = null;//osa
 		
+
+
 		
+
 		vectorSetReward = new double[num_states][num_actions];// check this! this was obs. index dunno why??
 		transitionProbabilityMatrix = new double[num_states][num_actions][num_states]; 
 		observationProbabilityMatrix = new double[num_observations][num_states][num_actions];
@@ -843,7 +875,9 @@ public class PointBasedValueIteration extends Solver{
 	*/
 
 	
-	public List<State> listAllStates(POMDPDomain d, List<POMDPState> listInitialStates){
+	public List<State> listAllStates(POMDPDomain d, List<POMDPState> listInitialStates, TerminalFunction tf){
+
+
 		//This is just a bad idea, need a better way to define transition functions
 //		NameDependentStateHashFactory hashFactory = new NameDependentStateHashFactory();
 //		Set<State> setAllStates = new HashSet<State>();
@@ -854,13 +888,19 @@ public class PointBasedValueIteration extends Solver{
 		
 		
 		Set<State> setAllStates = new HashSet<State>();
+		System.out.println("PBVI: listAllStates: list of all initial states size "+ listInitialStates.size());
+//		for(State s:listInitialStates){
+//			System.out.println("PBVI: listAllStates Initial state: " + s.getStateDescription());
+//			}
+		
 		for(State s:listInitialStates){
+//			System.out.println("PBVI: listAllStates Initial state: " + s.getStateDescription());
 //		State s = listInitialStates.get(0);
 //		{
 //			System.out.println("list size: " + listInitialStates.size()+" state itself: " + s.toString());
-			System.out.println(this.hash_factory.toString());
+//			System.out.println(this.hash_factory.toString());
 //			System.out.println(d.toString());
-			setAllStates.addAll(StateReachability.getReachableStates(s,d, this.hash_factory));
+			setAllStates.addAll(StateReachability.getReachableStates(s,d, this.hash_factory,tf));
 		}
 		Set<StateHashTuple> tempSet = new HashSet<StateHashTuple>();
 		System.out.println("Size of all states set: " + setAllStates.size());
@@ -882,10 +922,15 @@ public class PointBasedValueIteration extends Solver{
 //			}
 
 
-			if(!noDup.contains(shi.s)){
+
+
+
+//			if(!noDup.contains(shi.s)){
 //			if(checkFlag){
 			noDup.add(shi.s);
-			}
+//			System.out.println("list all states: states: " + shi.s.getCompleteStateDescription());
+			
+//			}
 			
 		}
 		return new ArrayList<State>(noDup);
@@ -894,6 +939,7 @@ public class PointBasedValueIteration extends Solver{
 	}
 	
 /*	public List<State> listAllStates(POMDPDomain d, List<POMDPState> listInitialStates, TerminalFunction tf){
+
 		
 		
 		Set<State> setAllStates = new HashSet<State>();
@@ -918,16 +964,26 @@ public class PointBasedValueIteration extends Solver{
 		return this.states;
 	}
 	
-	public boolean setDomain(POMDPDomain domain1) {
+	public boolean setDomain(final POMDPDomain domain1) {
 		if(this.domain == null) {
 
 			this.domain = domain1;
+			terminal_function = new TerminalFunction(){
+				POMDPDomain domain = domain1;
+
+				@Override
+				public boolean isTerminal(State s) {
+					
+					return this.domain.isTerminal(s);
+				}
+				
+			};
 //			System.out.println(domain1.getObservation("leftdoor"));
 //			this.observations = domain1.getObservations();
 //			this.num_observations = observations.size();
-			this.states = listAllStates(this.domain, this.domain.getAllInitialStates());
+			this.states = listAllStates(this.domain, this.domain.getAllInitialStates(), terminal_function);
 			this.num_states = this.states.size();
-			System.out.println(domain1.getObservation("leftdoor"));
+//			System.out.println(domain1.getObservation("leftdoor"));
 			this.observations = domain1.getObservations();
 			this.num_observations = observations.size();
 			//List<State> stateList=this.domain.getAllStates();
@@ -956,9 +1012,12 @@ public class PointBasedValueIteration extends Solver{
 //				}
 //			}
 			this.actions = new ArrayList<GroundedAction>(actionSet);
-			//this.actions = actionSet.toArray();//s.getAllGroundedActionsFor(this.domain.getActions());
-//			 for(GroundedAction a : this.actions) {
+//			this.actions = actionSet.toArray();//s.getAllGroundedActionsFor(this.domain.getActions());
+//			 for(GroundedAction a : actionSet) {
 //			 	System.out.println("PointBasedValueIteration: setDomain Action name: " + a.action.getName());
+//			 	if(a.params.length>0){
+//			 		System.out.println("Params " + a.params[0]);
+//			 		}
 //			 }
 			this.num_actions = this.actions.size();
 

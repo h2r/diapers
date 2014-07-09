@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.domain.easy_diaper;
+package edu.brown.h2r.diapers.domain.easydiaper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class RashDomain implements DomainGenerator {
 			return o.getName().equals(Names.OBS_GOAL);
 		}
 		@Override 
-		public boolean isTerminal(POMDPState s){
+		public boolean isTerminal(State s){
 			String mentalState = s.getObject(Names.OBJ_HUMAN).getStringValForAttribute(Names.ATTR_MENTAL_STATE);
 			return mentalState.equals(Names.MS_TYPE_GOAL);
 		}

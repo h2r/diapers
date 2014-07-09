@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.domain.easy_diaper;
+package edu.brown.h2r.diapers.domain.easydiaper;
 
 import java.util.ArrayList;
 import java.util.List;
