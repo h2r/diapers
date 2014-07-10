@@ -74,7 +74,7 @@ public class POMCPSolver extends Solver {
 				simulate(s, root, 0);
 			}
 
-			// new NodeExplorer().explore(root); 
+			if(userMode) new NodeExplorer(sparse).explore(root); 
 			
 			GroundedAction a = root.bestRealAction();
 			environment.perform(a);

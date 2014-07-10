@@ -5,6 +5,7 @@ import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.domain.tiger.Names;
 
 import burlap.oomdp.core.State;
+import burlap.oomdp.auxiliary.StateParser;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -24,6 +25,11 @@ public class NodeExplorer {
 	private List<Integer> visits = new ArrayList<Integer>();
 	private List<MonteCarloNode> history = new ArrayList<MonteCarloNode>();
 	private boolean stop = false;
+	private StateParser sparse;
+
+	public NodeExplorer(StateParser s) {
+		sparse = s;
+	}
 
 	public void explore(MonteCarloNode node) {
 		use(node);
@@ -128,11 +134,6 @@ public class NodeExplorer {
 	}
 
 	private String nameState(State s) {
-		String tigerLocation = s.getObject(Names.OBJ_TIGER).getStringValForAttribute(Names.ATTR_TIGER_LOCATION);
-		String doorOpen = s.getObject(Names.OBJ_REFEREE).getStringValForAttribute(Names.ATTR_DOOR_OPEN);
-
-		doorOpen = doorOpen.equals("0") ? "closed" : "open";
-
-		return "state." + tigerLocation + "." + doorOpen;
+		return sparse.stateToString(s);
 	}
 }

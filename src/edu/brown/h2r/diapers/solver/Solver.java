@@ -16,6 +16,8 @@ public abstract class Solver {
 	protected Environment environment;
 	protected RewardFunction rewardFunction;
 	protected POMDPDomain domain;
+	protected StateParser sparse;
+	protected boolean userMode = false;
 
 	public void init(POMDPDomain d, RewardFunction r) {
 		environment = new Environment(d, r);
@@ -46,6 +48,8 @@ public abstract class Solver {
 
 	public void userMode(StateParser s) {
 		environment = new UserEnvironment(domain, rewardFunction, s);
+		sparse = s;
+		userMode = true;
 	}
 
 	public void setParams(Map<String, Double> params) { 
