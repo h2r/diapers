@@ -44,6 +44,10 @@ public class MonteCarloNode {
 		beliefParticles.remove(index);
 	}
 
+	public synchronized void removeRandomParticle() {
+		beliefParticles.remove(new java.util.Random().nextInt(beliefParticles.size()));
+	}
+
 	public POMDPState sampleParticles() {
 		return beliefParticles.get(new java.util.Random().nextInt(beliefParticles.size()));
 	}

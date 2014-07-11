@@ -34,8 +34,8 @@ public class UserEnvironment extends Environment {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		Observation chosen = domain.getObservation(observation);
+		
+		Observation chosen = (observation.equals("") ? domain.makeObservationFor(a, currentState) : domain.getObservation(observation));
 
 		return chosen;
 	}

@@ -88,14 +88,15 @@ public class POMCPSolver extends Solver {
 			if(root.advance(a).advance(o) == null) root.advance(a).addChild(o);		
 			root = root.advance(a).advance(o);
 
-			setTimer();
 			while(root.particleCount() < this.NUM_PARTICLES) {
 				POMDPState s = parent.sampleParticles();
 				POMDPState s_ = (POMDPState) a.action.performAction(s, a.params);
 				Observation o_ = domain.makeObservationFor(a, s_);
 				if(compareObservations(o, o_)) root.addParticle(s_);
 			}
-			System.out.println("Forwarding took " + timeElapsed());
+			while(root.particleCount() > this.NUM_PARTICLES) {
+				root.removeRandomParticle();
+			}
 		}
 
 		System.out.println("Agent solved the problem receiving total reward " + environment.getTotalReward());
@@ -134,7 +135,7 @@ public class POMCPSolver extends Solver {
 		GroundedAction a = getGroundedActions(state).get(new java.util.Random().nextInt(getGroundedActions(state).size()));
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
 
-		return sPrime.getReward() + this.GAMMA * rollout(sPrime, depth + 1);
+		return rewardFunction.reward(state, a, sPrime) + this.GAMMA * rollout(sPrime, depth + 1);
 	}
 
 	private List<GroundedAction> getGroundedActions(POMDPState state) {
