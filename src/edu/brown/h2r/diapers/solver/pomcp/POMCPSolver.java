@@ -44,6 +44,8 @@ public class POMCPSolver extends Solver {
 		GAMMA = GM == null ? GAMMA : GM;
 		EPSILON = EP == null ? EPSILON : EP;
 		EXP_BONUS = EB == null ? EXP_BONUS : EB;
+
+		System.out.println("Parameters successfully set to NUM=" + NUM_PARTICLES + ", TIME=" + TIME_ALLOWED + ", GAMMA=" + GAMMA + ", EPSILON=" + EPSILON + ", C=" + EXP_BONUS + ".");
 	}
 
 	private void setTimer() {
