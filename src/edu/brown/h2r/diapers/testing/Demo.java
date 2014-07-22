@@ -43,7 +43,7 @@ public class Demo {
 						reward = new TigerRewardFunction();
 						break;
 					case "infinitiger":
-						domain = (POMDPDomain) new InfinitigerDomain(4, 1).generateDomain();
+						domain = (POMDPDomain) new InfinitigerDomain(2, 1).generateDomain();
 						reward = new InfinitigerRewardFunction();
 						sparse = new InfinitigerStateParser();
 						break;
@@ -79,7 +79,6 @@ public class Demo {
 			}
 			if(user) {
 				solver.userMode(sparse);
-				System.out.println("usermode");
 			}
 			solver.run();
 			long totalTime = System.currentTimeMillis() - startTime;

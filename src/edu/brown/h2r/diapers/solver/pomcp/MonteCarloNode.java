@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class MonteCarloNode {
 	private Map<HistoryElement, MonteCarloNode> children = new HashMap<HistoryElement, MonteCarloNode>();
 	private List<POMDPState> beliefParticles = new ArrayList<POMDPState>();
+	private List<Double> valueHistory = new ArrayList<Double>();
 
 	private int visits;
 	private double value;
@@ -38,6 +39,17 @@ public class MonteCarloNode {
 
 	public synchronized void addParticle(POMDPState s) {
 		beliefParticles.add(s);
+	}
+
+	public void saveValues() {
+		valueHistory.add(value);
+		for(HistoryElement he : children.keySet()) {
+			children.get(he).saveValues();
+		}
+	}
+
+	public List<Double> getValueHistory() {
+		return valueHistory;
 	}
 
 	public synchronized void removeParticle(int index) {
@@ -97,11 +109,6 @@ public class MonteCarloNode {
 	}
 
 	public MonteCarloNode advance(HistoryElement h) {
-		for(HistoryElement hist : children.keySet()) {
-			if(hist.hashCode() == h.hashCode()) {
-				return children.get(hist);
-			}
-		}
 		return children.get(h);
 	}
 

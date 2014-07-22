@@ -74,6 +74,7 @@ public class POMCPSolver extends Solver {
 				simulations++;
 				POMDPState s = root.sampleParticles();
 				simulate(s, root, 0);
+				root.saveValues();
 			}
 
 			if(userMode) new NodeExplorer(sparse).explore(root); 
