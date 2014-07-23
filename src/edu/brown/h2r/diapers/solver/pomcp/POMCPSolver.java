@@ -1,6 +1,7 @@
 package edu.brown.h2r.diapers.solver.pomcp;
 
 import edu.brown.h2r.diapers.solver.Solver;
+import edu.brown.h2r.diapers.solver.datastructure.MonteCarloNode;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.pomdp.Observation;
@@ -17,7 +18,7 @@ import java.util.GregorianCalendar;
 import java.util.Map;
 
 public class POMCPSolver extends Solver {
-	private MonteCarloNode root = new MonteCarloNode();
+	protected MonteCarloNode root = new MonteCarloNode();
 
 	private Calendar timer;
 
@@ -26,6 +27,8 @@ public class POMCPSolver extends Solver {
 	private double GAMMA = 0.99;
 	private double EPSILON = 1E-2;
 	private double EXP_BONUS = 130;
+
+	protected boolean particles = true;
 
 	public POMCPSolver() {
 		super();
@@ -48,11 +51,11 @@ public class POMCPSolver extends Solver {
 		System.out.println("Parameters successfully set to NUM=" + NUM_PARTICLES + ", TIME=" + TIME_ALLOWED + ", GAMMA=" + GAMMA + ", EPSILON=" + EPSILON + ", C=" + EXP_BONUS + ".");
 	}
 
-	private void setTimer() {
+	protected void setTimer() {
 		timer = new GregorianCalendar();
 	}
 
-	private boolean timeout() {
+	protected boolean timeout() {
 		return new GregorianCalendar().getTimeInMillis() >= timer.getTimeInMillis() + this.TIME_ALLOWED;
 	}
 
@@ -105,7 +108,7 @@ public class POMCPSolver extends Solver {
 		System.out.println("Agent solved the problem receiving total reward " + environment.getTotalReward());
 	}
 	
-	private double simulate(POMDPState state, MonteCarloNode node, int depth) {
+	protected double simulate(POMDPState state, MonteCarloNode node, int depth) {
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) return 0;
 
 		if(node.isLeaf()) {
@@ -124,7 +127,7 @@ public class POMCPSolver extends Solver {
 		if(!node.advance(a).hasChild(o)) node.advance(a).addChild(o);
 		double expectedReward = r + this.GAMMA * simulate(sPrime, node.advance(a).advance(o), depth + 1);
 
-		if(depth > 0) node.addParticle(state);
+		if(depth > 0 && particles) node.addParticle(state);
 		node.visit();
 		node.advance(a).visit();
 		node.advance(a).augmentValue((expectedReward - node.advance(a).getValue())/node.advance(a).getVisits());

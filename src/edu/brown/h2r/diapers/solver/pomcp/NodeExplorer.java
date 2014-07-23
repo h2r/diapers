@@ -3,6 +3,8 @@ package edu.brown.h2r.diapers.solver.pomcp;
 import edu.brown.h2r.diapers.util.ANSIColor;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.domain.tiger.Names;
+import edu.brown.h2r.diapers.solver.datastructure.MonteCarloNode;
+import edu.brown.h2r.diapers.solver.datastructure.HistoryElement;
 
 import burlap.oomdp.core.State;
 import burlap.oomdp.auxiliary.StateParser;

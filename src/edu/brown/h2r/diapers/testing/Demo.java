@@ -9,6 +9,7 @@ import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
 import edu.brown.h2r.diapers.solver.Solver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
+import edu.brown.h2r.diapers.solver.uct.UCTSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
 
@@ -59,6 +60,9 @@ public class Demo {
 						break;
 					case "pbvi":
 						solver = new PointBasedValueIteration();
+						break;
+					case "uct":
+						solver = new UCTSolver();
 						break;
 						
 				}
