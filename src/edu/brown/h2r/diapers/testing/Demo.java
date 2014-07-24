@@ -7,6 +7,7 @@ import edu.brown.h2r.diapers.domain.easydiaper.RashDomainRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerDomain;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
+import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperDomain;
 import edu.brown.h2r.diapers.solver.Solver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
@@ -51,6 +52,10 @@ public class Demo {
 					case "easydiaper":
 						domain = (POMDPDomain) new RashDomain().generateDomain();
 						reward = new RashDomainRewardFunction();
+						break;
+					case "mediumdiaper":
+						domain = (POMDPDomain) new MediumDiaperDomain().generateDomain();
+						reward = new UniformCostRF();
 						break;
 				}
 			} else if(arg.startsWith("S")) {

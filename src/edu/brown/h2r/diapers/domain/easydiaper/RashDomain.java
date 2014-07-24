@@ -27,7 +27,7 @@ import burlap.behavior.singleagent.auxiliary.StateReachability;
 
 public class RashDomain implements DomainGenerator {
 	
-	private static double noise = 0.7;
+	private static double noise = 0;
 	private static int observationTypes = 4;
 
 	public RashDomain() {};
