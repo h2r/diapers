@@ -46,7 +46,7 @@ public class Actions {
 
 		private void placeObject(ObjectInstance obj, ObjectInstance cnt) {
 			obj.addRelationalTarget(Names.ATTR_CONTAINER, cnt.getName());
-			obj.addRelationalTarget(Names.ATTR_CONTENTS, obj.getName());
+			cnt.addRelationalTarget(Names.ATTR_CONTENTS, obj.getName());
 		}
 	}
 	
