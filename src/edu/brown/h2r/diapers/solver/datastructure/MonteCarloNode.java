@@ -29,6 +29,38 @@ public class MonteCarloNode {
 		this.value = val;
 	}
 
+	public void pruneExcept(GroundedAction a) {
+		pruneExcept(new HistoryElement(a));
+	}
+
+	public void pruneExcept(Observation o) {
+		pruneExcept(new HistoryElement(o));
+	}
+
+	public void pruneExcept(HistoryElement h) {
+		if(this.isLeaf()) return;
+
+		List<HistoryElement> tbd = new ArrayList<HistoryElement>(); 
+		for(HistoryElement elem : children.keySet()) {
+			if(!elem.equals(h)) {
+				children.get(elem).prune();
+				tbd.add(elem);
+			}
+		}	
+		for(HistoryElement elem : tbd) {
+			children.remove(elem);
+		}
+		
+	}
+
+	public void prune() {
+		if(this.isLeaf()) return;
+		for(HistoryElement elem : children.keySet()) {
+			children.get(elem).prune();
+		}
+		children.clear();
+	}
+
 	public synchronized void visit() {
 		visits++;
 	}
@@ -69,6 +101,8 @@ public class MonteCarloNode {
 	}
 
 	public GroundedAction bestRealAction() {
+		if(this.isLeaf()) System.out.println("Requested action from leaf... :(");
+
 		double maxValue = Double.NEGATIVE_INFINITY;
 		GroundedAction bestAction = null;
 		

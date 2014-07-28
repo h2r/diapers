@@ -92,6 +92,8 @@ public class POMCPSolver extends Solver {
 			MonteCarloNode parent = root;
 
 			if(root.advance(a).advance(o) == null) root.advance(a).addChild(o);		
+			root.pruneExcept(a);
+			root.advance(a).pruneExcept(o);
 			root = root.advance(a).advance(o);
 
 			while(root.particleCount() < this.NUM_PARTICLES) {
@@ -112,6 +114,7 @@ public class POMCPSolver extends Solver {
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) return 0;
 
 		if(node.isLeaf()) {
+			if(getGroundedActions(state).size() == 0) System.out.println("No actions for this state!");
 			for(GroundedAction a : getGroundedActions(state)) {
 				node.addChild(a);
 			}

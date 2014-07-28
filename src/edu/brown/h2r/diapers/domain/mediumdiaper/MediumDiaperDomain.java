@@ -137,9 +137,9 @@ public class MediumDiaperDomain implements DomainGenerator {
 		baby.setValue(Names.ATTR_RASH, new java.util.Random().nextBoolean() ? 1 : 0);
 
 		//Place contents in the proper initial container
-		placeObject(ointment, sideTable);
+		placeObject(ointment, dresser);
 		placeObject(oldClothes, changingTable);
-		placeObject(newClothes, dresser);
+		placeObject(newClothes, sideTable);
 
 		//Add objects to the state, and have the caregiver decide on its mental state
 		addObjects(s, caregiver, baby, ointment, oldClothes, newClothes, changingTable, hamper, sideTable, dresser);
