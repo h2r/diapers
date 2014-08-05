@@ -8,10 +8,12 @@ import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerDomain;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
 import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperDomain;
+import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperObservationModel;
 import edu.brown.h2r.diapers.solver.Solver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
+import edu.brown.h2r.diapers.pomdp.ObservationModel;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
 
 import burlap.oomdp.singleagent.common.UniformCostRF;
@@ -34,11 +36,16 @@ public class Demo {
 	private static RewardFunction reward = new UniformCostRF();
 	private static boolean user = false;
 	private static StateParser sparse;
+	private static int obsNum = 1;
+	private static ObservationModel obsModel;
 
 	public static void main(String[] args) {
 	System.out.println("Demo running... parsing input...");
 		for(String arg : args) {
-			if(arg.startsWith("D")) {
+			if(arg.startsWith("O")) {
+				obsNum = Integer.parseInt(arg.split("=")[1]);
+				System.out.println("More observations! " + obsNum);
+			} else if(arg.startsWith("D")) {
 				switch(arg.split("=")[1]) {
 					case "tiger":
 						domain = (POMDPDomain) new TigerDomain().generateDomain();
@@ -56,6 +63,7 @@ public class Demo {
 					case "mediumdiaper":
 						domain = (POMDPDomain) new MediumDiaperDomain().generateDomain();
 						reward = new UniformCostRF();
+						obsModel = new MediumDiaperObservationModel(domain);
 						break;
 				}
 			} else if(arg.startsWith("S")) {
@@ -76,6 +84,10 @@ public class Demo {
 			} else if(arg.equals("U")) {
 				user = true;
 			}
+		}
+
+		if(obsModel != null){
+			domain.setObservationModel(obsModel.withMultiplicity(obsNum));
 		}
 
 		if(solver != null && domain != null) {

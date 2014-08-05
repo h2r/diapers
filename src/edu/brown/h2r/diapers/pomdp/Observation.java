@@ -26,14 +26,6 @@ public class Observation {
 		this.domain.addObservation(this);
 	}
 
-	/**
-	 * Returns the probability of observing this observation in state s after having taken
-	 * action a.  Should be overridden in implementation.
-	 *
-	 * @param s 	The state in which we arrived
-	 * @param a 	The action we took to get there
-	 * @return 		The probability of observing this observation
-	 */
 	public double getProbability(State s, GroundedAction a) {
 		return 0;
 	}

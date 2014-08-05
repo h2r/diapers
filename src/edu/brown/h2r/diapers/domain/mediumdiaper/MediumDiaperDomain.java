@@ -34,8 +34,6 @@ public class MediumDiaperDomain implements DomainGenerator {
 		//Set up the domain object, forwarding calls through to static methods of the MediumDiaperDomain class
 		Domain domain = new POMDPDomain() {
 			@Override public POMDPState sampleInitialState() { return MediumDiaperDomain.sampleInitialStates(this); }
-			@Override public Observation makeObservationFor(GroundedAction a, POMDPState s) { return MediumDiaperDomain.makeObservationFor(this, a, s); }
-			@Override public boolean isSuccess(Observation o) { return MediumDiaperDomain.isSuccess(o); }
 			@Override public boolean isTerminal(POMDPState s) { return MediumDiaperDomain.isTerminal(this, s); }
 			@Override public List<POMDPState> getAllInitialStates() { return new ArrayList<POMDPState>(); }
 		};
@@ -79,28 +77,8 @@ public class MediumDiaperDomain implements DomainGenerator {
 		return domain;
 	}
 
-	public static boolean isSuccess(Observation o) {
-		return o.getName().equals("done");
-	}
-
 	public static boolean isTerminal(Domain d, POMDPState s) {
 		return s.getObject(Names.OBJ_CAREGIVER).getStringValForAttribute(Names.ATTR_MENTAL_STATE).equals("done");
-	}
-
-	/**
-	 * Generates an observation for a given S x A pair in a given domain.
-	 *
-	 * @param d 	The domain in which the observation should be valid
-	 * @param a 	The GroundedAction which was taken immediately prior to this observation
-	 * @param s		The state arrived in upon executing the GroundedAction a
-	 * @return		An observation sampled with the proper distribution from O(s, a)
-	 */
-	public static Observation makeObservationFor(Domain d, GroundedAction a, POMDPState s) {
-		if(a.action.getName().equals(Names.ACTION_ASK)) {
-			return new Observation(d, s.getObject(Names.OBJ_CAREGIVER).getStringValForAttribute(Names.ATTR_MENTAL_STATE));
-		} else {
-			return new Observation(d, "null");
-		}
 	}
 
 	/**
@@ -198,7 +176,7 @@ public class MediumDiaperDomain implements DomainGenerator {
 
 		//Otherwise, the problem is solved
 		} else {
-			myGoal = new ObjectInstance(goalClass, "");
+			myGoal = new ObjectInstance(goalClass, "null");
 			arranged = true;
 		}
 
