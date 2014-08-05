@@ -137,12 +137,12 @@ public class MediumDiaperDomain implements DomainGenerator {
 		baby.setValue(Names.ATTR_RASH, new java.util.Random().nextBoolean() ? 1 : 0);
 
 		//Place contents in the proper initial container
-		placeObject(ointment, dresser);
+		placeObject(newClothes, dresser);
 		placeObject(oldClothes, changingTable);
-		placeObject(newClothes, sideTable);
+		placeObject(ointment, sideTable);
 
 		//Add objects to the state, and have the caregiver decide on its mental state
-		addObjects(s, caregiver, baby, ointment, oldClothes, newClothes, changingTable, hamper, sideTable, dresser);
+		addObjects(s, caregiver, baby, oldClothes, newClothes, changingTable, hamper, sideTable, dresser, ointment);
 		caregiverThink(d, s);
 
 		//Et voila
@@ -177,9 +177,10 @@ public class MediumDiaperDomain implements DomainGenerator {
 	 * @param domain		The domain in which the caregiver inhabits
 	 * @param s				The current state of the world
 	 */
-	public static void caregiverThink(Domain d, State s) {
+	public static boolean caregiverThink(Domain d, State s) {
 		ObjectInstance caregiver = s.getObject(Names.OBJ_CAREGIVER);
 		ObjectClass goalClass = d.getObjectClass(Names.CLASS_GOAL);
+		boolean arranged = false;
 
 		ObjectInstance myGoal = null;
 
@@ -197,9 +198,11 @@ public class MediumDiaperDomain implements DomainGenerator {
 
 		//Otherwise, the problem is solved
 		} else {
-			myGoal = new ObjectInstance(goalClass, "done");
+			myGoal = new ObjectInstance(goalClass, "");
+			arranged = true;
 		}
 
 		caregiver.addRelationalTarget(Names.ATTR_MENTAL_STATE, myGoal.getName());
+		return arranged;
 	}
 }

@@ -80,8 +80,11 @@ public class POMCPSolver extends Solver {
 				root.saveValues();
 			}
 
+			System.out.println(simulations + " simulations run.");
+
 			if(userMode) new NodeExplorer(sparse).explore(root); 
 			
+			if(root.isLeaf()) System.out.println("Root has no children");
 			GroundedAction a = root.bestRealAction();
 			environment.perform(a);
 			Observation o = environment.observe(a);
@@ -114,10 +117,14 @@ public class POMCPSolver extends Solver {
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) return 0;
 
 		if(node.isLeaf()) {
-			if(getGroundedActions(state).size() == 0) System.out.println("No actions for this state!");
+
+			if(getGroundedActions(state).isEmpty()) System.out.println("No grounded actions found for this state");
+
 			for(GroundedAction a : getGroundedActions(state)) {
 				node.addChild(a);
 			}
+
+			//System.out.println("Node now has " + node.branchingFactor() + " children");
 
 			return rollout(state, depth);
 		}

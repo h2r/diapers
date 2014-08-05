@@ -61,8 +61,12 @@ public class Actions {
 
 		@Override
 		protected State performActionHelper(State st, String[] params) {
+
 			POMDPState ps = new POMDPState(st);
-			MediumDiaperDomain.caregiverThink(domain, ps);
+			boolean done = MediumDiaperDomain.caregiverThink(domain, ps);
+			if(done) {
+				ps.getObject(Names.OBJ_CAREGIVER).setValue(Names.ATTR_MENTAL_STATE, "done");
+			}
 			return ps;
 		}
 	}

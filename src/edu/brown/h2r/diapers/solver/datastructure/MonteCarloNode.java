@@ -53,6 +53,10 @@ public class MonteCarloNode {
 		
 	}
 
+	public int branchingFactor() {
+		return children.size();
+	}
+
 	public void prune() {
 		if(this.isLeaf()) return;
 		for(HistoryElement elem : children.keySet()) {

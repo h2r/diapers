@@ -21,6 +21,8 @@ public class UserEnvironment extends Environment {
 	}
 
 	public Observation observe(GroundedAction a) {
+		if(sparse == null) return domain.makeObservationFor(a, currentState);
+
 		String observation = "";
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
