@@ -1,7 +1,0 @@
-TURN 0
-POLICY PO-UCT
-STATE The lotion is in the changing table. The old clothes are in the hamper. The new clothes are in the changing table. The dresser is open. The baby has a rash. The caregiver's mental state is 'done'. 
-ACTION action.ask()
-OBSERVATION done
-REWARD -100.0
-
