@@ -1,5 +1,8 @@
 package edu.brown.h2r.diapers.testing;
 
+import edu.brown.h2r.diapers.domain.rocksample.RockSampleDomain;
+import edu.brown.h2r.diapers.domain.rocksample.RockSampleDomainStateParser;
+import edu.brown.h2r.diapers.domain.rocksample.RockSampleRewardFunction;
 import edu.brown.h2r.diapers.domain.tiger.TigerDomain;
 import edu.brown.h2r.diapers.domain.tiger.TigerRewardFunction;
 import edu.brown.h2r.diapers.domain.easydiaper.RashDomain;
@@ -8,17 +11,16 @@ import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerDomain;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
 import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperDomain;
-import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperObservationModel;
 import edu.brown.h2r.diapers.solver.Solver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
-import edu.brown.h2r.diapers.pomdp.ObservationModel;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
 
 import burlap.oomdp.singleagent.common.UniformCostRF;
 import burlap.oomdp.singleagent.RewardFunction;
 import burlap.oomdp.auxiliary.StateParser;
+import burlap.debugtools.RandomFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Demo {
 
@@ -36,16 +39,17 @@ public class Demo {
 	private static RewardFunction reward = new UniformCostRF();
 	private static boolean user = false;
 	private static StateParser sparse;
-	private static int obsNum = 1;
-	private static ObservationModel obsModel;
+	
+	
 
 	public static void main(String[] args) {
-	System.out.println("Demo running... parsing input...");
+		RandomFactory.seedMapped(0, 10000);
+		Random rand = RandomFactory.getMapped(0);
+	System.out.println("Demo running... parsing input...... new domain");
+	for(int totalCount = 0;totalCount<10;totalCount++){
+		System.out.println("run number: "+totalCount);
 		for(String arg : args) {
-			if(arg.startsWith("O")) {
-				obsNum = Integer.parseInt(arg.split("=")[1]);
-				System.out.println("More observations! " + obsNum);
-			} else if(arg.startsWith("D")) {
+			if(arg.startsWith("D")) {
 				switch(arg.split("=")[1]) {
 					case "tiger":
 						domain = (POMDPDomain) new TigerDomain().generateDomain();
@@ -57,13 +61,17 @@ public class Demo {
 						sparse = new InfinitigerStateParser();
 						break;
 					case "easydiaper":
-						domain = (POMDPDomain) new RashDomain().generateDomain();
+						domain = (POMDPDomain) new RashDomain(10).generateDomain();
 						reward = new RashDomainRewardFunction();
 						break;
 					case "mediumdiaper":
 						domain = (POMDPDomain) new MediumDiaperDomain().generateDomain();
 						reward = new UniformCostRF();
-						obsModel = new MediumDiaperObservationModel(domain);
+						break;
+					case "rocksample":
+						domain = (POMDPDomain) new RockSampleDomain().generateDomain();
+						reward = new RockSampleRewardFunction();
+						sparse = new RockSampleDomainStateParser();
 						break;
 				}
 			} else if(arg.startsWith("S")) {
@@ -86,10 +94,6 @@ public class Demo {
 			}
 		}
 
-		if(obsModel != null){
-			domain.setObservationModel(obsModel.withMultiplicity(obsNum));
-		}
-
 		if(solver != null && domain != null) {
 			long startTime = System.currentTimeMillis();
 			System.out.println("Parse successful, running");
@@ -106,7 +110,12 @@ public class Demo {
 			System.out.println("total time: " + totalTime);
 		} else {
 			System.out.println("Unable to create solver and/or domain, check your arguments...");
+		
 		}
+		domain = null;
+		solver=null;
+		sparse=null;
+	}
 	}
 
 	public static Map<String, Double> parseFile(String filename) {

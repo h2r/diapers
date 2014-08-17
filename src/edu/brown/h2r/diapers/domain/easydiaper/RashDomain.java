@@ -27,10 +27,15 @@ import burlap.behavior.singleagent.auxiliary.StateReachability;
 
 public class RashDomain implements DomainGenerator {
 	
-	private static double noise = 0;
+	private static double noise = 0.20;
 	private static int observationTypes = 4;
+	private static int repeatedObservations = 1;
 
 	public RashDomain() {};
+	public RashDomain(int repeatObs) {
+		repeatedObservations = repeatObs;
+	};
+
 	
 	@Override
 	public Domain generateDomain() {
@@ -49,7 +54,7 @@ public class RashDomain implements DomainGenerator {
 		}
 		@Override
 		public boolean isSuccess(Observation o){
-			return o.getName().equals(Names.OBS_GOAL);
+			return o.getName().split("#")[0].equals(Names.OBS_GOAL);
 		}
 		@Override 
 		public boolean isTerminal(POMDPState s){
@@ -131,10 +136,13 @@ public class RashDomain implements DomainGenerator {
 //        Action nullAction = new burlap.oomdp.singleagent.common.NullAction("NOP", domain, "");
 //		GroundedAction bringDiaper = new GroundedAction(RashDomain.BringAction, new String[]{Names})
 		
-		Observation startStateObs = new SimpleObservation(domain, Names.OBS_START, Names.MS_TYPE_START);
-		Observation rashObs = new SimpleObservation(domain, Names.OBS_RASH, Names.MS_TYPE_RASH);
-		Observation noRashObs = new SimpleObservation(domain, Names.OBS_NO_RASH, Names.MS_TYPE_NO_RASH);
-		Observation goalObs = new SimpleObservation(domain, Names.OBS_GOAL,Names.MS_TYPE_GOAL);
+		for(int obsCount = 0;obsCount < repeatedObservations; obsCount++){
+//			System.out.println("was here");
+			Observation startStateObs = new SimpleObservation(domain, Names.OBS_START+"#" + obsCount, Names.MS_TYPE_START );
+			Observation rashObs = new SimpleObservation(domain, Names.OBS_RASH+"#" + obsCount, Names.MS_TYPE_RASH);
+			Observation noRashObs = new SimpleObservation(domain, Names.OBS_NO_RASH+"#" + obsCount, Names.MS_TYPE_NO_RASH);
+			Observation goalObs = new SimpleObservation(domain, Names.OBS_GOAL+"#" + obsCount,Names.MS_TYPE_GOAL);
+		}
 		
 		
 		
@@ -402,7 +410,7 @@ public class RashDomain implements DomainGenerator {
 		protected State performActionHelper(State s, String[] params){
 			POMDPState ps = new POMDPState(s);
 			POMDPDomain PDomain = (POMDPDomain) domain;
-			ObjectInstance human=ps.getObject(Names.OBJ_HUMAN);
+			
 			ObjectInstance baby=ps.getObject(Names.OBJ_BABY);
 			if(!baby.getStringValForAttribute(Names.ATTR_WEARING).equals(Names.OBJ_NEWDIAPER)){
 			ObjectInstance obj = ps.getObject(Names.OBJ_NEWDIAPER);
@@ -415,7 +423,7 @@ public class RashDomain implements DomainGenerator {
 			
 			
 			//human actions: This is the  human transition function basically
-			
+			ObjectInstance human=ps.getObject(Names.OBJ_HUMAN);
 			String mentalState = (String) human.getAllRelationalTargets(Names.ATTR_MENTAL_STATE).toArray()[0];
 					
 			switch(mentalState){
@@ -426,17 +434,20 @@ public class RashDomain implements DomainGenerator {
 //				PDomain.getObservation(mentalState);
 				double tempDouble=Math.random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_START));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						java.util.Random randomTemp = new java.util.Random();
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						java.util.Random randomTemp = new java.util.Random();
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: bring diaper observation mess up 1");
@@ -456,17 +467,19 @@ public class RashDomain implements DomainGenerator {
 //				ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
 				double tempDouble=Math.random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+					java.util.Random randomTemp = new java.util.Random();
+					ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
+					java.util.Random randomTemp = new java.util.Random();
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_START));
+						ps.setObservation(PDomain.getObservation(Names.OBS_START+ "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: bring diaper observation mess up 2");
@@ -494,17 +507,20 @@ public class RashDomain implements DomainGenerator {
 				else{
 					double tempDouble=Math.random();
 					if(tempDouble>noise){
-					ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						java.util.Random randomTemp = new java.util.Random();
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + randomTemp.nextInt(repeatedObservations)));
+						
 					}
 					else{
 						int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
+						java.util.Random randomTemp = new java.util.Random();
 						switch(tempNoise){
 						case(0):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_START));
+							ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						case(1):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+							ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						default:System.out.println("RashDomain: bring diaper observation mess up 3");
@@ -516,8 +532,8 @@ public class RashDomain implements DomainGenerator {
 			}
 			case(Names.MS_TYPE_GOAL):{
 //				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL));
-				
-				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL + "#" + randomTemp.nextInt(repeatedObservations)));
 				
 				break;
 			}
@@ -581,18 +597,19 @@ public class RashDomain implements DomainGenerator {
 //				PDomain.getObservation(mentalState);
 //				ps.setObservation(PDomain.getObservation(Names.OBS_START));
 				double tempDouble=Math.random();
+				java.util.Random randomTemp = new java.util.Random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_START));
+				ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH+ "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: bring ointment observation mess up 4");
@@ -611,18 +628,19 @@ public class RashDomain implements DomainGenerator {
 				//else we change nothing
 //				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
 				double tempDouble=Math.random();
+				java.util.Random randomTemp = new java.util.Random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_START));
+						ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: bring ointment observation mess up 4");
@@ -631,18 +649,19 @@ public class RashDomain implements DomainGenerator {
 				}
 				else{
 					double tempDouble=Math.random();
+					java.util.Random randomTemp = new java.util.Random();
 					if(tempDouble>noise){
-					ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+					ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 					}
 					else{
 						int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
 						switch(tempNoise){
 						case(0):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_START));
+							ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						case(1):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+							ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						default:System.out.println("RashDomain: bring ointment observation mess up 4");
@@ -666,18 +685,19 @@ public class RashDomain implements DomainGenerator {
 //				}
 //				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
 				double tempDouble=Math.random();
+				java.util.Random randomTemp = new java.util.Random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes-2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_START));
+						ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: bring ointment observation mess up 4");
@@ -687,8 +707,8 @@ public class RashDomain implements DomainGenerator {
 			}
 			case(Names.MS_TYPE_GOAL):{
 //				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL));
-				
-				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL + "#" + randomTemp.nextInt(repeatedObservations)));
 				
 				break;
 				}
@@ -742,6 +762,7 @@ public class RashDomain implements DomainGenerator {
 				ObjectInstance changingTable = ps.getObject(Names.OBJ_CHANGINGTABLE);
 				changingTable.addRelationalTarget(Names.ATTR_CONTENTS, oldDiaper.getName());
 				double tempRand = Math.random();
+				
 				if (tempRand < 0.5){
 					// baby has rash
 					baby.setValue(Names.ATTR_BABY_RASH, 1);
@@ -749,17 +770,19 @@ public class RashDomain implements DomainGenerator {
 //					ps.setObservation(pd.getObservation(Names.OBS_RASH));
 					double tempDouble=Math.random();
 					if(tempDouble>noise){
-					ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						java.util.Random randomTemp = new java.util.Random();
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 					}
 					else{
 						int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
+						java.util.Random randomTemp = new java.util.Random();
 						switch(tempNoise){
 						case(0):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_START));
+							ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						case(1):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+							ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						default:System.out.println("RashDomain: null action observation mess up 4");
@@ -773,17 +796,19 @@ public class RashDomain implements DomainGenerator {
 //					ps.setObservation(pd.getObservation(Names.OBS_NO_RASH));
 					double tempDouble=Math.random();
 					if(tempDouble>noise){
-					ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						java.util.Random randomTemp = new java.util.Random();
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 					}
 					else{
+						java.util.Random randomTemp = new java.util.Random();
 						int tempNoise = (int) Math.floor(Math.random()*(observationTypes-2));
 						switch(tempNoise){
 						case(0):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_START));
+							ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						case(1):{
-							ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+							ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 							break;
 						}
 						default:System.out.println("RashDomain: null action observation mess up 4");
@@ -799,17 +824,19 @@ public class RashDomain implements DomainGenerator {
 //				ps.setObservation(pd.getObservation(Names.OBS_RASH));
 				double tempDouble=Math.random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+					java.util.Random randomTemp = new java.util.Random();
+					ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
+					java.util.Random randomTemp = new java.util.Random();
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_START));
+						ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: null action observation mess up 4");
@@ -821,17 +848,19 @@ public class RashDomain implements DomainGenerator {
 //				ps.setObservation(pd.getObservation(Names.OBS_NO_RASH));
 				double tempDouble=Math.random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+					java.util.Random randomTemp = new java.util.Random();
+					ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
+					java.util.Random randomTemp = new java.util.Random();
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes-2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_START));
+						ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: null action observation mess up 4");
@@ -841,8 +870,8 @@ public class RashDomain implements DomainGenerator {
 			}
 			case(Names.MS_TYPE_GOAL):{
 //				ps.setObservation(pd.getObservation(Names.OBS_GOAL));
-				
-				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL + "#" + randomTemp.nextInt(repeatedObservations)));
 				
 				break;
 			}
@@ -914,21 +943,18 @@ public class RashDomain implements DomainGenerator {
 			
 			String mentalStateHuman = human.getStringValForAttribute(Names.ATTR_MENTAL_STATE);
 			if(this.name.equals(Names.OBS_GOAL) && this.mentalStateAssociated.equals(mentalStateHuman)){
-				return 1.0;
+				return 1.0/repeatedObservations;
 			}
 			else if(this.name.equals(Names.OBS_GOAL) && !this.mentalStateAssociated.equals(mentalStateHuman)){
 				return 0.0;
 			}
 			if(mentalStateHuman.equals(mentalStateAssociated)){
-				return 1.0-noise;
+				return (1.0-noise)/repeatedObservations;
 			}
 			else{
-				return 0.0+noise/(observationTypes-2);
+				return noise/((observationTypes-2)*repeatedObservations);
 			}
 		}
-		
-		
-		
 	}
 	
 	public static POMDPState getObservation(POMDPState ps, GroundedAction ga, POMDPDomain PDomain){
@@ -939,17 +965,19 @@ public class RashDomain implements DomainGenerator {
 //				ps.setObservation(dom.getObservation(Names.OBS_START));
 				double tempDouble=Math.random();
 				if(tempDouble>noise){
-				ps.setObservation(PDomain.getObservation(Names.OBS_START));
+					java.util.Random randomTemp = new java.util.Random();
+					 ps.setObservation(PDomain.getObservation(Names.OBS_START+ "#" + randomTemp.nextInt(repeatedObservations)));
 				}
 				else{
+					java.util.Random randomTemp = new java.util.Random();
 					int tempNoise = (int) Math.floor(Math.random()*(observationTypes-2));
 					switch(tempNoise){
 					case(0):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_RASH+ "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					case(1):{
-						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+						ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH+ "#" + randomTemp.nextInt(repeatedObservations)));
 						break;
 					}
 					default:System.out.println("RashDomain: get observation mess up 4");
@@ -963,17 +991,19 @@ public class RashDomain implements DomainGenerator {
 //				s.setObservation(dom.getObservation(Names.OBS_RASH));
 				double tempDouble=Math.random();
 			if(tempDouble>noise){
-			ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 			}
 			else{
+				java.util.Random randomTemp = new java.util.Random();
 				int tempNoise = (int) Math.floor(Math.random()*(observationTypes -2));
 				switch(tempNoise){
 				case(0):{
-					ps.setObservation(PDomain.getObservation(Names.OBS_START));
+					ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 					break;
 				}
 				case(1):{
-					ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+					ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 					break;
 				}
 				default:System.out.println("RashDomain: get observation mess up 4");
@@ -985,17 +1015,19 @@ public class RashDomain implements DomainGenerator {
 //				s.setObservation(dom.getObservation(Names.OBS_NO_RASH));
 				double tempDouble=Math.random();
 			if(tempDouble>noise){
-			ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_NO_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 			}
 			else{
+				java.util.Random randomTemp = new java.util.Random();
 				int tempNoise = (int) Math.floor(Math.random()*(observationTypes-2));
 				switch(tempNoise){
 				case(0):{
-					ps.setObservation(PDomain.getObservation(Names.OBS_RASH));
+					ps.setObservation(PDomain.getObservation(Names.OBS_RASH + "#" + randomTemp.nextInt(repeatedObservations)));
 					break;
 				}
 				case(1):{
-					ps.setObservation(PDomain.getObservation(Names.OBS_START));
+					ps.setObservation(PDomain.getObservation(Names.OBS_START + "#" + randomTemp.nextInt(repeatedObservations)));
 					break;
 				}
 				default:System.out.println("RashDomain: get observation mess up 4");
@@ -1005,7 +1037,8 @@ public class RashDomain implements DomainGenerator {
 			}
 			case(Names.MS_TYPE_GOAL):{
 //			
-			ps.setObservation(PDomain.getObservation(Names.OBS_GOAL));
+				java.util.Random randomTemp = new java.util.Random();
+				ps.setObservation(PDomain.getObservation(Names.OBS_GOAL + "#" + randomTemp.nextInt(repeatedObservations)));
 			
 			break;
 			}

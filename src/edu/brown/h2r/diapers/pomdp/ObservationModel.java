@@ -38,7 +38,7 @@ public abstract class ObservationModel {
 				Set<Observation> newSet = new HashSet<Observation>();
 				for(Observation oldObs : oldObsModel.getAllObservations()) {
 					for(int i = 0; i < number; ++i) {
-						newSet.add(new Observation(oldObs.getDomain(), oldObs.getName() + n));
+						newSet.add(new Observation(oldObs.getDomain(), oldObs.getName() + i));
 					}
 				}
 				return newSet;
@@ -53,7 +53,7 @@ public abstract class ObservationModel {
 				Set<Observation> newSet = new HashSet<Observation>();
 				for(Observation oldObs : oldObsModel.getAllObservations()) {
 					for(int i = 0; i < number; ++i) {
-						newSet.add(new Observation(oldObs.getDomain(), oldObs.getName() + n));
+						newSet.add(new Observation(oldObs.getDomain(), oldObs.getName() + i));
 					}
 				}
 				return newSet;

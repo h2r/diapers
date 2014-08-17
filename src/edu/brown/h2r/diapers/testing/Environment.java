@@ -13,6 +13,9 @@ public class Environment {
 	protected POMDPState currentState;
 	protected RewardFunction reward;
 	protected double totalReward;
+	protected double discountedReward;
+	protected double discount = 0.95;
+	protected int step = 0;
 	
 	public Environment(POMDPDomain d, RewardFunction r) {
 		domain = d;
@@ -38,8 +41,11 @@ public class Environment {
 			POMDPState sPrime = (POMDPState) a.performAction(currentState, params);
 			double r = reward.reward(currentState, new GroundedAction(a, params), sPrime);
 			totalReward += r;
+			discountedReward += r*Math.pow(discount, step);
 			System.out.println("The agent received reward " + r);
 			currentState = sPrime;
+			domain.visualizeState(currentState);
+			step++;
 		}
 	}
 
@@ -49,9 +55,18 @@ public class Environment {
 
 	public void reset() {
 		currentState = domain.sampleInitialState();
+		domain.visualizeState(currentState);
 	}
 
 	public double getTotalReward() {
 		return totalReward;
+	}
+	
+	public double getDiscountedReward() {
+		return discountedReward;
+	}
+	
+	public int getSteps(){
+		return step;
 	}
 }

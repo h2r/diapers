@@ -4,17 +4,21 @@ import edu.brown.h2r.diapers.util.ANSIColor;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.pomdp.Observation;
 
+import burlap.debugtools.RandomFactory;
 import burlap.oomdp.singleagent.GroundedAction;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
 
 public class MonteCarloNode {
 	protected Map<HistoryElement, MonteCarloNode> children = new HashMap<HistoryElement, MonteCarloNode>();
 	private List<POMDPState> beliefParticles = new ArrayList<POMDPState>();
 	private List<Double> valueHistory = new ArrayList<Double>();
+	private Random rand = RandomFactory.getMapped(0);
+//	private Random rand = new java.util.Random();
 
 	private int visits;
 	private double value;
@@ -53,10 +57,6 @@ public class MonteCarloNode {
 		
 	}
 
-	public int branchingFactor() {
-		return children.size();
-	}
-
 	public void prune() {
 		if(this.isLeaf()) return;
 		for(HistoryElement elem : children.keySet()) {
@@ -93,11 +93,15 @@ public class MonteCarloNode {
 	}
 
 	public synchronized void removeRandomParticle() {
-		beliefParticles.remove(new java.util.Random().nextInt(beliefParticles.size()));
+//		beliefParticles.remove(rand.nextInt(beliefParticles.size()));
+		beliefParticles.remove(rand.nextInt(Integer.MAX_VALUE) % beliefParticles.size());
+//		beliefParticles.remove(new java.util.Random(89).nextInt(beliefParticles.size()));
 	}
 
 	public POMDPState sampleParticles() {
-		return beliefParticles.get(new java.util.Random().nextInt(beliefParticles.size()));
+//		return beliefParticles.get(rand.nextInt(beliefParticles.size()));
+		return beliefParticles.get(rand.nextInt(Integer.MAX_VALUE) % beliefParticles.size());
+//		return beliefParticles.get(new java.util.Random(89).nextInt(beliefParticles.size()));
 	}
 
 	public int particleCount() {
@@ -192,6 +196,10 @@ public class MonteCarloNode {
 
 	public List<POMDPState> getParticles() {
 		return this.beliefParticles;
+	}
+	
+	public void setParticles(List<POMDPState> particlesList) {
+		this.beliefParticles = particlesList;
 	}
 
 	public Map<HistoryElement, MonteCarloNode> getMap() {

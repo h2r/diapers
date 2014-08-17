@@ -55,6 +55,14 @@ public abstract class Solver {
 	public void setParams(Map<String, Double> params) { 
 		return;
 	}
+	
+	public double getReward(){
+		return environment.getTotalReward();
+	}
+	
+	public double getDiscountedReward(){
+		return environment.getDiscountedReward();
+	}
 
 	public abstract void run();
 }

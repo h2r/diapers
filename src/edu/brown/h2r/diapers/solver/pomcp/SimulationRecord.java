@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.pomdp;
+package edu.brown.h2r.diapers.solver.pomcp;
 
 import burlap.oomdp.core.State;
 import burlap.oomdp.singleagent.GroundedAction;
@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.File;
+
+import edu.brown.h2r.diapers.pomdp.Observation;
 
 public class SimulationRecord {
 

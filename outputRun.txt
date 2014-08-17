@@ -1,0 +1,35 @@
+TestBench running... parsing input...... new domain
+run number: 0
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#231
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#904
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#694
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 153
+run number: 1
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#3
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#592
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#157
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 60
+Average discounted Reward: -2.8525 standrd deviation: 0.0 95% confidence interval: 0.0
+Average Reward: -3.0 standrd deviation: 0.0 95% confidence interval: 0.0

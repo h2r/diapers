@@ -10,6 +10,7 @@ import edu.brown.h2r.diapers.testing.Environment;
 import burlap.oomdp.singleagent.GroundedAction;
 import burlap.oomdp.singleagent.Action;
 import burlap.oomdp.singleagent.RewardFunction;
+import burlap.debugtools.RandomFactory;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -21,12 +22,17 @@ public class POMCPSolver extends Solver {
 	protected MonteCarloNode root = new MonteCarloNode();
 
 	private Calendar timer;
+	private boolean testWithNumSim = true;
+	
 
-	private int NUM_PARTICLES = 10;
+	private int NUM_PARTICLES = 128;
 	private long TIME_ALLOWED = 500;
-	private double GAMMA = 0.99;
+	private double GAMMA = 0.95;
 	private double EPSILON = 1E-2;
-	private double EXP_BONUS = 130;
+	private double EXP_BONUS = 20;
+	private int NUM_SIMS = NUM_PARTICLES;
+	private int HORIZON = 88;// 88 steps for .95 to be less than Epsilon = 0.01
+
 
 	protected boolean particles = true;
 
@@ -41,14 +47,23 @@ public class POMCPSolver extends Solver {
 		Double GM = params.get("GAMMA");
 		Double EP = params.get("EPSILON");
 		Double EB = params.get("EXP_BONUS");
+		Double HZ = params.get("HORIZON");
+		Double NS = params.get("NUM_SIMS");
 
 		NUM_PARTICLES = (int) (NP == null ? NUM_PARTICLES : NP);
 		TIME_ALLOWED = (long) (TA == null ? TIME_ALLOWED : TA);
 		GAMMA = GM == null ? GAMMA : GM;
 		EPSILON = EP == null ? EPSILON : EP;
 		EXP_BONUS = EB == null ? EXP_BONUS : EB;
+		HORIZON = (int) (HZ == null ? HORIZON : HZ);
+		NUM_SIMS = (int) (NS==null? NUM_SIMS : NS);
+		if(TA!=null && NS==null){
+			testWithNumSim = false;
+		}
+		
 
 		System.out.println("Parameters successfully set to NUM=" + NUM_PARTICLES + ", TIME=" + TIME_ALLOWED + ", GAMMA=" + GAMMA + ", EPSILON=" + EPSILON + ", C=" + EXP_BONUS + ".");
+		System.out.println("NUM_SIMS = " + NUM_SIMS + " testWithNumSims = " + testWithNumSim);
 	}
 
 	protected void setTimer() {
@@ -65,41 +80,68 @@ public class POMCPSolver extends Solver {
 
 	@Override
 	public void run() {
+//		System.out.println("in run");
 		for(int i = 0; i < this.NUM_PARTICLES; ++i) {
 			root.addParticle(domain.sampleInitialState());
 		}
+		boolean obsExists = true;
 
 		while(true) {
 			
 			int simulations = 0; 
 			setTimer();
-			while(!timeout()) {
+//			while(!timeout()) {
+			while(((simulations < NUM_SIMS) || !testWithNumSim ) && (!timeout() || testWithNumSim) && obsExists) {
 				simulations++;
 				POMDPState s = root.sampleParticles();
 				simulate(s, root, 0);
 				root.saveValues();
 			}
-
-			System.out.println(simulations + " simulations run.");
+			
+			GroundedAction a = null;
 
 			if(userMode) new NodeExplorer(sparse).explore(root); 
-			
-			if(root.isLeaf()) System.out.println("Root has no children");
-			GroundedAction a = root.bestRealAction();
+			if(obsExists){
+				System.out.println("POMCPSolver: regular actions");
+				a = root.bestRealAction();
+			}
+			else{
+//				java.util.Random randomTemp = new java.util.Random();
+				System.out.println("POMCPSolver: random actions");
+				List<GroundedAction> gaList = getGroundedActions((POMDPState)environment.getCurrentState()); 
+//				a = gaList.get(randomTemp.nextInt(gaList.size()));
+				a = gaList.get(RandomFactory.getMapped(0).nextInt(gaList.size()));
+			}
 			environment.perform(a);
 			Observation o = environment.observe(a);
 			System.out.println("Agent observed " + o.getName());
 
-			if(isSuccess(o)) break;
+			if(isSuccess(o) || environment.getSteps() > HORIZON) break;
 
 			MonteCarloNode parent = root;
+			MonteCarloNode newRoot = new MonteCarloNode();
+			
+			if(obsExists){
 
-			if(root.advance(a).advance(o) == null) root.advance(a).addChild(o);		
+			if(root.advance(a).advance(o) == null) {
+				obsExists = false;
+				root.advance(a).addChild(o);		
+			}
 			root.pruneExcept(a);
 			root.advance(a).pruneExcept(o);
 			root = root.advance(a).advance(o);
+//			System.out.println("RootValue before:" + root.getVisits());
+			newRoot.setParticles(root.getParticles());
+			root.prune();
+			root = null;
+			
+			root = newRoot;
+//			System.out.println("RootValue:" + root.getVisits());
+			
+			long timeStart = System.currentTimeMillis();
 
-			while(root.particleCount() < this.NUM_PARTICLES) {
+			while(obsExists && root.particleCount() < this.NUM_PARTICLES) {
+				
 				POMDPState s = parent.sampleParticles();
 				POMDPState s_ = (POMDPState) a.action.performAction(s, a.params);
 				Observation o_ = domain.makeObservationFor(a, s_);
@@ -108,25 +150,26 @@ public class POMCPSolver extends Solver {
 			while(root.particleCount() > this.NUM_PARTICLES) {
 				root.removeRandomParticle();
 			}
+			}
 		}
 
-		System.out.println("Agent solved the problem receiving total reward " + environment.getTotalReward());
+		System.out.println("Agent solved the problem receiving total reward " + environment.getTotalReward() + ", discounted reward: "+ environment.getDiscountedReward() + " in " + environment.getSteps() + " steps.");
+//		System.out.println("out of run");
 	}
 	
 	protected double simulate(POMDPState state, MonteCarloNode node, int depth) {
+//		System.out.println("POMCPSolver: in simulate");
 		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) return 0;
 
 		if(node.isLeaf()) {
-
-			if(getGroundedActions(state).isEmpty()) System.out.println("No grounded actions found for this state");
-
+			if(getGroundedActions(state).size() == 0) System.out.println("No actions for this state!");
 			for(GroundedAction a : getGroundedActions(state)) {
 				node.addChild(a);
 			}
 
-			//System.out.println("Node now has " + node.branchingFactor() + " children");
-
-			return rollout(state, depth);
+			double temp =  rollout(state, depth);
+//			System.out.println("POMCPSolver: out of simulate");
+			return temp;
 		}
 
 		GroundedAction a = node.bestExploringAction(EXP_BONUS);
@@ -141,24 +184,36 @@ public class POMCPSolver extends Solver {
 		node.visit();
 		node.advance(a).visit();
 		node.advance(a).augmentValue((expectedReward - node.advance(a).getValue())/node.advance(a).getVisits());
+//		System.out.println("POMCPSolver: out of simulate");
 
 		return expectedReward;
+		
 	}
 
 	private double rollout(POMDPState state, int depth) {
-		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) return 0;
-
-		GroundedAction a = getGroundedActions(state).get(new java.util.Random().nextInt(getGroundedActions(state).size()));
+//		System.out.println("POMCPSolver: in rollout");
+		if(Math.pow(this.GAMMA, depth) < this.EPSILON || isTerminal(state)) {
+//			System.out.println("POMCPSolver: in simulate");
+			return 0;}
+		
+//		GroundedAction a = getGroundedActions(state).get(new java.util.Random().nextInt(getGroundedActions(state).size()));
+		GroundedAction a = getGroundedActions(state).get(RandomFactory.getMapped(0).nextInt(getGroundedActions(state).size()));
 		POMDPState sPrime = (POMDPState) a.action.performAction(state, a.params);
+		
 
-		return rewardFunction.reward(state, a, sPrime) + this.GAMMA * rollout(sPrime, depth + 1);
+		double temp = rewardFunction.reward(state, a, sPrime) + this.GAMMA * rollout(sPrime, depth + 1);
+//		System.out.println("POMCPSolver: out of rollout");
+		return temp;
 	}
 
 	private List<GroundedAction> getGroundedActions(POMDPState state) {
+//		System.out.println("POMCPSolver: in get grounded actions");
 		List<GroundedAction> result = new ArrayList<GroundedAction>();
 		for(Action a : domain.getActions()) {
-			result.addAll(state.getAllGroundedActionsFor(a));
+//			result.addAll(state.getAllGroundedActionsFor(a));
+			result.addAll(a.getAllApplicableGroundedActions(state));
 		}
+//		System.out.println("POMCPSolver: out of get grounded actions");
 		return result;
 	}
 
