@@ -48,7 +48,21 @@ public class Util {
 			list.set(i, list.get(i)/sum);
 		}
 	}
+	
+	
+	
+	public static List<Double> listCDF(List<Double> list) {
+		double sum = 0.0;
+		List<Double> returnList = new ArrayList<Double>(); 
+		for(int i = 0; i < list.size(); ++i) {
+			sum += list.get(i);
+			returnList.add(sum);
+		}
+		return returnList;
+	}
 
+	
+	
 	public static int factorial(int n) {
 		if(n == 0) {
 			return 1;

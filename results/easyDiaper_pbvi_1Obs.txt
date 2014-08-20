@@ -1,0 +1,357 @@
+TestBench running... parsing input...... new domain
+run number: 0
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 22973
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0
+total time: 23021
+run number: 1
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 17356
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.start#0
+alpha vectors size:  2380
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0
+total time: 17383
+run number: 2
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 17597
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0
+total time: 17605
+run number: 3
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 23883
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0
+total time: 23890
+run number: 4
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 18227
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0
+total time: 18233
+run number: 5
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 16510
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.start#0
+alpha vectors size:  2380
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0
+total time: 16517
+run number: 6
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 18239
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0
+total time: 18245
+run number: 7
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 19918
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0
+total time: 19924
+run number: 8
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 16730
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0
+total time: 16735
+run number: 9
+Parse successful, running
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+PointBasedValueIteratoin: init - time taken for PBVI solving: 17209
+alpha vectors size:  2380
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+alpha vectors size:  2380
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0
+total time: 17214
+Average discounted Reward: -2.4914999999999994 standrd deviation: 0.44213289857236365 95% confidence interval: 0.274036809644252
+Average Reward: -2.6 standrd deviation: 0.48989794855663565 95% confidence interval: 0.3036418943426615

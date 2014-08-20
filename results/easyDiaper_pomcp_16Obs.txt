@@ -1,0 +1,211 @@
+TestBench running... parsing input...... new domain
+run number: 0
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#2
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#3
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.start#5
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#12
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#9
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#3
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#4
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#12
+Agent solved the problem receiving total reward -8.0, discounted reward: -6.731591374218749 in 8 steps.
+total time: 105
+run number: 1
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#8
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#13
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 39
+run number: 2
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#14
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 38
+run number: 3
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#7
+POMCPSolver: regular actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#6
+POMCPSolver: regular actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#6
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 140
+run number: 4
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#15
+POMCPSolver: regular actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.start#5
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#7
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 48
+run number: 5
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#14
+POMCPSolver: regular actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 35
+run number: 6
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#10
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#15
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#8
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#12
+Agent solved the problem receiving total reward -4.0, discounted reward: -3.709875 in 4 steps.
+total time: 10
+run number: 7
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#14
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#11
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#13
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#10
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#6
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#14
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#2
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#3
+Agent solved the problem receiving total reward -8.0, discounted reward: -6.731591374218749 in 8 steps.
+total time: 9
+run number: 8
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.start#2
+POMCPSolver: random actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#9
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#11
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#9
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#2
+POMCPSolver: random actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#3
+POMCPSolver: random actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#12
+Agent solved the problem receiving total reward -7.0, discounted reward: -6.033254078124999 in 7 steps.
+total time: 8
+run number: 9
+Parse successful, running
+POMCPSolver: regular actions
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#4
+POMCPSolver: regular actions
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#12
+POMCPSolver: regular actions
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#2
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 29
+Average discounted Reward: -3.7613811826562498 standrd deviation: 1.8742960514108808 95% confidence interval: 1.1617007282560128
+Average Reward: -4.2 standrd deviation: 2.3579652245103193 95% confidence interval: 1.4614819875728882

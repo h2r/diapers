@@ -15,16 +15,16 @@ import java.util.Random;
 
 public class MonteCarloNode {
 	protected Map<HistoryElement, MonteCarloNode> children = new HashMap<HistoryElement, MonteCarloNode>();
-	private List<POMDPState> beliefParticles = new ArrayList<POMDPState>();
-	private List<Double> valueHistory = new ArrayList<Double>();
-	private Random rand = RandomFactory.getMapped(0);
+	protected List<POMDPState> beliefParticles = new ArrayList<POMDPState>();
+	protected List<Double> valueHistory = new ArrayList<Double>();
+	protected Random rand = RandomFactory.getMapped(0);
 //	private Random rand = new java.util.Random();
 
-	private int visits;
-	private double value;
+	protected int visits;
+	protected double value;
 
 	public MonteCarloNode() {
-		this.visits = 1;
+		this.visits = 0;
 		this.value = 0;
 	}
  	
@@ -130,13 +130,20 @@ public class MonteCarloNode {
 
 		for(HistoryElement h : children.keySet()) {
 			MonteCarloNode child = children.get(h);
-			double test = child.getValue() + C * Math.sqrt(Math.log(this.getVisits())/child.getVisits());
+			int childVisitCount = child.getVisits();
+			double test =Double.MAX_VALUE;
+			if(childVisitCount > 0){
+
+			test = child.getValue() + C * Math.sqrt(Math.log(this.getVisits()+1)/childVisitCount);
+			}
+			
 
 			if(test > maxValue) {
 				maxValue = test;
 				bestAction = h.getAction();
 			}
 		}
+		
 
 
 		return bestAction;
@@ -159,15 +166,15 @@ public class MonteCarloNode {
 	}
 
 	public synchronized void addChild(Observation o) {
-		addChild(new HistoryElement(o), 1, 0);
+		addChild(new HistoryElement(o), 0, 0);
 	}
 
 	public synchronized void addChild(GroundedAction a) {
-		addChild(new HistoryElement(a), 1, 0);
+		addChild(new HistoryElement(a), 0, 0);
 	}
 
 	public synchronized void addChild(HistoryElement h) {
-		addChild(h, 1, 0);
+		addChild(h, 0, 0);
 	}
 
 	public synchronized void addChild(Observation o, int vis, double val) {

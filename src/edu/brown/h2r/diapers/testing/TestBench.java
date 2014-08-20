@@ -16,6 +16,7 @@ import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
+import edu.brown.h2r.diapers.sovler.lwpomcp.LWPOMCPSolver;
 
 
 import burlap.oomdp.singleagent.common.UniformCostRF;
@@ -43,16 +44,17 @@ public class TestBench {
 	private static RewardFunction reward = new UniformCostRF();
 	private static boolean user = false;
 	private static StateParser sparse;
-	private static int runs = 2;
-	private static double discountedRewardMean;
-	private static double RewardMean;
-	private static double discountedRewardStDev;
-	private static double RewardStDev;
+	private static int runs = 10;
+//	private static double discountedRewardMean;
+//	private static double RewardMean;
+//	private static double discountedRewardStDev;
+//	private static double RewardStDev;
 	private static List<Double> discountedRewardsList = new ArrayList<Double>();
+	private static List<Double> timeCalcList = new ArrayList<Double>();
 	private static List<Double> RewardsList = new ArrayList<Double>();
 
 	public static void main(String[] args) {
-		RandomFactory.seedMapped(0, 987);
+		RandomFactory.seedMapped(0, 479);
 //		Random rand = RandomFactory.getMapped(0);
 	System.out.println("TestBench running... parsing input...... new domain");
 	for(int totalCount = 0;totalCount<runs;totalCount++){
@@ -70,7 +72,7 @@ public class TestBench {
 						sparse = new InfinitigerStateParser();
 						break;
 					case "easydiaper":
-						domain = (POMDPDomain) new RashDomain(1000).generateDomain();
+						domain = (POMDPDomain) new RashDomain(1).generateDomain();
 						reward = new RashDomainRewardFunction();
 						break;
 					case "mediumdiaper":
@@ -93,6 +95,9 @@ public class TestBench {
 						break;
 					case "uct":
 						solver = new UCTSolver();
+						break;
+					case "lwpomcp":
+						solver = new LWPOMCPSolver();
 						break;
 						
 				}
@@ -119,6 +124,7 @@ public class TestBench {
 			System.out.println("total time: " + totalTime);
 			discountedRewardsList.add(solver.getDiscountedReward());
 			RewardsList.add(solver.getReward());
+			timeCalcList.add((double)totalTime); // this is a conversion from long to double but none of the time value but none of the long values seen compare to 1.797693e+308
 			
 		} else {
 			System.out.println("Unable to create solver and/or domain, check your arguments...");
@@ -130,6 +136,7 @@ public class TestBench {
 	}
 	System.out.println("Average discounted Reward: " + meanReward(discountedRewardsList) + " standrd deviation: " + stdDev(discountedRewardsList) + " 95% confidence interval: " + confInterval(discountedRewardsList) ) ;
 	System.out.println("Average Reward: " + meanReward(RewardsList) + " standrd deviation: " + stdDev(RewardsList) + " 95% confidence interval: " + confInterval(RewardsList) );
+	System.out.println("Average Time: " + meanReward(timeCalcList) + " standrd deviation: " + stdDev(timeCalcList) + " 95% confidence interval: " + confInterval(timeCalcList) );
 	}
 
 	public static Map<String, Double> parseFile(String filename) {
