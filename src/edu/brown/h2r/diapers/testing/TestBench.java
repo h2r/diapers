@@ -16,6 +16,7 @@ import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
+import edu.brown.h2r.diapers.sovler.lwpomcp.LBLWPOMCPSolver;
 import edu.brown.h2r.diapers.sovler.lwpomcp.LWPOMCPSolver;
 
 
@@ -72,7 +73,7 @@ public class TestBench {
 						sparse = new InfinitigerStateParser();
 						break;
 					case "easydiaper":
-						domain = (POMDPDomain) new RashDomain(1).generateDomain();
+						domain = (POMDPDomain) new RashDomain(10).generateDomain();
 						reward = new RashDomainRewardFunction();
 						break;
 					case "mediumdiaper":
@@ -98,6 +99,9 @@ public class TestBench {
 						break;
 					case "lwpomcp":
 						solver = new LWPOMCPSolver();
+						break;
+					case "lblwpomcp":
+						solver = new LBLWPOMCPSolver();
 						break;
 						
 				}

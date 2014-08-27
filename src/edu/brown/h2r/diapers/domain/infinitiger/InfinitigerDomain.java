@@ -1,9 +1,11 @@
 package edu.brown.h2r.diapers.domain.infinitiger;
 
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -32,6 +34,9 @@ public class InfinitigerDomain implements DomainGenerator {
 	private static int observationsPerState;
 	private static double noise = 0.15;
 	
+	protected List<Observation> observations = new ArrayList<Observation>();;
+	protected Map<String, Observation> observationMap = new HashMap<String, Observation>();
+	
 	public InfinitigerDomain(int i, int o) {
 		iterations = i;
 		observationsPerState = o;
@@ -46,7 +51,12 @@ public class InfinitigerDomain implements DomainGenerator {
 		Domain domain = new POMDPDomain() {
 			@Override public POMDPState sampleInitialState() { return InfinitigerDomain.getNewState(this); }
 			@Override public Observation makeObservationFor(GroundedAction a, POMDPState s) { return InfinitigerDomain.makeObservationFor(this, a, s); }
-			@Override public boolean isSuccess(Observation o) { return InfinitigerDomain.isSuccess(o); }
+			@Override public boolean isSuccess(Observation o) {
+				if(o==null){
+					return false;
+					}
+				return InfinitigerDomain.isSuccess(o);
+				}
 			@Override public boolean isTerminal(POMDPState s) { return InfinitigerDomain.isTerminal(this, s); }
 			@Override
 			public List<POMDPState> getAllInitialStates(){
@@ -61,6 +71,21 @@ public class InfinitigerDomain implements DomainGenerator {
 				}
 				
 				return new ArrayList<POMDPState>(noDups);
+			}
+			@Override
+			public List<Observation> getObservations() {
+				return new ArrayList<Observation>(observations);
+			}
+			@Override
+			public Observation getObservation(String name) {
+				return observationMap.get(name);
+			}
+			@Override
+			public void addObservation(Observation observation) {
+				if(!observationMap.containsKey(observation.getName())) {
+					observations.add(observation);
+					observationMap.put(observation.getName(), observation);
+				}
 			}
 		};
 			

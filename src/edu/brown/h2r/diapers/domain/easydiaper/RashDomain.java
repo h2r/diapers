@@ -1,7 +1,9 @@
 package edu.brown.h2r.diapers.domain.easydiaper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
@@ -30,6 +32,9 @@ public class RashDomain implements DomainGenerator {
 	private static double noise = 0.20;
 	private static int observationTypes = 4;
 	private static int repeatedObservations = 1;
+	
+	protected List<Observation> observations = new ArrayList<Observation>();;
+	protected Map<String, Observation> observationMap = new HashMap<String, Observation>();
 
 	public RashDomain() {};
 	public RashDomain(int repeatObs) {
@@ -54,12 +59,28 @@ public class RashDomain implements DomainGenerator {
 		}
 		@Override
 		public boolean isSuccess(Observation o){
+			if(o==null){return false;}
 			return o.getName().split("#")[0].equals(Names.OBS_GOAL);
 		}
 		@Override 
 		public boolean isTerminal(POMDPState s){
 			String mentalState = s.getObject(Names.OBJ_HUMAN).getStringValForAttribute(Names.ATTR_MENTAL_STATE);
 			return mentalState.equals(Names.MS_TYPE_GOAL);
+		}
+		@Override
+		public List<Observation> getObservations() {
+			return new ArrayList<Observation>(observations);
+		}
+		@Override
+		public Observation getObservation(String name) {
+			return observationMap.get(name);
+		}
+		@Override
+		public void addObservation(Observation observation) {
+			if(!observationMap.containsKey(observation.getName())) {
+				observations.add(observation);
+				observationMap.put(observation.getName(), observation);
+			}
 		}
 		};
 		

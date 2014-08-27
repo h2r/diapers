@@ -12,14 +12,10 @@ import burlap.oomdp.singleagent.GroundedAction;
 
 public class POMDPDomain extends SADomain {
 
-	protected List<Observation> observations;
-	protected Map<String, Observation> observationMap;
+	protected ObservationModel obsModel;
 
 	public POMDPDomain() {
 		super();
-
-		observations = new ArrayList<Observation>();
-		observationMap = new HashMap<String, Observation>();
 	}
 
 	public POMDPState sampleInitialState() {
@@ -33,7 +29,7 @@ public class POMDPDomain extends SADomain {
 	}
 
 	public boolean isSuccess(Observation o) {
-		return false;
+		return obsModel.isSuccess(o);
 	}
 
 	public boolean isTerminal(POMDPState s) {
@@ -41,7 +37,15 @@ public class POMDPDomain extends SADomain {
 	}
 
 	public Observation makeObservationFor(GroundedAction a, POMDPState s) {
-		return new Observation(this, "");
+		return obsModel.makeObservationFor(s, a);
+	}
+
+	public ObservationModel getObservationModel() {
+		return obsModel;
+	}
+
+	public void setObservationModel(ObservationModel om) {
+		obsModel = om;
 	}
 
 	public List<State> getAllStates() {
@@ -49,20 +53,17 @@ public class POMDPDomain extends SADomain {
 	}
 
 	public List<Observation> getObservations() {
-		return new ArrayList<Observation>(observations);
+		return new ArrayList<Observation>(obsModel.getAllObservations());
 	}
 
 	public Observation getObservation(String name) {
-		return observationMap.get(name);
+		return obsModel.getObservationByName(name);
 	}
 
 	public void addObservation(Observation observation) {
-		if(!observationMap.containsKey(observation.getName())) {
-			observations.add(observation);
-			observationMap.put(observation.getName(), observation);
-		}
+		return;
 	}
-	
+
 	public void visualizeState(State s){
 		
 	}
