@@ -12,12 +12,12 @@ import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
 import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperDomain;
 import edu.brown.h2r.diapers.solver.Solver;
+import edu.brown.h2r.diapers.solver.lwpomcp.LBLWPOMCPSolver;
+import edu.brown.h2r.diapers.solver.lwpomcp.LWPOMCPSolver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
-import edu.brown.h2r.diapers.sovler.lwpomcp.LBLWPOMCPSolver;
-import edu.brown.h2r.diapers.sovler.lwpomcp.LWPOMCPSolver;
 
 
 import burlap.oomdp.singleagent.common.UniformCostRF;
