@@ -209,7 +209,7 @@ public class WeightedMonteCarloNode{
 			}
 			
 		}
-		System.err.println("WeightedMonteCarloNode: sampleparticles weights not summing to 1");
+		System.err.println("WeightedMonteCarloNode: sampleparticles weights not summing to 1, tempRandom: " + temp + "lastCountOfCDF: "+ weightCDF.get(weightCDF.size()-1));
 		return new POMDPState();
 	}
 	

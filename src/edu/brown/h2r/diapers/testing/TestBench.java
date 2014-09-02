@@ -45,7 +45,7 @@ public class TestBench {
 	private static RewardFunction reward = new UniformCostRF();
 	private static boolean user = false;
 	private static StateParser sparse;
-	private static int runs = 10;
+	private static int runs = 1;
 //	private static double discountedRewardMean;
 //	private static double RewardMean;
 //	private static double discountedRewardStDev;

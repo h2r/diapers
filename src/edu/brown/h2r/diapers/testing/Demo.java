@@ -7,13 +7,20 @@ import edu.brown.h2r.diapers.domain.tiger.TigerDomain;
 import edu.brown.h2r.diapers.domain.tiger.TigerRewardFunction;
 import edu.brown.h2r.diapers.domain.easydiaper.RashDomain;
 import edu.brown.h2r.diapers.domain.easydiaper.RashDomainRewardFunction;
+import edu.brown.h2r.diapers.domain.easydiapervocab.RashDomainVocab;
+import edu.brown.h2r.diapers.domain.easydiapervocab.RashDomainVocabObsModel;
+import edu.brown.h2r.diapers.domain.easydiapervocab.RashDomainVocabRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerDomain;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerRewardFunction;
 import edu.brown.h2r.diapers.domain.infinitiger.InfinitigerStateParser;
 import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperDomain;
+import edu.brown.h2r.diapers.domain.mediumdiaper.MediumDiaperObservationModel;
 import edu.brown.h2r.diapers.solver.Solver;
+import edu.brown.h2r.diapers.solver.lwpomcp.LBLWPOMCPSolver;
+import edu.brown.h2r.diapers.solver.lwpomcp.LWPOMCPSolver;
 import edu.brown.h2r.diapers.solver.pomcp.POMCPSolver;
 import edu.brown.h2r.diapers.solver.uct.UCTSolver;
+import edu.brown.h2r.diapers.pomdp.ObservationModel;
 import edu.brown.h2r.diapers.pomdp.POMDPDomain;
 import edu.brown.h2r.diapers.solver.pbvi.PointBasedValueIteration;
 
@@ -39,14 +46,15 @@ public class Demo {
 	private static RewardFunction reward = new UniformCostRF();
 	private static boolean user = false;
 	private static StateParser sparse;
-	
+	private static int obsNum = 1;
+	private static ObservationModel obsModel =null;
 	
 
 	public static void main(String[] args) {
 		RandomFactory.seedMapped(0, 10000);
 		Random rand = RandomFactory.getMapped(0);
 	System.out.println("Demo running... parsing input...... new domain");
-	for(int totalCount = 0;totalCount<10;totalCount++){
+	for(int totalCount = 0;totalCount<1;totalCount++){
 		System.out.println("run number: "+totalCount);
 		for(String arg : args) {
 			if(arg.startsWith("D")) {
@@ -64,9 +72,15 @@ public class Demo {
 						domain = (POMDPDomain) new RashDomain(10).generateDomain();
 						reward = new RashDomainRewardFunction();
 						break;
+					case "easydiapervocab":
+						domain = (POMDPDomain) new RashDomainVocab(1).generateDomain();
+						reward = new RashDomainVocabRewardFunction();
+						obsModel = new RashDomainVocabObsModel(domain);
+						break;
 					case "mediumdiaper":
 						domain = (POMDPDomain) new MediumDiaperDomain().generateDomain();
 						reward = new UniformCostRF();
+						obsModel = new MediumDiaperObservationModel(domain);
 						break;
 					case "rocksample":
 						domain = (POMDPDomain) new RockSampleDomain().generateDomain();
@@ -74,7 +88,11 @@ public class Demo {
 						sparse = new RockSampleDomainStateParser();
 						break;
 				}
-			} else if(arg.startsWith("S")) {
+			}else if(arg.startsWith("O")) {
+								obsNum = Integer.parseInt(arg.split("=")[1]);
+								System.out.println("More observations! " + obsNum);
+							} 
+			else if(arg.startsWith("S")) {
 				switch(arg.split("=")[1]) {
 					case "pomcp":
 						solver = new POMCPSolver();
@@ -85,6 +103,12 @@ public class Demo {
 					case "uct":
 						solver = new UCTSolver();
 						break;
+					case "lwpomcp":
+						solver = new LWPOMCPSolver();
+						break;
+					case "lblwpomcp":
+						solver = new LBLWPOMCPSolver();
+						break;
 						
 				}
 			} else if(arg.startsWith("P")) {
@@ -93,6 +117,10 @@ public class Demo {
 				user = true;
 			}
 		}
+		
+		if(obsModel != null){
+				domain.setObservationModel(obsModel.withMultiplicity(obsNum));
+				}
 
 		if(solver != null && domain != null) {
 			long startTime = System.currentTimeMillis();
@@ -115,6 +143,8 @@ public class Demo {
 		domain = null;
 		solver=null;
 		sparse=null;
+		obsModel =null;
+		obsNum = 1;
 	}
 	}
 

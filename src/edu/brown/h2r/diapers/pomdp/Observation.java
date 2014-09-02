@@ -13,6 +13,7 @@ public class Observation {
 
 	protected POMDPDomain domain;
 	protected String name;
+	protected String sentence = ""; //  this is temporary will have to move to James's version with state like object instances
 
 	public Observation(POMDPDomain domain, String name) {
 		this.name = name;
@@ -25,6 +26,20 @@ public class Observation {
 		this.domain = (POMDPDomain) domain;
 		this.domain.addObservation(this);
 	}
+	
+	public Observation(POMDPDomain domain, String name, String vocab) {
+		this.name = name;
+		this.domain = domain;
+		this.domain.addObservation(this);
+		this.sentence = vocab;
+	}
+
+	public Observation(Domain domain, String name, String vocab) {
+		this.name = name;
+		this.domain = (POMDPDomain) domain;
+		this.domain.addObservation(this);
+		this.sentence = vocab;
+	}
 
 	public double getProbability(State s, GroundedAction a) {
 		return 0;
@@ -32,6 +47,14 @@ public class Observation {
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getStentence() {
+		return this.sentence;
+	}
+	
+	public void setStentence(String vocab) {
+		this.sentence = vocab;
 	}
 
 	public Domain getDomain() {
@@ -50,7 +73,7 @@ public class Observation {
 	}
 	
 	public String toString(GroundedAction a) {
-		String result =  "[observation NAME=" + this.name + " PROBS=[";
+		String result =  "[observation NAME= " + this.name + " observation SENTENCE= " + this.sentence + " PROBS=[";
 		for(int i = 0; i < this.domain.getAllStates().size(); ++i) {
 			State current = this.domain.getAllStates().get(i);
 			result += (i + ": " + Math.floor(this.getProbability(current, a) * 1000)/1000 + ", ");

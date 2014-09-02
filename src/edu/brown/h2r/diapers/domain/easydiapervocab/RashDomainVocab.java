@@ -1,4 +1,4 @@
-package edu.brown.h2r.diapers.domain.easydiaper;
+package edu.brown.h2r.diapers.domain.easydiapervocab;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ import burlap.oomdp.singleagent.GroundedAction;
 import burlap.behavior.singleagent.auxiliary.StateReachability;
 //import burlap.behavior.singleagent.auxiliary
 
-public class RashDomain implements DomainGenerator {
+public class RashDomainVocab implements DomainGenerator {
 	
 	private static double noise = 0.20;
 	private static int observationTypes = 4;
@@ -38,8 +38,8 @@ public class RashDomain implements DomainGenerator {
 	protected List<Observation> observations = new ArrayList<Observation>();;
 	protected Map<String, Observation> observationMap = new HashMap<String, Observation>();
 
-	public RashDomain() {};
-	public RashDomain(int repeatObs) {
+	public RashDomainVocab() {};
+	public RashDomainVocab(int repeatObs) {
 		repeatedObservations = repeatObs;
 	};
 
@@ -49,41 +49,41 @@ public class RashDomain implements DomainGenerator {
 		Domain domain = new POMDPDomain(){
 		@Override
 		public POMDPState sampleInitialState() {
-			return RashDomain.getNewState(this);
+			return RashDomainVocab.getNewState(this);
 		}
 		@Override
 		public List<State> getAllStates(){
-			return RashDomain.listAllStates(this);
+			return RashDomainVocab.listAllStates(this);
 		}
-		@Override
-		public Observation makeObservationFor(GroundedAction a, POMDPState s){
-			return RashDomain.getObservation(s,a,this).getObservation();
-		}
-		@Override
-		public boolean isSuccess(Observation o){
-			if(o==null){return false;}
-			return o.getName().split("#")[0].equals(Names.OBS_GOAL);
-		}
+//		@Override
+//		public Observation makeObservationFor(GroundedAction a, POMDPState s){
+//			return RashDomain.getObservation(s,a,this).getObservation();
+//		}
+//		@Override
+//		public boolean isSuccess(Observation o){
+//			if(o==null){return false;}
+//			return o.getName().split("#")[0].equals(Names.OBS_GOAL);
+//		}
 		@Override 
 		public boolean isTerminal(POMDPState s){
 			String mentalState = s.getObject(Names.OBJ_HUMAN).getStringValForAttribute(Names.ATTR_MENTAL_STATE);
 			return mentalState.equals(Names.MS_TYPE_GOAL);
 		}
-		@Override
-		public List<Observation> getObservations() {
-			return new ArrayList<Observation>(observations);
-		}
-		@Override
-		public Observation getObservation(String name) {
-			return observationMap.get(name);
-		}
-		@Override
-		public void addObservation(Observation observation) {
-			if(!observationMap.containsKey(observation.getName())) {
-				observations.add(observation);
-				observationMap.put(observation.getName(), observation);
-			}
-		}
+//		@Override
+//		public List<Observation> getObservations() {
+//			return new ArrayList<Observation>(observations);
+//		}
+//		@Override
+//		public Observation getObservation(String name) {
+//			return observationMap.get(name);
+//		}
+//		@Override
+//		public void addObservation(Observation observation) {
+//			if(!observationMap.containsKey(observation.getName())) {
+//				observations.add(observation);
+//				observationMap.put(observation.getName(), observation);
+//			}
+//		}
 		};
 		
 		

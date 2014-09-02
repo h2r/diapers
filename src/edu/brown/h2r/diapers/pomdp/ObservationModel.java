@@ -38,14 +38,14 @@ public abstract class ObservationModel {
 				Set<Observation> newSet = new HashSet<Observation>();
 				for(Observation oldObs : oldObsModel.getAllObservations()) {
 					for(int i = 0; i < number; ++i) {
-						newSet.add(new Observation(oldObs.getDomain(), oldObs.getName() + i));
+						newSet.add(new Observation(oldObs.getDomain(), oldObs.getName() + "#" +i));
 					}
 				}
 				return newSet;
 			}
 
 			@Override public double omega(Observation o, POMDPState s, GroundedAction a) {
-				Observation oldObs = oldObsModel.getObservationByName(o.getName().replaceAll("\\d*$", ""));
+				Observation oldObs = oldObsModel.getObservationByName(o.getName().replaceAll("#*$", ""));
 				return oldObsModel.omega(oldObs, s, a) * reductionFactor;
 			}
 
@@ -61,11 +61,11 @@ public abstract class ObservationModel {
 
 			@Override public Observation makeObservationFor(POMDPState s, GroundedAction a) {
 				Observation oldObs = oldObsModel.makeObservationFor(s, a);
-				return new Observation(oldObs.getDomain(), oldObs.getName() + new java.util.Random().nextInt(number));
+				return new Observation(oldObs.getDomain(), oldObs.getName() + "#" + new java.util.Random().nextInt(number));
 			}
 
 			@Override public boolean isSuccess(Observation o) {
-				return oldObsModel.isSuccess(new Observation(o.getDomain(), o.getName().replaceAll("\\d*$", "")));
+				return oldObsModel.isSuccess(new Observation(o.getDomain(), o.getName().replaceAll("#*$", "")));
 			}
 		};
 	}
