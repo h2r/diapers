@@ -150,7 +150,7 @@ public class RashDomainVocabObsModel extends ObservationModel{
 		int totalWordCountInState = this.totalWordCountMap.get(mentalState);
 		Map<String,Integer> wordCounts = this.wordCountMap.get(mentalState);
 		double prob = 1.0;
-		double alpha = 1;
+		double alpha = .00000001;
 		int wordsInState = wordCounts.size();
 		for(String word : sentence.split(" ")){
 			if(wordCounts.containsKey(word)){

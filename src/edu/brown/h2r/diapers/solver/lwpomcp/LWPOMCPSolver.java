@@ -24,7 +24,7 @@ public class LWPOMCPSolver extends Solver{
 	private int NUM_PARTICLES = 128;
 	private double GAMMA = 0.95;
 	private double EPSILON = 1E-2;
-	private double EXP_BONUS = 20;
+	private double EXP_BONUS = 3;
 	private int NUM_SIMS = NUM_PARTICLES;
 	private int HORIZON = 88; // 88 steps with 0.95 as gamma and 0.01 as epsilon
 	
