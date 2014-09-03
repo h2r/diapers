@@ -373,6 +373,19 @@ public class PointBasedValueIteration extends Solver{
 						System.out.println("reward: " +reward_function.reward(states.get(stateIndex), actions.get(actionIndex), null));
 					}
 				}
+				System.out.println("Testing for observation probabilities, w.r.t. observations:");
+				for(int obsIndex=0;obsIndex<num_observations;obsIndex++){
+					System.out.println("Observation: " + observations.get(obsIndex).getName() + " sentence: " + observations.get(obsIndex).getStentence()); 
+					for(int stateIndex = 0; stateIndex < num_states; ++stateIndex) {
+						System.out.println("Start state " + states.get(stateIndex).toString());
+						for(int actionIndex = 0; actionIndex < num_actions; ++actionIndex) {
+							System.out.println("Action " + actions.get(actionIndex).toString());
+							System.out.println("Observation: " + observations.get(obsIndex).getName() + " sentence " + observations.get(obsIndex).getStentence()+ " " + observations.get(obsIndex).getProbability(states.get(stateIndex), actions.get(actionIndex)));
+
+						}
+					}
+				}
+				
 				System.out.println("PointBasedValueIteration: test end");
 			}
 			

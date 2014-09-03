@@ -38,7 +38,7 @@ public class RashDomainVocabObsModel extends ObservationModel{
 	
 	public RashDomainVocabObsModel(POMDPDomain d){
 		super(d);
-		String fromFile = "data/dialogues.json";
+		String fromFile = "data/shortDialogues.json";
 		
 		
 		
