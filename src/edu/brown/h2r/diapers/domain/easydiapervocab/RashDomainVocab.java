@@ -159,13 +159,13 @@ public class RashDomainVocab implements DomainGenerator {
 //        Action nullAction = new burlap.oomdp.singleagent.common.NullAction("NOP", domain, "");
 //		GroundedAction bringDiaper = new GroundedAction(RashDomain.BringAction, new String[]{Names})
 		
-		for(int obsCount = 0;obsCount < repeatedObservations; obsCount++){
-//			System.out.println("was here");
-			Observation startStateObs = new SimpleObservation(domain, Names.OBS_START+"#" + obsCount, Names.MS_TYPE_START );
-			Observation rashObs = new SimpleObservation(domain, Names.OBS_RASH+"#" + obsCount, Names.MS_TYPE_RASH);
-			Observation noRashObs = new SimpleObservation(domain, Names.OBS_NO_RASH+"#" + obsCount, Names.MS_TYPE_NO_RASH);
-			Observation goalObs = new SimpleObservation(domain, Names.OBS_GOAL+"#" + obsCount,Names.MS_TYPE_GOAL);
-		}
+//		for(int obsCount = 0;obsCount < repeatedObservations; obsCount++){
+////			System.out.println("was here");
+//			Observation startStateObs = new SimpleObservation(domain, Names.OBS_START+"#" + obsCount, Names.MS_TYPE_START );
+//			Observation rashObs = new SimpleObservation(domain, Names.OBS_RASH+"#" + obsCount, Names.MS_TYPE_RASH);
+//			Observation noRashObs = new SimpleObservation(domain, Names.OBS_NO_RASH+"#" + obsCount, Names.MS_TYPE_NO_RASH);
+//			Observation goalObs = new SimpleObservation(domain, Names.OBS_GOAL+"#" + obsCount,Names.MS_TYPE_GOAL);
+//		}
 		
 		
 		

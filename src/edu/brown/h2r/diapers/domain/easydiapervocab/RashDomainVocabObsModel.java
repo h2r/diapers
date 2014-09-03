@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonToken;
 
 import burlap.debugtools.RandomFactory;
 import burlap.oomdp.core.Domain;
+import burlap.oomdp.core.State;
 import burlap.oomdp.singleagent.GroundedAction;
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.pomdp.ObservationModel;
@@ -69,13 +70,19 @@ public class RashDomainVocabObsModel extends ObservationModel{
 //	            	String fieldname = parser.getCurrentName();
 //	                parser.nextToken(); // move to value, or START_OBJECT/START_ARRAY
 	                parser.nextToken();
-	                String mentalState = parser.getText();
+	                final String mentalState = parser.getText();
 //	                parsed.put(fieldname, value);
 	                parser.nextToken();
 	                parser.nextToken();
-	                String stateSentence = parser.getText();
-	                obsMap.get(mentalState).add(new Observation(this.domain,mentalState+"_"+obsMap.get(mentalState).size(),stateSentence));
-	                allObs.add(new Observation(this.domain,mentalState+"_"+obsMap.get(mentalState).size(),stateSentence));
+	                final String stateSentence = parser.getText();
+	                Observation tempObs = new Observation(this.domain,mentalState+"_"+obsMap.get(mentalState).size(),stateSentence){
+	                	public double getProbability(State s, GroundedAction ga){
+	                		final Observation tempNewObs = new Observation(this.domain,mentalState+"_"+obsMap.get(mentalState).size(),stateSentence);
+	                		return RashDomainVocabObsModel.this.omega(tempNewObs, (POMDPState)s, ga);
+	                	}
+	                };
+	                obsMap.get(mentalState).add(tempObs);
+	                allObs.add(tempObs);
 	                for(String word : stateSentence.split(" ")){
 	                	Integer count = totalWordCountMap.get(mentalState);
 	                	if(count!=null){
@@ -153,6 +160,7 @@ public class RashDomainVocabObsModel extends ObservationModel{
 				prob = prob * (alpha)/(totalWordCountInState + wordsInState*alpha);
 			}
 		}
+//		System.out.println("RashDomainVocabObs: "+ prob);
 		return prob;
 	}
 

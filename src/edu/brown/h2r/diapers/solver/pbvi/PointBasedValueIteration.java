@@ -11,6 +11,7 @@ import java.util.Set;
 
 
 
+
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 //import burlap.oomdp.core.Domain;
@@ -20,7 +21,6 @@ import burlap.oomdp.core.State;
 import burlap.oomdp.core.TerminalFunction;
 //import burlap.oomdp.core.TerminalFunction;
 import burlap.oomdp.core.TransitionProbability;
-
 import burlap.oomdp.singleagent.RewardFunction;
 import burlap.oomdp.singleagent.GroundedAction;
 //import burlap.oomdp.singleagent.Action;
@@ -29,8 +29,6 @@ import burlap.behavior.singleagent.auxiliary.StateReachability;
 import burlap.behavior.statehashing.NameDependentStateHashFactory;
 import burlap.behavior.statehashing.StateHashFactory;
 import burlap.behavior.statehashing.StateHashTuple;
-
-
 import edu.brown.h2r.diapers.testing.Environment;
 import edu.brown.h2r.diapers.util.Tuple;
 import edu.brown.h2r.diapers.solver.Solver;
@@ -136,7 +134,11 @@ public class PointBasedValueIteration extends Solver{
 				inputBP.add(tempBeliefValue);
 			}
 			listNorm(inputBP);
-			
+			System.out.println("start belief: ");
+			for(double d : inputBP){
+				System.out.print(d+", ");
+			}
+			System.out.println();
 			POMDPState startState = this.domain.sampleInitialState();
 			while(true) {
 				GroundedAction a = getBestAction(inputBP);
@@ -202,6 +204,8 @@ public class PointBasedValueIteration extends Solver{
 		for(int sPrimeIndex = 0; sPrimeIndex < allStates.size(); sPrimeIndex++) {
 			double sum = 0;
 			double obsProb = observation.getProbability(allStates.get(sPrimeIndex), action);
+			System.out.println("state: " + allStates.get(sPrimeIndex).getCompleteStateDescription());
+			System.out.println("obs Prob: " + obsProb );
 
 			for(int currStateIndex = 0; currStateIndex < allStates.size(); currStateIndex++) {
 //				double tprob = getTransitionProbability(allStates.get(currStateIndex), allStates.get(sPrimeIndex), action, params);
@@ -347,7 +351,7 @@ public class PointBasedValueIteration extends Solver{
 		
 		if(calculateVI){
 			System.out.println("[PBVIBehavior.doValueIteration] doing value iteration ");
-			Boolean testTP = false;
+			Boolean testTP = true;
 			if(testTP){
 				System.out.println("PointBasedValueIteration: test");
 				for(int stateIndex = 0; stateIndex < num_states; ++stateIndex) {

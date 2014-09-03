@@ -8,7 +8,6 @@ import java.util.Random;
 
 import burlap.debugtools.RandomFactory;
 import burlap.oomdp.singleagent.GroundedAction;
-
 import edu.brown.h2r.diapers.pomdp.Observation;
 import edu.brown.h2r.diapers.pomdp.POMDPState;
 import edu.brown.h2r.diapers.solver.datastructure.HistoryElement;
@@ -203,6 +202,7 @@ public class WeightedMonteCarloNode{
 		}
 		double temp = randomNumber.nextDouble();
 		for (int count=0;count<weightCDF.size();count++){
+//			System.out.println("CDF value: index- "+count + "value"+weightCDF.get(count));
 			if (temp < weightCDF.get(count)) {
 //				System.out.println("random number: " + temp + " index returned " + count);
 				return beliefParticles.get(count);

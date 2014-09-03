@@ -1,123 +1,4508 @@
-ha ha
-TestBench running... parsing input...... new domain
+Demo running... parsing input...... new domain
 run number: 0
 Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.rash#0
-The agent chose to perform action bringOintment with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
-total time: 183
-run number: 1
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.rash#0
-The agent chose to perform action bringOintment with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
-total time: 64
-run number: 2
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.rash#0
-The agent chose to perform action bringOintment with parameters []
-The agent received reward -1.0
-Agent observed obs.start#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
-total time: 38
-run number: 3
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.rash#0
-The agent chose to perform action bringOintment with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
-total time: 38
-run number: 4
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
-total time: 19
-run number: 5
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
-total time: 16
-run number: 6
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
-total time: 14
-run number: 7
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.rash#0
-The agent chose to perform action bringOintment with parameters []
-The agent received reward -1.0
-Agent observed obs.start#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
-total time: 19
-run number: 8
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.rash#0
-The agent chose to perform action bringOintment with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
-total time: 19
-run number: 9
-Parse successful, running
-The agent chose to perform action null with parameters []
-The agent received reward -1.0
-Agent observed obs.no_rash#0
-The agent chose to perform action bringDiaper with parameters []
-The agent received reward -1.0
-Agent observed obs.goal#0
-Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
-total time: 15
-Average discounted Reward: -2.4914999999999994 standrd deviation: 0.44213289857236365 95% confidence interval: 0.274036809644252
-Average Reward: -2.6 standrd deviation: 0.48989794855663565 95% confidence interval: 0.3036418943426615
-Average Time: 42.5 standrd deviation: 49.163502723056666 95% confidence interval: 30.471854685922874
+PBVI: listAllStates: list of all initial states size 1
+Num generated: 40; num unique: 14
+Size of all states set: 14
+Size of tempSet: 14
+PBVI: Start
+[PBVIBehavior.doValueIteration] doing value iteration 
+PointBasedValueIteration: test
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.6299884351707734E-37
+Observation: type.start_6 5.36644352488144E-32
+Observation: type.rash_0 8.149942175853867E-38
+Observation: type.start_7 7.193775370047804E-7
+Observation: type.rash_1 3.274692065847338E-20
+Observation: type.start_8 2.075766207885447E-11
+Observation: type.rash_2 1.5775823179929398E-9
+Observation: type.rash_3 3.274692065847338E-20
+Observation: type.start_1 1.0332192599905067E-28
+Observation: type.rash_4 2.075766207885447E-11
+Observation: type.start_2 3.274692065847338E-20
+Observation: type.goal_8 2.7260622454918E-6
+Observation: type.start_3 1.8142338314943703E-22
+Observation: type.goal_9 0.0013121446274967196
+Observation: type.start_4 1.7984438425119508E-7
+Observation: type.start_9 1.637346032923669E-20
+Observation: type.noRash_1 9.071169157471852E-23
+Observation: type.noRash_0 5.166096299952533E-29
+Observation: type.noRash_5 3.782924274466845E-16
+Observation: type.noRash_4 1.7888145082938135E-32
+Observation: type.noRash_3 4.894196494691872E-29
+Observation: type.noRash_2 5.669480723419907E-24
+Observation: type.goal_1 2.9891033393550427E-9
+Observation: type.start_0 3.577629016587627E-32
+Observation: type.goal_0 0.0013121446274967196
+Observation: type.goal_3 0.0013121446274967196
+Observation: type.goal_2 1.5144790252732222E-7
+Observation: type.goal_5 1.415891055483968E-9
+Observation: type.goal_4 2.905285842790536E-13
+Observation: type.goal_7 0.0041551246537396115
+Observation: type.goal_6 1.2585698270968603E-9
+Observation: type.noRash_8 8.625067345784405E-14
+Observation: type.noRash_9 3.1551646359858795E-9
+Observation: type.noRash_6 6.549384131694677E-20
+Observation: type.noRash_7 8.617610699598259E-22
+reward: 0.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.6299884351707734E-37
+Observation: type.start_6 5.36644352488144E-32
+Observation: type.rash_0 8.149942175853867E-38
+Observation: type.start_7 7.193775370047804E-7
+Observation: type.rash_1 3.274692065847338E-20
+Observation: type.start_8 2.075766207885447E-11
+Observation: type.rash_2 1.5775823179929398E-9
+Observation: type.rash_3 3.274692065847338E-20
+Observation: type.start_1 1.0332192599905067E-28
+Observation: type.rash_4 2.075766207885447E-11
+Observation: type.start_2 3.274692065847338E-20
+Observation: type.goal_8 2.7260622454918E-6
+Observation: type.start_3 1.8142338314943703E-22
+Observation: type.goal_9 0.0013121446274967196
+Observation: type.start_4 1.7984438425119508E-7
+Observation: type.start_9 1.637346032923669E-20
+Observation: type.noRash_1 9.071169157471852E-23
+Observation: type.noRash_0 5.166096299952533E-29
+Observation: type.noRash_5 3.782924274466845E-16
+Observation: type.noRash_4 1.7888145082938135E-32
+Observation: type.noRash_3 4.894196494691872E-29
+Observation: type.noRash_2 5.669480723419907E-24
+Observation: type.goal_1 2.9891033393550427E-9
+Observation: type.start_0 3.577629016587627E-32
+Observation: type.goal_0 0.0013121446274967196
+Observation: type.goal_3 0.0013121446274967196
+Observation: type.goal_2 1.5144790252732222E-7
+Observation: type.goal_5 1.415891055483968E-9
+Observation: type.goal_4 2.905285842790536E-13
+Observation: type.goal_7 0.0041551246537396115
+Observation: type.goal_6 1.2585698270968603E-9
+Observation: type.noRash_8 8.625067345784405E-14
+Observation: type.noRash_9 3.1551646359858795E-9
+Observation: type.noRash_6 6.549384131694677E-20
+Observation: type.noRash_7 8.617610699598259E-22
+reward: 0.0
+Action null
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.6299884351707734E-37
+Observation: type.start_6 5.36644352488144E-32
+Observation: type.rash_0 8.149942175853867E-38
+Observation: type.start_7 7.193775370047804E-7
+Observation: type.rash_1 3.274692065847338E-20
+Observation: type.start_8 2.075766207885447E-11
+Observation: type.rash_2 1.5775823179929398E-9
+Observation: type.rash_3 3.274692065847338E-20
+Observation: type.start_1 1.0332192599905067E-28
+Observation: type.rash_4 2.075766207885447E-11
+Observation: type.start_2 3.274692065847338E-20
+Observation: type.goal_8 2.7260622454918E-6
+Observation: type.start_3 1.8142338314943703E-22
+Observation: type.goal_9 0.0013121446274967196
+Observation: type.start_4 1.7984438425119508E-7
+Observation: type.start_9 1.637346032923669E-20
+Observation: type.noRash_1 9.071169157471852E-23
+Observation: type.noRash_0 5.166096299952533E-29
+Observation: type.noRash_5 3.782924274466845E-16
+Observation: type.noRash_4 1.7888145082938135E-32
+Observation: type.noRash_3 4.894196494691872E-29
+Observation: type.noRash_2 5.669480723419907E-24
+Observation: type.goal_1 2.9891033393550427E-9
+Observation: type.start_0 3.577629016587627E-32
+Observation: type.goal_0 0.0013121446274967196
+Observation: type.goal_3 0.0013121446274967196
+Observation: type.goal_2 1.5144790252732222E-7
+Observation: type.goal_5 1.415891055483968E-9
+Observation: type.goal_4 2.905285842790536E-13
+Observation: type.goal_7 0.0041551246537396115
+Observation: type.goal_6 1.2585698270968603E-9
+Observation: type.noRash_8 8.625067345784405E-14
+Observation: type.noRash_9 3.1551646359858795E-9
+Observation: type.noRash_6 6.549384131694677E-20
+Observation: type.noRash_7 8.617610699598259E-22
+reward: 0.0
+Start state baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.6299884351707734E-37
+Observation: type.start_6 5.36644352488144E-32
+Observation: type.rash_0 8.149942175853867E-38
+Observation: type.start_7 7.193775370047804E-7
+Observation: type.rash_1 3.274692065847338E-20
+Observation: type.start_8 2.075766207885447E-11
+Observation: type.rash_2 1.5775823179929398E-9
+Observation: type.rash_3 3.274692065847338E-20
+Observation: type.start_1 1.0332192599905067E-28
+Observation: type.rash_4 2.075766207885447E-11
+Observation: type.start_2 3.274692065847338E-20
+Observation: type.goal_8 2.7260622454918E-6
+Observation: type.start_3 1.8142338314943703E-22
+Observation: type.goal_9 0.0013121446274967196
+Observation: type.start_4 1.7984438425119508E-7
+Observation: type.start_9 1.637346032923669E-20
+Observation: type.noRash_1 9.071169157471852E-23
+Observation: type.noRash_0 5.166096299952533E-29
+Observation: type.noRash_5 3.782924274466845E-16
+Observation: type.noRash_4 1.7888145082938135E-32
+Observation: type.noRash_3 4.894196494691872E-29
+Observation: type.noRash_2 5.669480723419907E-24
+Observation: type.goal_1 2.9891033393550427E-9
+Observation: type.start_0 3.577629016587627E-32
+Observation: type.goal_0 0.0013121446274967196
+Observation: type.goal_3 0.0013121446274967196
+Observation: type.goal_2 1.5144790252732222E-7
+Observation: type.goal_5 1.415891055483968E-9
+Observation: type.goal_4 2.905285842790536E-13
+Observation: type.goal_7 0.0041551246537396115
+Observation: type.goal_6 1.2585698270968603E-9
+Observation: type.noRash_8 8.625067345784405E-14
+Observation: type.noRash_9 3.1551646359858795E-9
+Observation: type.noRash_6 6.549384131694677E-20
+Observation: type.noRash_7 8.617610699598259E-22
+reward: 0.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.6299884351707734E-37
+Observation: type.start_6 5.36644352488144E-32
+Observation: type.rash_0 8.149942175853867E-38
+Observation: type.start_7 7.193775370047804E-7
+Observation: type.rash_1 3.274692065847338E-20
+Observation: type.start_8 2.075766207885447E-11
+Observation: type.rash_2 1.5775823179929398E-9
+Observation: type.rash_3 3.274692065847338E-20
+Observation: type.start_1 1.0332192599905067E-28
+Observation: type.rash_4 2.075766207885447E-11
+Observation: type.start_2 3.274692065847338E-20
+Observation: type.goal_8 2.7260622454918E-6
+Observation: type.start_3 1.8142338314943703E-22
+Observation: type.goal_9 0.0013121446274967196
+Observation: type.start_4 1.7984438425119508E-7
+Observation: type.start_9 1.637346032923669E-20
+Observation: type.noRash_1 9.071169157471852E-23
+Observation: type.noRash_0 5.166096299952533E-29
+Observation: type.noRash_5 3.782924274466845E-16
+Observation: type.noRash_4 1.7888145082938135E-32
+Observation: type.noRash_3 4.894196494691872E-29
+Observation: type.noRash_2 5.669480723419907E-24
+Observation: type.goal_1 2.9891033393550427E-9
+Observation: type.start_0 3.577629016587627E-32
+Observation: type.goal_0 0.0013121446274967196
+Observation: type.goal_3 0.0013121446274967196
+Observation: type.goal_2 1.5144790252732222E-7
+Observation: type.goal_5 1.415891055483968E-9
+Observation: type.goal_4 2.905285842790536E-13
+Observation: type.goal_7 0.0041551246537396115
+Observation: type.goal_6 1.2585698270968603E-9
+Observation: type.noRash_8 8.625067345784405E-14
+Observation: type.noRash_9 3.1551646359858795E-9
+Observation: type.noRash_6 6.549384131694677E-20
+Observation: type.noRash_7 8.617610699598259E-22
+reward: 0.0
+Action null
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.6299884351707734E-37
+Observation: type.start_6 5.36644352488144E-32
+Observation: type.rash_0 8.149942175853867E-38
+Observation: type.start_7 7.193775370047804E-7
+Observation: type.rash_1 3.274692065847338E-20
+Observation: type.start_8 2.075766207885447E-11
+Observation: type.rash_2 1.5775823179929398E-9
+Observation: type.rash_3 3.274692065847338E-20
+Observation: type.start_1 1.0332192599905067E-28
+Observation: type.rash_4 2.075766207885447E-11
+Observation: type.start_2 3.274692065847338E-20
+Observation: type.goal_8 2.7260622454918E-6
+Observation: type.start_3 1.8142338314943703E-22
+Observation: type.goal_9 0.0013121446274967196
+Observation: type.start_4 1.7984438425119508E-7
+Observation: type.start_9 1.637346032923669E-20
+Observation: type.noRash_1 9.071169157471852E-23
+Observation: type.noRash_0 5.166096299952533E-29
+Observation: type.noRash_5 3.782924274466845E-16
+Observation: type.noRash_4 1.7888145082938135E-32
+Observation: type.noRash_3 4.894196494691872E-29
+Observation: type.noRash_2 5.669480723419907E-24
+Observation: type.goal_1 2.9891033393550427E-9
+Observation: type.start_0 3.577629016587627E-32
+Observation: type.goal_0 0.0013121446274967196
+Observation: type.goal_3 0.0013121446274967196
+Observation: type.goal_2 1.5144790252732222E-7
+Observation: type.goal_5 1.415891055483968E-9
+Observation: type.goal_4 2.905285842790536E-13
+Observation: type.goal_7 0.0041551246537396115
+Observation: type.goal_6 1.2585698270968603E-9
+Observation: type.noRash_8 8.625067345784405E-14
+Observation: type.noRash_9 3.1551646359858795E-9
+Observation: type.noRash_6 6.549384131694677E-20
+Observation: type.noRash_7 8.617610699598259E-22
+reward: 0.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 2.677096829938911E-36
+Observation: type.start_6 3.5876592619820494E-31
+Observation: type.rash_0 2.0247284889352476E-29
+Observation: type.start_7 2.2117935664056515E-8
+Observation: type.rash_1 9.658994335484659E-17
+Observation: type.start_8 1.6447007483682712E-11
+Observation: type.rash_2 6.608407606943715E-7
+Observation: type.rash_3 5.008367433214267E-15
+Observation: type.start_1 2.32618701319399E-27
+Observation: type.rash_4 3.223613466801812E-8
+Observation: type.start_2 1.43735034754236E-19
+Observation: type.goal_8 2.6973092273239653E-10
+Observation: type.start_3 1.1400756276362165E-22
+Observation: type.goal_9 1.8136707244526343E-6
+Observation: type.start_4 2.2117935664056515E-8
+Observation: type.start_9 5.323519805712443E-20
+Observation: type.noRash_1 3.879424010706569E-22
+Observation: type.noRash_0 1.033860894752884E-27
+Observation: type.noRash_5 2.5056743021527327E-15
+Observation: type.noRash_4 3.6901638123243935E-31
+Observation: type.noRash_3 8.171890541181333E-31
+Observation: type.noRash_2 1.5834383717169674E-24
+Observation: type.goal_1 1.973640898041926E-11
+Observation: type.start_0 2.0180583348649014E-31
+Observation: type.goal_0 1.8136707244526343E-6
+Observation: type.goal_3 1.8136707244526343E-6
+Observation: type.goal_2 1.6183855363943793E-9
+Observation: type.goal_5 4.0114652399226134E-14
+Observation: type.goal_4 6.264185755381832E-16
+Observation: type.goal_7 1.48720999405116E-4
+Observation: type.goal_6 4.0114652399226134E-14
+Observation: type.noRash_8 5.870436936472118E-15
+Observation: type.noRash_9 1.888116459126776E-9
+Observation: type.noRash_6 1.2421546213329036E-20
+Observation: type.noRash_7 1.272451075511755E-20
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	olddiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.start
+
+olddiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	1
+
+human (class.human)
+	attr.mentalState:	type.rash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 0.5
+Observation: type.start_5 3.10977689110005E-36
+Observation: type.start_6 1.1098500044780921E-29
+Observation: type.rash_0 5.784555228980747E-41
+Observation: type.start_7 1.2551352764081218E-6
+Observation: type.rash_1 7.600877292805226E-22
+Observation: type.start_8 2.21839336822544E-10
+Observation: type.rash_2 1.0073316825105311E-10
+Observation: type.rash_3 8.550986954405879E-21
+Observation: type.start_1 1.3506250359022611E-25
+Observation: type.rash_4 5.659166755677141E-13
+Observation: type.start_2 2.9795438987796494E-18
+Observation: type.goal_8 6.715544550070207E-11
+Observation: type.start_3 5.8319112832267605E-18
+Observation: type.goal_9 1.0638765676221223E-6
+Observation: type.start_4 1.9524326521904117E-6
+Observation: type.start_9 1.0055960658381312E-17
+Observation: type.noRash_1 1.428223171402472E-22
+Observation: type.noRash_0 9.647321685016155E-29
+Observation: type.noRash_5 1.8061964710893062E-17
+Observation: type.noRash_4 3.425462976784236E-33
+Observation: type.noRash_3 3.0110242462597227E-34
+Observation: type.noRash_2 6.297280297189029E-26
+Observation: type.goal_1 2.376850037384399E-11
+Observation: type.start_0 2.0461432181324498E-30
+Observation: type.goal_0 1.0638765676221223E-6
+Observation: type.goal_3 1.0638765676221223E-6
+Observation: type.goal_2 1.0073316825105311E-9
+Observation: type.goal_5 1.5896535830553767E-15
+Observation: type.goal_4 2.408261961452408E-18
+Observation: type.goal_7 9.46850145183689E-5
+Observation: type.goal_6 3.1793071661107533E-15
+Observation: type.noRash_8 3.750868004962125E-15
+Observation: type.noRash_9 4.700881185049145E-10
+Observation: type.noRash_6 7.980921157445487E-22
+Observation: type.noRash_7 3.362747678698942E-23
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	newdiaper;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	ointment
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Start state baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+
+Action bringOintment
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action bringDiaper
+State baby (class.baby)
+	attr.wearing:	newdiaper
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.goal
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+Action null
+State baby (class.baby)
+	attr.wearing:	
+	attr.rash:	0
+
+human (class.human)
+	attr.mentalState:	type.noRash
+
+olddiaper (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Diaper
+
+newdiaper (class.physobj)
+	attr.container:	sidetable
+	attr.medicine:	0
+	attr.manipulable:	1
+	attr.cleanliness:	1
+	attr.physobjType:	type.Diaper
+
+changingtable (class.container)
+	attr.contents:	ointment;olddiaper
+	attr.containerType:	type.changingTable
+
+sidetable (class.container)
+	attr.contents:	newdiaper
+	attr.containerType:	type.sideTable
+
+trashcan (class.container)
+	attr.contents:	
+	attr.containerType:	type.trashCan
+
+ointment (class.physobj)
+	attr.container:	changingtable
+	attr.medicine:	1
+	attr.manipulable:	1
+	attr.cleanliness:	0
+	attr.physobjType:	type.Ointment
+
+type.start (class.state)
+
+type.rash (class.state)
+
+type.noRash (class.state)
+
+type.goal (class.state)
+
+ probability: 1.0
+Observation: type.start_5 1.5797173152205475E-38
+Observation: type.start_6 9.290726151024242E-32
+Observation: type.rash_0 3.025870802068537E-39
+Observation: type.start_7 4.561824230711657E-8
+Observation: type.rash_1 1.4556499468744961E-21
+Observation: type.start_8 2.826829411257966E-12
+Observation: type.rash_2 6.743273068309914E-10
+Observation: type.rash_3 2.079499924106423E-20
+Observation: type.start_1 4.8202810678616525E-30
+Observation: type.rash_4 4.111751870920679E-12
+Observation: type.start_2 1.9062082637642212E-22
+Observation: type.goal_8 5.057454801232435E-11
+Observation: type.start_3 1.1555714302725194E-20
+Observation: type.goal_9 6.801265216697379E-7
+Observation: type.start_4 3.041216153807771E-8
+Observation: type.start_9 5.1467623121633984E-20
+Observation: type.noRash_1 2.9098649027246227E-19
+Observation: type.noRash_0 3.148530469030145E-25
+Observation: type.noRash_5 2.416185934218706E-13
+Observation: type.noRash_4 2.9499913674732187E-28
+Observation: type.noRash_3 5.9728220279704665E-28
+Observation: type.noRash_2 3.7034644216495227E-20
+Observation: type.goal_1 2.3745367054566924E-11
+Observation: type.start_0 2.8675080713037794E-35
+Observation: type.goal_0 6.801265216697379E-7
+Observation: type.goal_3 6.801265216697379E-7
+Observation: type.goal_2 5.057454801232435E-10
+Observation: type.goal_5 3.384673796184706E-13
+Observation: type.goal_4 2.796511497938319E-18
+Observation: type.goal_7 1.1154074955383701E-4
+Observation: type.goal_6 2.8205614968205876E-15
+Observation: type.noRash_8 7.264665708884245E-13
+Observation: type.noRash_9 6.675840337626813E-8
+Observation: type.noRash_6 1.4229768440669363E-16
+Observation: type.noRash_7 2.3137834862877015E-18
+reward: -1.0
+PointBasedValueIteration: test end
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
