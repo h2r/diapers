@@ -1,0 +1,56 @@
+dialogues:
+
+scene-
+S: hey marky we are going to change your diaper now aren't we , who is a good boy
+R: awww look there is a rash, you still have a rash , we need to apply ointment wait a minute
+NR: it is going to be ok , don't move , let us put on the diaper
+G: all done!
+
+scene-
+S: hello junebug , what is up, shall we change your diaper , yes we will
+NR: it is a poopy diaper , let us get a new diaper now
+G: yey we changed the diaper!
+
+scene-
+S: hey tommy , looks like we need to change your diaper
+R: the rash seems to be improving, we need more ointment
+NR: that should get better soon , let us put the new diaper on
+G: done, lets play now
+
+scene-
+S: wanna change the diaper , wanna change the diaper , diaper , diaper 
+NR: the rash is gone ! no rash, lets clean you up and put the new diaper on
+G: all done !
+
+scene-
+S: lets change your diaper
+R: oh, there is a rash
+NR: it should be ok , we have applied the ointment , let us put on the diaper now
+G: done! here is a toy to play with
+
+scene-
+S: diaper changing time , yes you hate it , but it needs to be done, cone on now hold still
+NR: it is clean , put on a new one
+G: yey ! all clean and new !
+
+scene-
+S: who has a dirty diaper ? not me , it is you , let us change it !
+R: oh oh , there is a rash , it needs meds
+NR: let us clean you up and put on a new diaper
+G: done ! yay ! toys for everyone 
+
+scene-
+S: diaper change time !
+NR: yes you have a poopy diaper , put on a new one
+G: finished !
+
+scene-
+S: is your diaper soiled already ?
+R: oh there is a rash too
+NR: it should heal soon , new diaper !
+G: all done ! lets play
+
+scene-
+S: hmmm your diaper is dirty again , let us change it
+NR: putting on a clean diaper
+G: all done !

@@ -1,0 +1,127 @@
+<<<<<<< HEAD
+adding this for nonsense
+=======
+ha ha
+>>>>>>> resultCollectingBranch
+TestBench running... parsing input...... new domain
+run number: 0
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 183
+run number: 1
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 64
+run number: 2
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.start#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 38
+run number: 3
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 38
+run number: 4
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 19
+run number: 5
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 16
+run number: 6
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 14
+run number: 7
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.start#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 19
+run number: 8
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.rash#0
+The agent chose to perform action bringOintment with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -3.0, discounted reward: -2.8525 in 3 steps.
+total time: 19
+run number: 9
+Parse successful, running
+The agent chose to perform action null with parameters []
+The agent received reward -1.0
+Agent observed obs.no_rash#0
+The agent chose to perform action bringDiaper with parameters []
+The agent received reward -1.0
+Agent observed obs.goal#0
+Agent solved the problem receiving total reward -2.0, discounted reward: -1.95 in 2 steps.
+total time: 15
+Average discounted Reward: -2.4914999999999994 standrd deviation: 0.44213289857236365 95% confidence interval: 0.274036809644252
+Average Reward: -2.6 standrd deviation: 0.48989794855663565 95% confidence interval: 0.3036418943426615
+Average Time: 42.5 standrd deviation: 49.163502723056666 95% confidence interval: 30.471854685922874

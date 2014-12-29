@@ -1,0 +1,418 @@
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#0, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.rash#0, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#0, reward: -1.0
+type.noRash: bringOintment , Observation: obs.start#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start#0, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringDiaper
+type.start: bringOintment , Observation: obs.start#0, reward: -1.0
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#0, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+LBLWPOMCP Results complete run: num observations 4
+Average Reward: -2.4 with confidence interval: 0.3036418943426615
+Average Discounted Reward: -2.3109999999999995 with confidence interval: 0.274036809644252
+Average Time: 31.0 with confidence interval: 10.996979949058742
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#1, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#1, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#1, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start#1, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringDiaper
+type.start: bringDiaper , Observation: obs.start#0, reward: -1.0
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+LBLWPOMCP Results complete run: num observations 8
+Average Reward: -2.3 with confidence interval: 0.284030984225313
+Average Discounted Reward: -2.22075 with confidence interval: 0.25633796326334496
+Average Time: 10.3 with confidence interval: 1.9213999063183071
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#1, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#2, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#2, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#2, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#3, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#2, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#2, reward: -1.0
+type.noRash: null , Observation: obs.no_rash#2, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#2, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#3, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.no_rash#2, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#1, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#1, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#2, reward: -1.0
+type.noRash: bringOintment , Observation: obs.rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#2, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#2, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start#2, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#2, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+LBLWPOMCP Results complete run: num observations 16
+Average Reward: -2.6 with confidence interval: 0.3036418943426615
+Average Discounted Reward: -2.4914999999999994 with confidence interval: 0.274036809644252
+Average Time: 6.8 with confidence interval: 1.6351616433857539
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#3, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#3, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#4, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#4, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start#6, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#5, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#1, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#4, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#4, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#0, reward: -1.0
+type.rash: bringDiaper , Observation: obs.rash#0, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#6, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#3, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#4, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#2, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#5, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.rash#5, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#5, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.start#6, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash#3, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#0, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#0, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#3, reward: -1.0
+LBLWPOMCP Results complete run: num observations 32
+Average Reward: -2.5 with confidence interval: 0.4157787873376899
+Average Discounted Reward: -2.3967374999999995 with confidence interval: 0.36902874725043433
+Average Time: 7.1 with confidence interval: 1.5295536603859308
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#11, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash#14, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#1, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#9, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash#14, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#7, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#8, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#4, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#4, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#7, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#10, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#3, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#9, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#7, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash#3, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.rash#7, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#14, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash#14, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start#2, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#9, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash#1, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#6, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+LBLWPOMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash#11, reward: -1.0
+type.rash: bringOintment , Observation: obs.start#5, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal#4, reward: -1.0
+LBLWPOMCP Results complete run: num observations 64
+Average Reward: -2.6 with confidence interval: 0.3036418943426615
+Average Discounted Reward: -2.4914999999999994 with confidence interval: 0.274036809644252
+Average Time: 9.1 with confidence interval: 1.0165581144233713

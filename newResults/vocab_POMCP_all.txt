@@ -1,0 +1,117 @@
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringDiaper
+MonteCarloNodeAgent: bringDiaper
+MonteCarloNodeAgent: bringDiaper
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: bringDiaper , Observation: obs.start, reward: -1.0
+type.start: bringDiaper , Observation: obs.start, reward: -1.0
+type.start: bringDiaper , Observation: obs.start, reward: -1.0
+type.start: bringDiaper , Observation: obs.start, reward: -1.0
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+POMCP Results
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringDiaper
+MonteCarloNodeAgent: bringDiaper
+MonteCarloNodeAgent: null
+MonteCarloNodeAgent: bringOintment
+MonteCarloNodeAgent: bringDiaper
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: null , Observation: obs.rash, reward: -1.0
+type.rash: bringDiaper , Observation: obs.rash, reward: -1.0
+type.rash: bringDiaper , Observation: obs.rash, reward: -1.0
+type.rash: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+Average Reward: -4.2 with confidence interval: 1.5874790077352205
+Average Discounted Reward: -3.741985725785156 with confidence interval: 1.2447254658457745
+Average Time: 45.8 with confidence interval: 29.00243730447495

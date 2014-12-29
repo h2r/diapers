@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{amssymb}
+
+\begin{document}
+
+\section{Belief Update w/ HMM Observation Model}
+
+\subsection{Belief Update}
+Computing $b' : S \rightarrow \mathbb{R}$ (the new belief state) given $b : S \rightarrow \mathbb{R}$ (the previous belief state), $\Lambda = \lambda_1\lambda_2...\lambda_n$ (an observation comprised of single words $\lambda_i$), and $a$ the action performed to arrive at $s'$ the new state. $\alpha$ is a normalizing constant.
+
+$$
+b'(s') = \alpha{}P(\Lambda | s', a)\sum_sP(s' | s, a)b(s)
+$$
+
+\subsection{Probability of observation}
+We wish to compute $P(\Lambda | s, a)$ the probability of an observation $\Lambda$ given a state and an action taken to arrive at that state.  We will make the assumption $P(\Lambda | s, a) = P(\Lambda | s)$, that is, the action taken doesn't matter.  We will also assume each word $\lambda_i$ in the observation is independent of other words, and that their order does not matter. $\beta$ is a normalizing constant.
+
+$$
+P(\Lambda | s) = \beta{}\prod_iP(\lambda_i|s)
+$$
+
+We now wish to calculate $P(\lambda_i|s)$ through word-counting. Define $W_s \in W^*$ (where $W$ is the set of all words, $W^*$ is the Kleene closure of this set) to be the list $w_1w_2...w_n$ of words observed in state $s$.  In addition, for concise notation define the function $C : W^* \times W \rightarrow \mathbb{N}$ such that 
+
+$$
+C(W_s, \lambda_i) = |\{w|w \in W_s \land w = \lambda_i\}|
+$$
+
+I.e. $C$ counts the number of occurrences of a word $\lambda_i$ in a list $W_s$ of words.  Given this, we can now simply define
+
+$$
+P(\lambda_i|s) = \frac{C(W_s, \lambda_i)}{|W_s|}
+$$
+
+\subsection{New Belief Update}
+Putting these together yields
+
+$$
+b'(s') = \alpha{}\left(\beta\prod_iP(\lambda_i|s')\right)\sum_sP(s' | s, a)b(s)
+$$
+
+Or, expanded and with single normalization:
+
+$$
+b'(s') = \alpha{}\prod_i\frac{C(W_{s'}, \lambda_i)}{|W_{s'}|}\sum_sP(s' | s, a)b(s)
+$$
+
+
+\end{document}ls

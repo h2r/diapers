@@ -1,0 +1,35 @@
+{"state":"type.start","sentence":"going to change diaper"}
+{"state":"type.rash","sentence":"look a rash, need ointment"}
+{"state":"type.noRash","sentence":"let us put on the diaper"}
+{"state":"type.goal","sentence":"all done now !"}
+{"state":"type.start","sentence":"shall we change your diaper ?"}
+{"state":"type.noRash","sentence":"get a new diaper now"}
+{"state":"type.goal","sentence":"yey we changed the diaper !"}
+{"state":"type.start","sentence":"need to change your diaper"}
+{"state":"type.rash","sentence":"we need ointment"}
+{"state":"type.noRash","sentence":"let us put the new diaper on"}
+{"state":"type.goal","sentence":"done , lets play now"}
+{"state":"type.start","sentence":"wanna change the diaper"}
+{"state":"type.noRash","sentence":"lets put the new diaper on"}
+{"state":"type.goal","sentence":"all done !"}
+{"state":"type.start","sentence":"lets change your diaper"}
+{"state":"type.rash","sentence":"oh, there is a rash"}
+{"state":"type.noRash","sentence":"let us put on the diaper now"}
+{"state":"type.goal","sentence":"done ! here is a toy to play with"}
+{"state":"type.start","sentence":"diaper changing time"}
+{"state":"type.noRash","sentence":"put on a new one"}
+{"state":"type.goal","sentence":"yey ! all clean and new !"}
+{"state":"type.start","sentence":"who has a dirty diaper , change"}
+{"state":"type.rash","sentence":"there is a rash , need meds"}
+{"state":"type.noRash","sentence":"put on a new diaper"}
+{"state":"type.goal","sentence":"done ! yay !"}
+{"state":"type.start","sentence":"diaper change time !"}
+{"state":"type.noRash","sentence":"put on a new one"}
+{"state":"type.goal","sentence":"finished !"}
+{"state":"type.start","sentence":"is your diaper soiled already ?"}
+{"state":"type.rash","sentence":"oh there is a rash"}
+{"state":"type.noRash","sentence":"new diaper !"}
+{"state":"type.goal","sentence":"all done ! lets play"}
+{"state":"type.start","sentence":"diaper is dirty  , let us change it"}
+{"state":"type.noRash","sentence":"putting on a clean diaper"}
+{"state":"type.goal","sentence":"all done !"}

@@ -1,0 +1,219 @@
+run number: 0
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start, reward: -1.0
+run number: 1
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 2
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 3
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 4
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.start, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 5
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 6
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.rash, reward: -1.0
+run number: 7
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.start, reward: -1.0
+type.rash: bringDiaper , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.goal, reward: -1.0
+run number: 8
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.rash, reward: -1.0
+run number: 9
+Num generated: 46; num unique: 14
+num states enumerated: 14
+PBVI: size of states 14
+PBVI: granularity 4
+PBVI: num 2380
+PBVI: size of belief points 2380
+Begining pbvi planning.
+iteration number0
+iteration number1
+iteration number2
+iteration number3
+iteration number4
+iteration number5
+iteration number6
+iteration number7
+iteration number8
+iteration number9
+End pbvi planning.
+type.start: null , Observation: obs.rash, reward: -1.0
+type.rash: bringOintment , Observation: obs.no_rash, reward: -1.0
+type.noRash: bringDiaper , Observation: obs.start, reward: -1.0
+PBVI Results: num observations 4
+Average Reward: -2.5 with confidence interval: 0.4157787873376899
+Average Discounted Reward: -2.3967374999999995 with confidence interval: 0.36902874725043433
+Average Time: 18307.7 with confidence interval: 388.1337527420154
