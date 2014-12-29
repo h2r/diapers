@@ -1,6 +1,11 @@
 diapers
 =======
 
+need to create an ant build!
+
+
+older instructions
+===============================
 To compile use
 
 	$ ant compile
